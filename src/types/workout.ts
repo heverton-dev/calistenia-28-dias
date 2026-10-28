@@ -50,6 +50,18 @@ export interface WorkoutDay {
   items: WorkoutItem[];
 }
 
+export interface WeightEntry {
+  date: string; // YYYY-MM-DD
+  weightKg: number;
+}
+
+export interface AppSettings {
+  soundEnabled: boolean;
+  prepTimeSeconds: number; // 3, 5 ou 10
+  restTimeMultiplier: number;
+  vibrateEnabled: boolean;
+}
+
 export interface UserProgress {
   completedDays: number[];
   currentStreak: number;
@@ -57,4 +69,7 @@ export interface UserProgress {
   totalWorkoutsCompleted: number;
   lastCompletedDate?: string;
   userWeightKg?: number;
+  weightHistory: WeightEntry[];
+  settings: AppSettings;
+  customizedItems?: Record<number, WorkoutItem[]>;
 }
