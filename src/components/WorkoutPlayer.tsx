@@ -6,7 +6,7 @@ import { ExerciseAnimation } from './ExerciseAnimation';
 import { getNextStep, PlayerState, calculateWorkoutProgress } from './playerEngine';
 import { playCountdownBeep, playTransitionBell } from '../utils/sound';
 import { useWakeLock } from '../hooks/useWakeLock';
-import { Play, Pause, SkipForward, X, CheckCircle } from 'lucide-react';
+import { Play, Pause, SkipForward, X, CheckCircle, Volume2 } from 'lucide-react';
 
 interface WorkoutPlayerProps {
   workout: WorkoutDay;
@@ -21,7 +21,7 @@ export function WorkoutPlayer({ workout, onFinish, onExit }: WorkoutPlayerProps)
   const [totalTimeLeft, setTotalTimeLeft] = useState(5);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Mantém a tela acesa
+  // Mantém a tela ligada no iPhone / Android
   useWakeLock(state !== 'completed');
 
   const currentItem = workout.items[currentIndex];
@@ -31,7 +31,7 @@ export function WorkoutPlayer({ workout, onFinish, onExit }: WorkoutPlayerProps)
 
   const timerRef = useRef<number | null>(null);
 
-  // Timer loop
+  // Loop do timer
   useEffect(() => {
     if (state === 'completed' || isPaused) {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -81,140 +81,156 @@ export function WorkoutPlayer({ workout, onFinish, onExit }: WorkoutPlayerProps)
 
   if (state === 'completed') {
     return (
-      <div className="min-h-screen bg-[#090d16] text-white flex flex-col items-center justify-center p-6 text-center">
-        <div className="w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 border border-emerald-500/30 animate-bounce">
-          <CheckCircle size={48} />
+      <div className="min-h-screen bg-[#080b14] text-white flex flex-col items-center justify-center p-6 text-center">
+        <div className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-emerald-500/20 to-teal-500/10 text-emerald-400 flex items-center justify-center mb-6 border border-emerald-500/30 shadow-2xl shadow-emerald-500/20">
+          <CheckCircle size={56} className="animate-pulse" />
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight mb-2">Treino Concluído!</h1>
-        <p className="text-slate-400 max-w-sm mb-6">
-          Você completou o <span className="text-white font-semibold">{workout.title}</span> (Dia {workout.dayNumber} do Desafio).
+        <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mb-2">
+          Missão Cumprida
+        </span>
+        <h1 className="text-3xl font-black tracking-tight mb-2">Treino Finalizado!</h1>
+        <p className="text-slate-400 max-w-sm mb-8 text-sm">
+          Você concluiu com maestria o <span className="text-white font-semibold">{workout.title}</span> (Dia {workout.dayNumber} do Desafio).
         </p>
 
         <div className="grid grid-cols-2 gap-4 w-full max-w-xs mb-8">
-          <div className="bg-[#131b2e] p-4 rounded-xl border border-white/5">
-            <span className="text-xs text-slate-400 block mb-1">Exercícios</span>
-            <span className="text-2xl font-bold text-orange-400">{workout.items.length}</span>
+          <div className="bg-[#111728] p-4 rounded-2xl border border-white/5 shadow-md">
+            <span className="text-[11px] text-slate-400 block mb-1 uppercase font-semibold">Exercícios</span>
+            <span className="text-2xl font-black text-orange-400">{workout.items.length}</span>
           </div>
-          <div className="bg-[#131b2e] p-4 rounded-xl border border-white/5">
-            <span className="text-xs text-slate-400 block mb-1">Tempo Est.</span>
-            <span className="text-2xl font-bold text-emerald-400">{workout.estimatedMinutes} min</span>
+          <div className="bg-[#111728] p-4 rounded-2xl border border-white/5 shadow-md">
+            <span className="text-[11px] text-slate-400 block mb-1 uppercase font-semibold">Tempo Total</span>
+            <span className="text-2xl font-black text-emerald-400">{workout.estimatedMinutes} min</span>
           </div>
         </div>
 
         <button
           onClick={onFinish}
-          className="w-full max-w-xs py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg shadow-lg shadow-orange-500/25 active:scale-95 transition-transform"
+          className="w-full max-w-xs py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-extrabold text-base shadow-xl shadow-orange-500/30 active:scale-95 transition-all"
         >
-          Registrar e Salvar
+          Salvar no Progresso dos 28 Dias
         </button>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-white flex flex-col justify-between p-4 safe-area-inset">
-      {/* Barra superior de controle e progresso */}
+    <div className="min-h-screen bg-[#080b14] text-white flex flex-col justify-between p-4 safe-area-inset max-w-lg mx-auto">
+      {/* Top Header */}
       <div>
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-3 pt-2">
           <button
             onClick={onExit}
-            className="p-2 rounded-xl bg-slate-800/60 text-slate-300 hover:text-white"
+            className="p-2.5 rounded-2xl bg-[#12192b] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform"
+            aria-label="Sair do treino"
           >
             <X size={20} />
           </button>
+
           <div className="text-center">
-            <span className="text-xs font-semibold text-orange-400 uppercase tracking-wider block">
+            <span className="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">
               Dia {workout.dayNumber} • {workout.focus}
             </span>
-            <span className="text-xs text-slate-400">
-              {currentIndex + 1} de {workout.items.length} exercícios
+            <span className="text-xs text-slate-400 font-medium">
+              Série {currentIndex + 1} de {workout.items.length}
             </span>
           </div>
-          <div className="w-8" />
+
+          <div className="p-2.5 rounded-2xl bg-[#12192b] text-emerald-400 border border-white/5">
+            <Volume2 size={20} />
+          </div>
         </div>
 
-        {/* Linha de progresso geral do treino */}
-        <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+        {/* Linha de Progresso Global do Treino */}
+        <div className="w-full h-2 bg-slate-800/60 rounded-full overflow-hidden p-0.5 border border-white/5">
           <div
-            className="h-full bg-gradient-to-r from-orange-500 to-amber-400 transition-all duration-300"
+            className="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-emerald-400 transition-all duration-300 rounded-full"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
       </div>
 
-      {/* Conteúdo Central */}
-      <div className="flex-1 flex flex-col items-center justify-center my-4">
+      {/* Área Central Interativa */}
+      <div className="flex-1 flex flex-col items-center justify-center my-3">
         {state === 'prepare' && (
-          <div className="text-center">
-            <span className="text-sm font-semibold text-orange-400 uppercase tracking-widest block mb-2">
+          <div className="text-center flex flex-col items-center">
+            <span className="text-xs font-black tracking-widest text-orange-400 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 mb-3">
               Prepare-se
             </span>
-            <h2 className="text-2xl font-bold mb-4">{currentExercise?.name}</h2>
-            <div className="text-7xl font-black text-white font-mono my-4 animate-pulse">
-              {timeLeft}
+            <h2 className="text-2xl font-black mb-6 text-white">{currentExercise?.name}</h2>
+
+            <div className="relative w-44 h-44 flex items-center justify-center rounded-full bg-[#111728] border-4 border-orange-500/30 shadow-2xl shadow-orange-500/20 my-4">
+              <span className="text-8xl font-black text-white font-mono tracking-tighter animate-pulse">
+                {timeLeft}
+              </span>
             </div>
-            <p className="text-xs text-slate-400">Começando em instantes...</p>
+            <p className="text-xs text-slate-400 mt-2">Posicione-se no solo...</p>
           </div>
         )}
 
         {state === 'active' && currentExercise && (
-          <div className="w-full max-w-sm flex flex-col items-center">
-            {/* Visualizador Anatômico e Animação lado a lado */}
-            <div className="grid grid-cols-2 gap-3 w-full mb-4">
+          <div className="w-full flex flex-col items-center">
+            {/* Visualizador Anatômico e Animação Cinemática Lado a Lado */}
+            <div className="grid grid-cols-2 gap-3 w-full mb-3">
               <ExerciseAnimation
                 animationType={currentExercise.animationType}
                 isPaused={isPaused}
+                className="!h-64"
               />
               <AnatomyViewer
                 primaryMuscles={currentExercise.primaryMuscles}
                 secondaryMuscles={currentExercise.secondaryMuscles}
+                className="!h-64"
               />
             </div>
 
-            <h2 className="text-xl font-bold text-center mb-1">{currentExercise.name}</h2>
-            <p className="text-xs text-slate-400 text-center mb-4 line-clamp-2">
-              {currentExercise.description}
-            </p>
+            <div className="text-center mb-4">
+              <h2 className="text-xl font-black tracking-tight text-white mb-0.5">{currentExercise.name}</h2>
+              <p className="text-xs text-slate-400 max-w-sm line-clamp-1">
+                {currentExercise.description}
+              </p>
+            </div>
 
-            {/* Timer Central Circular / Digital */}
-            <div className="relative w-36 h-36 flex flex-col items-center justify-center rounded-full bg-[#131b2e] border-4 border-orange-500/20 shadow-inner">
+            {/* Display do Timer Esportivo */}
+            <div className="relative w-36 h-36 flex flex-col items-center justify-center rounded-full bg-[#111728] border-4 border-orange-500/20 shadow-2xl shadow-orange-500/15">
               <svg className="absolute inset-0 w-full h-full -rotate-90">
                 <circle
                   cx="72"
                   cy="72"
-                  r="66"
+                  r="65"
                   stroke="#f97316"
                   strokeWidth="6"
                   fill="none"
-                  strokeDasharray="415"
-                  strokeDashoffset={415 - (415 * timerPercent) / 100}
+                  strokeDasharray="408"
+                  strokeDashoffset={408 - (408 * timerPercent) / 100}
                   strokeLinecap="round"
                   className="transition-all duration-300"
                 />
               </svg>
-              <span className="text-4xl font-black font-mono tracking-tight">{timeLeft}s</span>
-              <span className="text-[10px] text-slate-400 uppercase tracking-widest mt-1">Tempo</span>
+              <span className="text-4xl font-black font-mono tracking-tight text-white">{timeLeft}s</span>
+              <span className="text-[9px] text-orange-400 font-extrabold uppercase tracking-widest">Ativo</span>
             </div>
           </div>
         )}
 
         {state === 'rest' && (
-          <div className="text-center w-full max-w-sm">
-            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">
-              Descanso
+          <div className="text-center w-full max-w-sm flex flex-col items-center">
+            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20 mb-3">
+              Recuperação Ativa
             </span>
-            <div className="text-6xl font-black font-mono my-4 text-emerald-400">
+            <div className="text-7xl font-black font-mono my-2 text-emerald-400 tracking-tight">
               {timeLeft}s
             </div>
+            <p className="text-xs text-slate-400 mb-6">Respire fundo e prepare os músculos</p>
 
             {nextExercise && (
-              <div className="bg-[#131b2e] p-4 rounded-2xl border border-white/5 text-left mt-4">
-                <span className="text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
-                  A Seguir:
+              <div className="bg-[#111728] p-4 rounded-3xl border border-white/10 text-left w-full shadow-xl">
+                <span className="text-[10px] text-slate-400 uppercase font-extrabold tracking-wider block mb-1">
+                  Próximo Movimento:
                 </span>
-                <span className="text-sm font-bold text-white block">{nextExercise.name}</span>
-                <span className="text-xs text-orange-400 block mt-0.5">
-                  Duração: {nextItem?.durationSeconds}s
+                <span className="text-base font-bold text-white block">{nextExercise.name}</span>
+                <span className="text-xs text-orange-400 font-medium block mt-1">
+                  Duração: {nextItem?.durationSeconds} segundos
                 </span>
               </div>
             )}
@@ -222,19 +238,20 @@ export function WorkoutPlayer({ workout, onFinish, onExit }: WorkoutPlayerProps)
         )}
       </div>
 
-      {/* Barra Inferior de Controles */}
-      <div className="flex items-center justify-center gap-6 pb-4">
+      {/* Controles Inferiores */}
+      <div className="flex items-center justify-center gap-6 pb-2">
         <button
           onClick={togglePause}
-          className="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white flex items-center justify-center shadow-lg shadow-orange-500/25 active:scale-95 transition-transform"
+          className="w-16 h-16 rounded-3xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white flex items-center justify-center shadow-2xl shadow-orange-500/30 active:scale-90 transition-all"
+          aria-label={isPaused ? 'Continuar' : 'Pausar'}
         >
-          {isPaused ? <Play size={28} className="translate-x-0.5" /> : <Pause size={28} />}
+          {isPaused ? <Play size={28} className="translate-x-0.5" fill="currentColor" /> : <Pause size={28} fill="currentColor" />}
         </button>
 
         <button
           onClick={handleSkip}
-          className="p-3 rounded-full bg-slate-800 text-slate-300 hover:text-white active:scale-90 transition-transform"
-          title="Pular"
+          className="p-4 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform"
+          title="Pular para próximo"
         >
           <SkipForward size={22} />
         </button>

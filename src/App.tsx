@@ -6,7 +6,7 @@ import { groupDaysByWeek, getNextAvailableDay } from './utils/challengeUtils';
 import { DayCard } from './components/DayCard';
 import { ExerciseModal } from './components/ExerciseModal';
 import { WorkoutPlayer } from './components/WorkoutPlayer';
-import { Flame, Trophy, Play, RotateCcw, Smartphone } from 'lucide-react';
+import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck } from 'lucide-react';
 
 export default function App() {
   const [progress, setProgress] = useState<UserProgress>(loadProgress());
@@ -35,13 +35,12 @@ export default function App() {
   };
 
   const handleReset = () => {
-    if (window.confirm('Deseja reiniciar todo o progresso do desafio de 28 dias?')) {
+    if (window.confirm('Deseja reiniciar todo o seu progresso do Desafio de 28 Dias?')) {
       resetProgress();
       setProgress(loadProgress());
     }
   };
 
-  // Se estiver com treino ativo, exibe o player em tela cheia
   if (activeWorkout) {
     return (
       <WorkoutPlayer
@@ -53,100 +52,114 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-white flex flex-col items-center pb-12">
-      {/* Container Responsivo Mobile/Tablet */}
-      <main className="w-full max-w-md px-4 pt-6">
-        {/* Barra Superior */}
-        <header className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-black border border-orange-500/30">
-              C28
+    <div className="min-h-screen bg-[#080b14] text-white flex flex-col items-center pb-14 selection:bg-orange-500 selection:text-white">
+      {/* Background Glow */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-72 bg-gradient-to-b from-orange-600/15 via-transparent to-transparent pointer-events-none" />
+
+      {/* Main Container */}
+      <main className="w-full max-w-md px-4 pt-4 z-10">
+        {/* Header Superior Esportivo */}
+        <header className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 text-white flex items-center justify-center font-black shadow-lg shadow-orange-500/25">
+              <Dumbbell size={20} />
             </div>
             <div>
-              <h1 className="text-base font-extrabold tracking-tight">Calistenia 28D</h1>
-              <span className="text-[10px] text-emerald-400 flex items-center gap-1">
-                <Smartphone size={10} /> 100% Offline Ready
+              <h1 className="text-base font-black tracking-tight leading-none">Calistenia 28D</h1>
+              <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
+                <Smartphone size={11} /> 100% Offline
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Streak */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#131b2e] border border-white/5">
+            {/* Streak Contador */}
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-[#111728] border border-white/10 shadow-md">
               <Flame size={16} className="text-orange-500 fill-orange-500 animate-pulse" />
-              <span className="text-xs font-bold font-mono">{progress.currentStreak} dias</span>
+              <span className="text-xs font-black font-mono tracking-tight text-white">{progress.currentStreak} dias</span>
             </div>
 
             <button
               onClick={handleReset}
-              className="p-2 rounded-xl bg-[#131b2e] text-slate-400 hover:text-white border border-white/5 active:scale-95"
-              title="Reiniciar Progresso"
+              className="p-2.5 rounded-2xl bg-[#111728] text-slate-400 hover:text-white border border-white/5 active:scale-90 transition-transform"
+              title="Reiniciar Desafio"
+              aria-label="Reiniciar Desafio"
             >
               <RotateCcw size={14} />
             </button>
           </div>
         </header>
 
-        {/* Card Destaque: Treino Recomendado de Hoje */}
-        <section className="relative overflow-hidden p-5 rounded-3xl bg-gradient-to-br from-orange-600 via-orange-500 to-amber-600 shadow-xl shadow-orange-500/20 mb-6">
+        {/* Card Principal: Treino Recomendado de Hoje (Estilo BetterMe Pro) */}
+        <section className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-[#141d33] via-[#101728] to-[#0c1220] border border-orange-500/30 shadow-2xl shadow-orange-500/10 mb-6">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
+
           <div className="relative z-10">
-            <span className="text-[11px] font-extrabold uppercase tracking-widest text-orange-100 bg-black/20 px-2.5 py-1 rounded-full inline-block mb-3">
-              Treino Recomendado
-            </span>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[10px] font-black uppercase tracking-widest text-orange-400 bg-orange-500/15 border border-orange-500/30 px-3 py-1 rounded-full">
+                Treino de Hoje
+              </span>
+              <span className="text-xs text-slate-400 font-mono font-bold">
+                {nextDay.estimatedMinutes} min
+              </span>
+            </div>
+
             <h2 className="text-2xl font-black tracking-tight text-white mb-1">
               Dia {nextDay.dayNumber}: {nextDay.title}
             </h2>
-            <p className="text-xs text-orange-100/90 mb-4 line-clamp-1">
-              {nextDay.focus} • {nextDay.estimatedMinutes} min • {nextDay.items.length} exercícios
+            <p className="text-xs text-slate-400 mb-5">
+              Foco: <span className="text-orange-300 font-semibold">{nextDay.focus}</span> • {nextDay.items.length} séries guiadas
             </p>
 
             <div className="flex items-center gap-3">
               <button
                 onClick={() => handleStartWorkout(nextDay)}
-                className="flex-1 py-3 px-5 rounded-2xl bg-white text-orange-600 font-extrabold text-sm flex items-center justify-center gap-2 shadow-md active:scale-95 transition-transform"
+                className="flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-orange-500/30 active:scale-95 transition-all"
               >
-                <Play size={16} fill="currentColor" />
+                <Play size={18} fill="currentColor" />
                 Iniciar Treino
               </button>
               <button
                 onClick={() => setInspectingDay(nextDay)}
-                className="py-3 px-4 rounded-2xl bg-black/20 text-white font-bold text-sm hover:bg-black/30 transition-colors"
+                className="py-4 px-4 rounded-2xl bg-[#1b253d] text-white font-bold text-xs hover:bg-[#222f4d] border border-white/5 transition-colors"
               >
-                Ver Detalhes
+                Anatomia & Detalhes
               </button>
             </div>
           </div>
         </section>
 
-        {/* Barra de Progresso Geral do Desafio */}
-        <section className="bg-[#101726] p-4 rounded-2xl border border-white/5 mb-6">
-          <div className="flex items-center justify-between text-xs mb-2">
-            <span className="text-slate-400 flex items-center gap-1.5 font-medium">
-              <Trophy size={14} className="text-amber-400" />
-              Progresso do Desafio
+        {/* Progresso do Desafio de 28 Dias */}
+        <section className="bg-[#111728] p-4 rounded-3xl border border-white/5 mb-6 shadow-md">
+          <div className="flex items-center justify-between text-xs mb-2.5">
+            <span className="text-slate-300 flex items-center gap-1.5 font-bold">
+              <Trophy size={15} className="text-amber-400" />
+              Desafio dos 28 Dias
             </span>
-            <span className="font-bold text-white">
-              {progress.completedDays.length} / 28 Dias ({completionPercentage}%)
+            <span className="font-mono font-extrabold text-orange-400">
+              {progress.completedDays.length} de 28 Dias ({completionPercentage}%)
             </span>
           </div>
-          <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+
+          <div className="w-full h-2.5 bg-slate-800/80 rounded-full overflow-hidden p-0.5 border border-white/5">
             <div
-              className="h-full bg-gradient-to-r from-orange-500 to-emerald-400 transition-all duration-500 rounded-full"
+              className="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-emerald-400 transition-all duration-700 rounded-full"
               style={{ width: `${completionPercentage}%` }}
             />
           </div>
         </section>
 
-        {/* Lista das 4 Semanas e 28 Dias */}
+        {/* Grade de Semanas e Dias */}
         <section className="space-y-6">
           {weekGroups.map(week => (
             <div key={week.weekNumber} className="space-y-2.5">
               <div className="flex items-center justify-between px-1">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                <h3 className="text-xs font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                   {week.title}
                 </h3>
-                <span className="text-[11px] text-slate-500 font-mono">
-                  {week.days.filter(d => progress.completedDays.includes(d.dayNumber)).length}/7
+                <span className="text-[11px] text-slate-500 font-mono font-bold">
+                  {week.days.filter(d => progress.completedDays.includes(d.dayNumber)).length}/7 concluídos
                 </span>
               </div>
 
@@ -166,13 +179,18 @@ export default function App() {
         </section>
 
         {/* Rodapé Informativo */}
-        <footer className="mt-10 text-center text-xs text-slate-500 space-y-1">
-          <p>Calistenia 28 Dias • 100% Open Source</p>
-          <p className="text-[11px] text-slate-600">Sem anúncios • Sem cadastros • Dados no seu aparelho</p>
+        <footer className="mt-12 text-center text-xs text-slate-500 space-y-1.5">
+          <div className="flex items-center justify-center gap-1 text-[11px] text-slate-400 font-medium">
+            <ShieldCheck size={14} className="text-emerald-400" />
+            100% Código Aberto • Sem Servidor • Dados Seguros no Dispositivo
+          </div>
+          <p className="text-[10px] text-slate-600">
+            Adicione à Tela de Início no Safari (iOS) ou Chrome (Android) para treinar offline
+          </p>
         </footer>
       </main>
 
-      {/* Modal de Detalhes do Dia */}
+      {/* Modal de Detalhes do Dia e Exercício */}
       {inspectingDay && (
         <ExerciseModal
           day={inspectingDay}

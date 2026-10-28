@@ -1,5 +1,5 @@
 import { WorkoutDay } from '../types/workout';
-import { Check, Flame, Moon, ArrowRight } from 'lucide-react';
+import { Check, Flame, Moon, ChevronRight } from 'lucide-react';
 
 interface DayCardProps {
   day: WorkoutDay;
@@ -12,58 +12,58 @@ export function DayCard({ day, isCompleted, isCurrent, onClick }: DayCardProps) 
   return (
     <button
       onClick={onClick}
-      className={`relative w-full text-left p-3.5 rounded-2xl transition-all duration-200 border flex items-center justify-between group active:scale-[0.98] ${
+      className={`relative w-full text-left p-4 rounded-2xl transition-all duration-200 border flex items-center justify-between group active:scale-[0.98] ${
         isCurrent
-          ? 'bg-gradient-to-r from-orange-950/40 via-[#192238] to-[#121929] border-orange-500/50 shadow-lg shadow-orange-500/10'
+          ? 'bg-gradient-to-r from-orange-950/30 via-[#141d33] to-[#0f172a] border-orange-500/50 shadow-lg shadow-orange-500/10'
           : isCompleted
-          ? 'bg-[#0f172a]/60 border-emerald-500/30'
+          ? 'bg-[#0c1220]/80 border-emerald-500/30'
           : day.isRestDay
-          ? 'bg-[#131b2e]/40 border-purple-500/20'
-          : 'bg-[#101726] border-white/5 hover:border-white/10'
+          ? 'bg-[#101424]/40 border-purple-500/20'
+          : 'bg-[#101728] border-white/5 hover:border-white/10'
       }`}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3.5">
         {/* Marcador do Dia / Status */}
         <div
-          className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm transition-colors ${
+          className={`w-11 h-11 rounded-2xl flex items-center justify-center font-black text-sm transition-all shadow-sm ${
             isCompleted
-              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-emerald-500/10'
               : isCurrent
-              ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+              ? 'bg-gradient-to-tr from-orange-600 to-amber-500 text-white shadow-lg shadow-orange-500/30'
               : day.isRestDay
-              ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20'
-              : 'bg-slate-800 text-slate-400'
+              ? 'bg-purple-500/15 text-purple-300 border border-purple-500/25'
+              : 'bg-[#182238] text-slate-400 border border-white/5'
           }`}
         >
           {isCompleted ? (
-            <Check size={18} strokeWidth={3} />
+            <Check size={20} strokeWidth={3} />
           ) : day.isRestDay ? (
-            <Moon size={16} />
+            <Moon size={18} />
           ) : (
-            <span>{day.dayNumber}</span>
+            <span className="font-mono">{day.dayNumber}</span>
           )}
         </div>
 
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
+            <span className="text-sm font-black text-white group-hover:text-orange-400 transition-colors">
               {day.title}
             </span>
             {isCurrent && !isCompleted && (
-              <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-orange-500 text-white">
+              <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-orange-500 text-white shadow-sm shadow-orange-500/30">
                 Hoje
               </span>
             )}
           </div>
           <span className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
             {day.isRestDay ? (
-              <span className="text-purple-300">Descanso e Recuperação</span>
+              <span className="text-purple-300 font-medium">Recuperação Muscular</span>
             ) : (
               <>
                 <Flame size={12} className="text-red-400" />
-                <span>{day.focus}</span>
-                <span>•</span>
-                <span>{day.estimatedMinutes} min</span>
+                <span className="text-slate-300">{day.focus}</span>
+                <span className="text-slate-600">•</span>
+                <span className="font-mono text-slate-400">{day.estimatedMinutes} min</span>
               </>
             )}
           </span>
@@ -71,7 +71,7 @@ export function DayCard({ day, isCompleted, isCurrent, onClick }: DayCardProps) 
       </div>
 
       <div className="flex items-center text-slate-500 group-hover:text-white transition-colors">
-        <ArrowRight size={16} />
+        <ChevronRight size={18} />
       </div>
     </button>
   );
