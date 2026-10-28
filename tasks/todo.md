@@ -5,4 +5,4 @@
 - [x] Task 3: Sintetizador Web Audio API e Gerenciador de Progresso Offline
 - [x] Task 4: Componente Anatômico Muscular SVG e Animações Vetoriais
 - [x] Task 5: Player de Treino Automatizado com Timers e Bips
-- [ ] Task 6: Grid do Desafio dos 28 Dias, Interface Principal e Configuração PWA Offline
+- [x] Task 6: Grid do Desafio dos 28 Dias, Interface Principal e Configuração PWA Offline
