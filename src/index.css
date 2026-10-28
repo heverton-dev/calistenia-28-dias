@@ -1,0 +1,27 @@
+:root {
+  --bg-primary: #090d16;
+  --bg-card: #131b2e;
+  --bg-card-hover: #1b2640;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-orange: #f97316;
+  --accent-red: #ef4444;
+  --accent-green: #22c55e;
+  --accent-blue: #38bdf8;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+  user-select: none;
+}

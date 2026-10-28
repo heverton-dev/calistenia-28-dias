@@ -1,6 +1,6 @@
 # Lista de Tarefas: Calistenia Daily Trainer
 
-- [ ] Task 1: Setup do Projeto, Dependências e Harness de Testes (Vitest)
+- [x] Task 1: Setup do Projeto, Dependências e Harness de Testes (Vitest)
 - [ ] Task 2: Domínio de Dados, Catálogo de Exercícios e Matriz dos 28 Dias
 - [ ] Task 3: Sintetizador Web Audio API e Gerenciador de Progresso Offline
 - [ ] Task 4: Componente Anatômico Muscular SVG e Animações Vetoriais
