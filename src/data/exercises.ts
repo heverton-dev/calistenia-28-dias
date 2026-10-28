@@ -186,3 +186,16 @@ export const EXERCISES: Exercise[] = [
 export function getExerciseById(id: string): Exercise | undefined {
   return EXERCISES.find(ex => ex.id === id);
 }
+
+export function getAlternativeExercises(exerciseId: string): Exercise[] {
+  const current = getExerciseById(exerciseId);
+  if (!current) return [];
+
+  return EXERCISES.filter(ex => {
+    if (ex.id === exerciseId) return false;
+    // Compartilha algum músculo primário ou secundário
+    const sharesPrimary = ex.primaryMuscles.some(m => current.primaryMuscles.includes(m));
+    const sharesSecondary = ex.secondaryMuscles.some(m => current.primaryMuscles.includes(m));
+    return sharesPrimary || sharesSecondary;
+  });
+}

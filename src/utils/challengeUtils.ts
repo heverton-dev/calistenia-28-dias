@@ -1,4 +1,4 @@
-import { WorkoutDay } from '../types/workout';
+import { WorkoutDay, WorkoutItem } from '../types/workout';
 
 export interface WeekGroup {
   weekNumber: number;
@@ -35,4 +35,18 @@ export function getNextAvailableDay(
 ): WorkoutDay {
   const firstUncompleted = allDays.find(d => !completedDays.includes(d.dayNumber));
   return firstUncompleted || allDays[allDays.length - 1];
+}
+
+export function replaceWorkoutItem(
+  items: WorkoutItem[],
+  index: number,
+  newExerciseId: string
+): WorkoutItem[] {
+  if (index < 0 || index >= items.length) return items;
+  const newItems = [...items];
+  newItems[index] = {
+    ...newItems[index],
+    exerciseId: newExerciseId
+  };
+  return newItems;
 }
