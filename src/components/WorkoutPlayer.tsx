@@ -224,6 +224,7 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
             <div className="w-full shrink min-h-0 flex-1 max-h-[38vh] flex items-center justify-center my-0.5">
               {playerTab === 'anim' && (
                 <ExerciseAnimation
+                  exerciseId={currentExercise.id}
                   animationType={currentExercise.animationType}
                   isPaused={isPaused}
                   className="h-full w-full max-h-[36vh]"
@@ -241,6 +242,7 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
               {playerTab === 'split' && (
                 <div className="grid grid-cols-2 gap-2 w-full h-full max-h-[36vh]">
                   <ExerciseAnimation
+                    exerciseId={currentExercise.id}
                     animationType={currentExercise.animationType}
                     isPaused={isPaused}
                     className="h-full"

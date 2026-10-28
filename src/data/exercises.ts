@@ -3,6 +3,8 @@ import { Exercise } from '../types/workout';
 export const EXERCISES: Exercise[] = [
   {
     id: 'push-up',
+    videoUrl: '/exercises/push-up.webm',
+    posterUrl: '/exercises/push-up-poster.jpg',
     name: 'Flexão Tradicional',
     slug: 'flexao-tradicional',
     primaryMuscles: ['chest', 'triceps'],
@@ -18,6 +20,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'diamond-push-up',
+    videoUrl: '/exercises/diamond-push-up.webm',
+    posterUrl: '/exercises/diamond-push-up-poster.jpg',
     name: 'Flexão Diamante',
     slug: 'flexao-diamante',
     primaryMuscles: ['triceps', 'chest'],
@@ -33,6 +37,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'pike-push-up',
+    videoUrl: '/exercises/pike-push-up.webm',
+    posterUrl: '/exercises/pike-push-up-poster.jpg',
     name: 'Flexão Pike',
     slug: 'flexao-pike',
     primaryMuscles: ['shoulders', 'triceps'],
@@ -48,6 +54,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'dips-bench',
+    videoUrl: '/exercises/dips-bench.webm',
+    posterUrl: '/exercises/dips-bench-poster.jpg',
     name: 'Mergulho no Banco / Cadeira',
     slug: 'mergulho-no-banco',
     primaryMuscles: ['triceps', 'shoulders'],
@@ -63,6 +71,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'plank',
+    videoUrl: '/exercises/plank.webm',
+    posterUrl: '/exercises/plank-poster.jpg',
     name: 'Prancha Isométrica',
     slug: 'prancha-isometrica',
     primaryMuscles: ['core'],
@@ -78,6 +88,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'mountain-climber',
+    videoUrl: '/exercises/mountain-climber.webm',
+    posterUrl: '/exercises/mountain-climber-poster.jpg',
     name: 'Alpinista (Mountain Climber)',
     slug: 'mountain-climber',
     primaryMuscles: ['core', 'shoulders'],
@@ -93,6 +105,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'hollow-body-hold',
+    videoUrl: '/exercises/hollow-body-hold.webm',
+    posterUrl: '/exercises/hollow-body-hold-poster.jpg',
     name: 'Canoa Isométrica (Hollow Body)',
     slug: 'canoa-isometrica',
     primaryMuscles: ['core'],
@@ -108,6 +122,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'bodyweight-squat',
+    videoUrl: '/exercises/bodyweight-squat.webm',
+    posterUrl: '/exercises/bodyweight-squat-poster.jpg',
     name: 'Agachamento Livre',
     slug: 'agachamento-livre',
     primaryMuscles: ['quads', 'glutes'],
@@ -123,6 +139,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'lunges',
+    videoUrl: '/exercises/lunges.webm',
+    posterUrl: '/exercises/lunges-poster.jpg',
     name: 'Avanço / Passada',
     slug: 'passada-afundo',
     primaryMuscles: ['quads', 'glutes'],
@@ -138,6 +156,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'glute-bridge',
+    videoUrl: '/exercises/glute-bridge.webm',
+    posterUrl: '/exercises/glute-bridge-poster.jpg',
     name: 'Elevação Pélvica',
     slug: 'elevacao-pelvica',
     primaryMuscles: ['glutes', 'back'],
@@ -153,6 +173,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'jumping-jacks',
+    videoUrl: '/exercises/jumping-jacks.webm',
+    posterUrl: '/exercises/jumping-jacks-poster.jpg',
     name: 'Polichinelo Ativo',
     slug: 'polichinelo',
     primaryMuscles: ['calves', 'shoulders'],
@@ -168,6 +190,8 @@ export const EXERCISES: Exercise[] = [
   },
   {
     id: 'burpee',
+    videoUrl: '/exercises/burpee.webm',
+    posterUrl: '/exercises/burpee-poster.jpg',
     name: 'Burpee Completo',
     slug: 'burpee-completo',
     primaryMuscles: ['chest', 'quads', 'core'],

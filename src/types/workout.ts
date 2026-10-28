@@ -33,6 +33,9 @@ export interface Exercise {
   tips: string[];
   animationType: AnimationType;
   difficulty: 'iniciante' | 'intermediario' | 'avancado';
+  mediaId?: string;
+  videoUrl?: string;
+  posterUrl?: string;
 }
 
 export interface WorkoutItem {
