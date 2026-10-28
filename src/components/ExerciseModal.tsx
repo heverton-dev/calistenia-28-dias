@@ -5,7 +5,7 @@ import { AnatomyViewer } from './AnatomyViewer';
 import { ExerciseAnimation } from './ExerciseAnimation';
 import { ExerciseReplacementModal } from './ExerciseReplacementModal';
 import { replaceWorkoutItem } from '../utils/challengeUtils';
-import { X, Play, Clock, Flame, Dumbbell, RefreshCw } from 'lucide-react';
+import { X, Play, Clock, Flame, Dumbbell, RefreshCw, Activity, Layers } from 'lucide-react';
 
 interface ExerciseModalProps {
   day: WorkoutDay;
@@ -26,6 +26,12 @@ export function ExerciseModal({
 }: ExerciseModalProps) {
   const currentItems = customizedItems || day.items;
   const [replacingIndex, setReplacingIndex] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<Record<number, 'anim' | 'anatomy' | 'both'>>({});
+
+  const getItemTab = (idx: number) => activeTab[idx] || 'anim';
+  const setItemTab = (idx: number, tab: 'anim' | 'anatomy' | 'both') => {
+    setActiveTab(prev => ({ ...prev, [idx]: tab }));
+  };
 
   const handleSelectReplacement = (newExerciseId: string) => {
     if (replacingIndex !== null && onUpdateItems) {
@@ -60,7 +66,7 @@ export function ExerciseModal({
 
             <button
               onClick={onClose}
-              className="p-2.5 rounded-2xl bg-[#141c30] text-slate-300 hover:text-white border border-white/5 active:scale-90"
+              className="p-2.5 rounded-2xl bg-[#141c30] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform"
               aria-label="Fechar"
             >
               <X size={18} />
@@ -98,12 +104,14 @@ export function ExerciseModal({
                 {currentItems.map((item, idx) => {
                   const ex = getExerciseById(item.exerciseId);
                   if (!ex) return null;
+                  const currentTab = getItemTab(idx);
 
                   return (
                     <div
                       key={idx}
-                      className="p-3.5 rounded-3xl bg-[#111728] border border-white/5 flex flex-col gap-2.5 shadow-md"
+                      className="p-4 rounded-3xl bg-[#111728] border border-white/5 flex flex-col gap-3 shadow-md"
                     >
+                      {/* Top Bar do Item */}
                       <div className="flex items-center justify-between">
                         <div>
                           <span className="text-[10px] text-orange-400 font-mono font-bold block uppercase tracking-wider">
@@ -122,25 +130,81 @@ export function ExerciseModal({
                             Trocar
                           </button>
                           <span className="text-[10px] font-bold px-2 py-1 rounded-xl bg-slate-800 text-slate-300 border border-white/5">
-                            {item.restSeconds}s
+                            {item.restSeconds}s desc.
                           </span>
                         </div>
                       </div>
 
-                      {/* Visualizador Anatômico e Animação */}
-                      <div className="grid grid-cols-2 gap-2 mt-1">
+                      {/* Seletor de Visão: Animação Cinemática vs Mapa Muscular */}
+                      <div className="flex items-center justify-between bg-[#0a0f1d] p-1 rounded-2xl border border-white/5">
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => setItemTab(idx, 'anim')}
+                            className={`px-3 py-1.5 rounded-xl text-[11px] font-extrabold flex items-center gap-1.5 transition-all ${
+                              currentTab === 'anim'
+                                ? 'bg-orange-500 text-white shadow-md shadow-orange-500/25'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            <Activity size={13} />
+                            Biomecânica
+                          </button>
+                          <button
+                            onClick={() => setItemTab(idx, 'anatomy')}
+                            className={`px-3 py-1.5 rounded-xl text-[11px] font-extrabold flex items-center gap-1.5 transition-all ${
+                              currentTab === 'anatomy'
+                                ? 'bg-orange-500 text-white shadow-md shadow-orange-500/25'
+                                : 'text-slate-400 hover:text-white'
+                            }`}
+                          >
+                            <Layers size={13} />
+                            Músculos
+                          </button>
+                        </div>
+
+                        <button
+                          onClick={() => setItemTab(idx, 'both')}
+                          className={`px-2.5 py-1.5 rounded-xl text-[10px] font-bold transition-all ${
+                            currentTab === 'both'
+                              ? 'bg-slate-700 text-white'
+                              : 'text-slate-500 hover:text-slate-300'
+                          }`}
+                        >
+                          Lado a Lado
+                        </button>
+                      </div>
+
+                      {/* Palco de Visualização em Alta Resolução */}
+                      {currentTab === 'anim' && (
                         <ExerciseAnimation
                           animationType={ex.animationType}
-                          className="!h-48 !p-2"
+                          className="h-60 w-full"
                         />
+                      )}
+
+                      {currentTab === 'anatomy' && (
                         <AnatomyViewer
                           primaryMuscles={ex.primaryMuscles}
                           secondaryMuscles={ex.secondaryMuscles}
-                          className="!h-48 !p-2"
+                          className="h-64 w-full"
                         />
-                      </div>
+                      )}
 
-                      <p className="text-[11px] text-slate-400 leading-relaxed bg-[#0b101d] p-2.5 rounded-xl border border-white/5">
+                      {currentTab === 'both' && (
+                        <div className="grid grid-cols-2 gap-2">
+                          <ExerciseAnimation
+                            animationType={ex.animationType}
+                            className="h-56"
+                          />
+                          <AnatomyViewer
+                            primaryMuscles={ex.primaryMuscles}
+                            secondaryMuscles={ex.secondaryMuscles}
+                            className="h-56"
+                          />
+                        </div>
+                      )}
+
+                      <p className="text-[11px] text-slate-400 leading-relaxed bg-[#0b101d] p-3 rounded-2xl border border-white/5">
                         {ex.description}
                       </p>
                     </div>

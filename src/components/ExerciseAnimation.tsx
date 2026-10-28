@@ -12,31 +12,96 @@ export function ExerciseAnimation({
   isPaused = false
 }: ExerciseAnimationProps) {
   return (
-    <div className={`relative flex flex-col items-center justify-center rounded-2xl bg-[#090d19] border border-white/10 p-3 shadow-2xl overflow-hidden ${className}`}>
-      {/* Efeito sutil de iluminação de piso e gradiente de estúdio */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#101726]/40 to-[#0b101d] pointer-events-none" />
+    <div className={`relative flex flex-col items-center justify-between rounded-3xl bg-gradient-to-b from-[#0c1222] to-[#070b14] border border-white/10 p-4 shadow-2xl overflow-hidden ${className}`}>
+      {/* Luz ambiente volumétrica de estúdio atlético */}
+      <div className="absolute inset-0 bg-radial from-orange-500/10 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent" />
 
-      {/* Animações CSS com física cinemática atlética */}
+      {/* Header com Tag de Cinemática e Status */}
+      <div className="w-full flex items-center justify-between z-10 mb-2">
+        <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest flex items-center gap-1.5 bg-orange-500/15 px-2.5 py-1 rounded-full border border-orange-500/30 shadow-inner">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+          Cinemática 2D
+        </span>
+        <span className="text-[10px] text-slate-400 font-mono font-bold bg-white/5 px-2 py-0.5 rounded-lg border border-white/5">
+          {isPaused ? 'Pausado' : 'Biomecânica Ativa'}
+        </span>
+      </div>
+
+      {/* CSS Keyframes para Biomecânica Contínua */}
       <style>{`
-        @keyframes pushupMovement {
+        /* ================= 1. PUSH-UP / FLEXÃO ================= */
+        @keyframes athletePushup {
           0%, 100% {
             transform: translateY(0px) rotate(0deg);
           }
           45%, 55% {
-            transform: translateY(22px) rotate(-1.5deg);
+            transform: translateY(22px) rotate(-1deg);
           }
         }
-
-        @keyframes pushupForearm {
+        @keyframes pushupArmForearm {
           0%, 100% {
             transform: rotate(0deg);
           }
           45%, 55% {
-            transform: rotate(-35deg);
+            transform: rotate(50deg);
+          }
+        }
+        @keyframes pushupChestPulse {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.3;
+          }
+          45%, 55% {
+            transform: scale(1.3);
+            opacity: 0.9;
           }
         }
 
-        @keyframes squatMovement {
+        /* ================= 2. JUMPING JACKS ================= */
+        @keyframes athleteJackBounce {
+          0%, 100% {
+            transform: translateY(0px) scaleY(1);
+          }
+          50% {
+            transform: translateY(-14px) scaleY(1.02);
+          }
+        }
+        @keyframes jackArmLeft {
+          0%, 100% {
+            transform: rotate(0deg);
+          }
+          50% {
+            transform: rotate(-135deg);
+          }
+        }
+        @keyframes jackArmRight {
+          0%, 100% {
+            transform: rotate(0deg);
+          }
+          50% {
+            transform: rotate(135deg);
+          }
+        }
+        @keyframes jackLegLeft {
+          0%, 100% {
+            transform: rotate(0deg);
+          }
+          50% {
+            transform: rotate(-24deg);
+          }
+        }
+        @keyframes jackLegRight {
+          0%, 100% {
+            transform: rotate(0deg);
+          }
+          50% {
+            transform: rotate(24deg);
+          }
+        }
+
+        /* ================= 3. SQUAT / AGACHAMENTO ================= */
+        @keyframes athleteSquatDrop {
           0%, 100% {
             transform: translateY(0px);
           }
@@ -44,254 +109,394 @@ export function ExerciseAnimation({
             transform: translateY(32px);
           }
         }
-
-        @keyframes squatThigh {
+        @keyframes squatThighFlex {
           0%, 100% {
             transform: rotate(0deg);
           }
           50% {
-            transform: rotate(65deg);
+            transform: rotate(45deg);
           }
         }
-
-        @keyframes plankBreathing {
-          0%, 100% {
-            transform: translateY(0px) scaleY(1);
-          }
-          50% {
-            transform: translateY(1.5px) scaleY(0.985);
-          }
-        }
-
-        @keyframes climberLegL {
-          0%, 100% {
-            transform: translateX(0px) translateY(0px) scaleX(1);
-          }
-          50% {
-            transform: translateX(35px) translateY(-14px) scaleX(0.7);
-          }
-        }
-
-        @keyframes climberLegR {
-          0%, 100% {
-            transform: translateX(35px) translateY(-14px) scaleX(0.7);
-          }
-          50% {
-            transform: translateX(0px) translateY(0px) scaleX(1);
-          }
-        }
-
-        @keyframes jackArms {
+        @keyframes squatArmsCounter {
           0%, 100% {
             transform: rotate(0deg);
           }
           50% {
-            transform: rotate(-130deg);
+            transform: rotate(-35deg);
           }
         }
 
-        @keyframes jackLegs {
+        /* ================= 4. MOUNTAIN CLIMBERS ================= */
+        @keyframes climberKneeLeft {
           0%, 100% {
-            transform: scaleX(0.85);
+            transform: translateX(0px) translateY(0px);
           }
           50% {
-            transform: scaleX(1.35);
+            transform: translateX(42px) translateY(-20px);
+          }
+        }
+        @keyframes climberKneeRight {
+          0%, 100% {
+            transform: translateX(42px) translateY(-20px);
+          }
+          50% {
+            transform: translateX(0px) translateY(0px);
           }
         }
 
-        .anim-pushup-body { animation: pushupMovement 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
-        .anim-squat-body { animation: squatMovement 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
-        .anim-plank-body { animation: plankBreathing 2.8s ease-in-out infinite; }
-        .anim-climber-left { animation: climberLegL 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-        .anim-climber-right { animation: climberLegR 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-        .anim-jack-jump { animation: squatMovement 1.1s ease-in-out infinite; }
-        .is-paused { animation-play-state: paused !important; }
+        /* ================= 5. PLANK / HOLLOW ================= */
+        @keyframes plankCoreBreath {
+          0%, 100% {
+            transform: scaleY(1);
+          }
+          50% {
+            transform: scaleY(1.03);
+          }
+        }
+
+        /* ================= 6. GLUTE BRIDGE ================= */
+        @keyframes gluteThrust {
+          0%, 100% {
+            transform: translateY(18px) rotate(-6deg);
+          }
+          50% {
+            transform: translateY(0px) rotate(0deg);
+          }
+        }
+
+        .anim-pushup-body { animation: athletePushup 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+        .anim-pushup-arm { transform-origin: 180px 115px; animation: pushupArmForearm 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+        .anim-pushup-pulse { transform-origin: 170px 110px; animation: pushupChestPulse 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+
+        .anim-jack-body { animation: athleteJackBounce 1.05s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+        .anim-jack-arm-l { transform-origin: 84px 62px; animation: jackArmLeft 1.05s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+        .anim-jack-arm-r { transform-origin: 116px 62px; animation: jackArmRight 1.05s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+        .anim-jack-leg-l { transform-origin: 90px 124px; animation: jackLegLeft 1.05s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+        .anim-jack-leg-r { transform-origin: 110px 124px; animation: jackLegRight 1.05s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+        .anim-squat-torso { animation: athleteSquatDrop 2.3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+        .anim-squat-arm { transform-origin: 100px 75px; animation: squatArmsCounter 2.3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+
+        .anim-climber-leg1 { animation: climberKneeLeft 0.85s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+        .anim-climber-leg2 { animation: climberKneeRight 0.85s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+        .anim-plank-hold { transform-origin: 100px 120px; animation: plankCoreBreath 3s ease-in-out infinite; }
+        .anim-glute-bridge { transform-origin: 50px 145px; animation: gluteThrust 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+
+        .paused { animation-play-state: paused !important; }
       `}</style>
 
-      {/* Palco do Atleta Vetorial */}
-      <div className={`relative w-full h-56 flex items-center justify-center ${isPaused ? 'is-paused' : ''}`}>
-        {/* ================= 1. PUSH-UP / PIKE PUSH-UP ================= */}
+      {/* Palco SVG Principal */}
+      <div className={`relative w-full flex-1 flex items-center justify-center min-h-[170px] select-none ${isPaused ? 'paused' : ''}`}>
+        {/* =========================================================
+            1. PUSH-UP / PIKE-PUSHUP / DIPS
+           ========================================================= */}
         {animationType === 'pushup' || animationType === 'pike-pushup' || animationType === 'dips' ? (
-          <svg viewBox="0 0 240 180" className="w-56 h-48 select-none">
+          <svg viewBox="0 0 250 170" preserveAspectRatio="xMidYMid meet" className="w-full h-full max-h-56">
             <defs>
-              <linearGradient id="matGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient id="bodySkin" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#ffedd5" />
+                <stop offset="100%" stopColor="#f97316" />
+              </linearGradient>
+              <linearGradient id="tankShirt" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f97316" />
+                <stop offset="100%" stopColor="#c2410c" />
+              </linearGradient>
+              <linearGradient id="gymTights" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#1e293b" />
-                <stop offset="50%" stopColor="#334155" />
-                <stop offset="100%" stopColor="#1e293b" />
+                <stop offset="100%" stopColor="#0f172a" />
               </linearGradient>
-              <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#fdba74" />
-                <stop offset="100%" stopColor="#ea580c" />
+              <radialGradient id="shadowFloor" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="rgba(0,0,0,0.6)" />
+                <stop offset="100%" stopColor="rgba(0,0,0,0)" />
+              </radialGradient>
+            </defs>
+
+            {/* Sombra no piso */}
+            <ellipse cx="125" cy="150" rx="95" ry="10" fill="url(#shadowFloor)" />
+            {/* Solo de treino / Linha base */}
+            <line x1="20" y1="150" x2="230" y2="150" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" />
+
+            {/* Corpo inteiro em flexão */}
+            <g className={`anim-pushup-body origin-[42px_146px] ${isPaused ? 'paused' : ''}`}>
+              {/* Pés com tênis esportivo e sola neon */}
+              <g id="pushup-shoes">
+                <path d="M28 136 C34 136 44 140 44 147 L28 147 Z" fill="#f8fafc" />
+                <rect x="28" y="146" width="16" height="4" rx="2" fill="#f97316" />
+              </g>
+
+              {/* Pernas atléticas com calça de compressão */}
+              <g id="pushup-legs">
+                {/* Coxa e Panturrilha com contorno muscular esculpido */}
+                <path
+                  d="M42 143 C56 135 80 126 106 120 C108 126 90 138 46 148 Z"
+                  fill="url(#gymTights)"
+                  stroke="#334155"
+                  strokeWidth="0.8"
+                />
+                <circle cx="82" cy="129" r="6" fill="#1e293b" opacity="0.6" />
+                {/* Bermuda sobreposta */}
+                <path d="M96 114 L126 108 L128 126 L98 129 Z" fill="#090d16" />
+              </g>
+
+              {/* Tronco Musculoso com Regata Atlética Laranja */}
+              <g id="pushup-torso">
+                <path
+                  d="M124 108 C144 103 166 98 184 94 C192 101 190 114 178 120 C156 122 134 125 124 124 Z"
+                  fill="url(#tankShirt)"
+                />
+                {/* Costas e Dorsal com detalhe de sombreamento */}
+                <path d="M128 107 C146 102 168 98 184 94 L178 104 C158 107 140 110 128 112 Z" fill="#ea580c" opacity="0.5" />
+              </g>
+
+              {/* Cabeça e Pescoço com Postura Alinhada */}
+              <g id="pushup-head">
+                <circle cx="204" cy="88" r="13" fill="url(#bodySkin)" />
+                {/* Cabelo moderno e fone esportivo */}
+                <path d="M196 78 C206 72 218 78 217 90 C210 84 200 84 196 78 Z" fill="#0f172a" />
+                <rect x="200" y="85" width="8" height="4" rx="2" fill="#f97316" />
+              </g>
+
+              {/* Braço de trás (profundidade) */}
+              <path d="M174 95 L168 120 L166 148" stroke="#7c2d12" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" />
+
+              {/* Braço Ativo de Frente com Articulação Biomecânica */}
+              <g className={`anim-pushup-arm ${isPaused ? 'paused' : ''}`}>
+                <path
+                  d="M180 100 L172 128 L170 148"
+                  stroke="url(#bodySkin)"
+                  strokeWidth="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                {/* Munhequeira de treino */}
+                <rect x="166" y="140" width="8" height="4" rx="1.5" fill="#f97316" />
+                {/* Mão espalmada com tração no chão */}
+                <ellipse cx="170" cy="149" rx="8" ry="3" fill="#fdba74" />
+              </g>
+
+              {/* Ponto de Tensão Neon no Peitoral */}
+              <circle cx="172" cy="108" r="7" fill="#ef4444" className={`anim-pushup-pulse ${isPaused ? 'paused' : ''}`} />
+              <circle cx="172" cy="108" r="3" fill="#ffffff" />
+            </g>
+          </svg>
+        ) : animationType === 'jumping-jack' ? (
+          /* =========================================================
+              2. JUMPING JACKS (POLICHINELO)
+             ========================================================= */
+          <svg viewBox="0 0 220 220" preserveAspectRatio="xMidYMid meet" className="w-full h-full max-h-56">
+            <defs>
+              <linearGradient id="skinJacks" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fed7aa" />
+                <stop offset="100%" stopColor="#f97316" />
               </linearGradient>
-              <linearGradient id="shirt" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="tankJacks" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#f97316" />
                 <stop offset="100%" stopColor="#c2410c" />
               </linearGradient>
             </defs>
 
-            {/* Tapete de Treino / Chão */}
-            <rect x="15" y="145" width="210" height="6" rx="3" fill="url(#matGrad)" />
-            <line x1="10" y1="151" x2="230" y2="151" stroke="#0f172a" strokeWidth="2" />
+            {/* Sombra elástica no piso */}
+            <ellipse cx="100" cy="205" rx="55" ry="7" fill="rgba(0,0,0,0.5)" />
+            <line x1="30" y1="205" x2="170" y2="205" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" />
 
-            {/* Grupo Dinâmico do Atleta */}
-            <g className={`anim-pushup-body origin-[40px_145px] ${isPaused ? 'is-paused' : ''}`}>
-              {/* Pés e Tênis */}
-              <ellipse cx="38" cy="140" rx="8" ry="5" fill="#f8fafc" />
-              <rect x="30" y="137" width="12" height="6" rx="2" fill="#0284c7" />
+            <g className={`anim-jack-body origin-[100px_205px] ${isPaused ? 'paused' : ''}`}>
+              {/* Perna Esquerda Articulada com Tênis */}
+              <g className={`anim-jack-leg-l ${isPaused ? 'paused' : ''}`}>
+                <path d="M88 122 L76 165 L66 198 L78 200 L88 165 L94 122 Z" fill="#1e293b" />
+                {/* Tênis Esquerdo */}
+                <path d="M58 198 C62 194 76 195 78 200 L56 200 Z" fill="#f8fafc" />
+                <rect x="56" y="200" width="22" height="3" rx="1.5" fill="#f97316" />
+              </g>
 
-              {/* Pernas com Bermuda Esportiva */}
-              <path d="M42 138 L95 110 L102 118 L46 144 Z" fill="#334155" />
-              <path d="M85 116 L120 102 L124 116 L88 126 Z" fill="#0f172a" />
+              {/* Perna Direita Articulada com Tênis */}
+              <g className={`anim-jack-leg-r ${isPaused ? 'paused' : ''}`}>
+                <path d="M112 122 L124 165 L134 198 L122 200 L112 165 L106 122 Z" fill="#1e293b" />
+                {/* Tênis Direito */}
+                <path d="M122 198 C124 194 138 195 142 200 L122 200 Z" fill="#f8fafc" />
+                <rect x="122" y="200" width="22" height="3" rx="1.5" fill="#f97316" />
+              </g>
 
-              {/* Tronco Muscular com Camisa de Treino */}
-              <path d="M118 103 L174 88 C182 86 188 92 185 100 L174 114 L122 116 Z" fill="url(#shirt)" />
+              {/* Shorts Esportivo */}
+              <path d="M80 114 L120 114 L124 136 L76 136 Z" fill="#090d16" />
 
-              {/* Cabeça do Atleta com Cabelo e Foco */}
-              <circle cx="198" cy="84" r="13" fill="url(#skin)" />
-              <path d="M190 74 C198 68 212 72 210 84 C205 78 195 78 190 74 Z" fill="#1e293b" />
+              {/* Braço Esquerdo Dinâmico com Arco */}
+              <g className={`anim-jack-arm-l ${isPaused ? 'paused' : ''}`}>
+                <path d="M84 62 L50 82 L42 74 L76 54 Z" fill="url(#skinJacks)" />
+                <circle cx="45" cy="78" r="6" fill="#f97316" />
+              </g>
 
-              {/* Braço e Ombro (com flexão articulada) */}
-              <path d="M168 96 L164 122 L176 122 L178 96 Z" fill="url(#skin)" />
-              {/* Antebraço apoiado com força no chão */}
-              <path d="M164 120 L166 145 L178 145 L174 120 Z" fill="url(#skin)" />
-              {/* Mão espalmada no solo */}
-              <ellipse cx="170" cy="145" rx="9" ry="3" fill="#fdba74" />
+              {/* Braço Direito Dinâmico com Arco */}
+              <g className={`anim-jack-arm-r ${isPaused ? 'paused' : ''}`}>
+                <path d="M116 62 L150 82 L158 74 L124 54 Z" fill="url(#skinJacks)" />
+                <circle cx="155" cy="78" r="6" fill="#f97316" />
+              </g>
 
-              {/* Brilho muscular indicativo de contração no peitoral */}
-              <circle cx="160" cy="102" r="5" fill="#ef4444" opacity="0.8" className="animate-ping" />
+              {/* Tronco Musculoso em Regata */}
+              <path d="M82 56 C82 56 100 52 118 56 L114 116 L86 116 Z" fill="url(#tankJacks)" />
+              {/* Clavícula e Sombreamento Peitoral */}
+              <path d="M88 64 C96 68 104 68 112 64" stroke="#9a3412" strokeWidth="2" strokeLinecap="round" fill="none" />
+
+              {/* Ombros Esculpidos */}
+              <circle cx="82" cy="58" r="7" fill="#ea580c" />
+              <circle cx="118" cy="58" r="7" fill="#ea580c" />
+
+              {/* Cabeça do Atleta com Faixa Neon */}
+              <circle cx="100" cy="34" r="14" fill="url(#skinJacks)" />
+              <path d="M88 24 C98 18 112 20 112 32 C106 28 96 28 88 24 Z" fill="#0f172a" />
+              <rect x="88" y="32" width="24" height="4" rx="2" fill="#f97316" />
             </g>
           </svg>
         ) : animationType === 'squat' || animationType === 'lunges' ? (
-          /* ================= 2. SQUAT / LUNGES ================= */
-          <svg viewBox="0 0 200 220" className="w-52 h-52 select-none">
+          /* =========================================================
+              3. SQUAT / LUNGES (AGACHAMENTO PROFUNDO)
+             ========================================================= */
+          <svg viewBox="0 0 220 220" preserveAspectRatio="xMidYMid meet" className="w-full h-full max-h-56">
             <defs>
-              <linearGradient id="squatMat" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#1e293b" />
-                <stop offset="100%" stopColor="#334155" />
+              <linearGradient id="squatSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fed7aa" />
+                <stop offset="100%" stopColor="#f97316" />
               </linearGradient>
             </defs>
 
-            {/* Chão */}
-            <line x1="20" y1="200" x2="180" y2="200" stroke="#334155" strokeWidth="4" strokeLinecap="round" />
+            {/* Solo de Treino */}
+            <ellipse cx="110" cy="205" rx="65" ry="8" fill="rgba(0,0,0,0.5)" />
+            <line x1="25" y1="205" x2="195" y2="205" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" />
 
-            {/* Grupo do Atleta Agachando */}
-            <g className={`anim-squat-body ${isPaused ? 'is-paused' : ''}`}>
-              {/* Cabeça */}
-              <circle cx="100" cy="40" r="14" fill="#fdba74" />
-              <path d="M90 30 C100 24 114 28 112 40 C106 34 96 34 90 30 Z" fill="#1e293b" />
+            {/* Pés firmes no piso (permanecem ancorados no solo) */}
+            <path d="M68 196 C72 192 84 194 88 205 L64 205 Z" fill="#f8fafc" />
+            <rect x="64" y="204" width="24" height="3" rx="1.5" fill="#f97316" />
 
-              {/* Tronco Ereto com Camiseta Atlética */}
-              <path d="M84 56 C84 56 100 52 116 56 L112 108 L88 108 Z" fill="#f97316" />
+            <path d="M128 196 C132 192 144 194 148 205 L124 205 Z" fill="#f8fafc" />
+            <rect x="124" y="204" width="24" height="3" rx="1.5" fill="#f97316" />
+
+            {/* Tronco, Quadril e Braços com Descida Biomecânica */}
+            <g className={`anim-squat-torso origin-[100px_205px] ${isPaused ? 'paused' : ''}`}>
+              {/* Pernas em flexão de agachamento */}
+              <path d="M72 198 L60 160 L78 135 L90 162 Z" fill="#1e293b" />
+              <path d="M136 198 L148 160 L130 135 L118 162 Z" fill="#1e293b" />
+
+              {/* Joelhos e Coxas com Tensão Muscular */}
+              <circle cx="58" cy="160" r="7" fill="#334155" />
+              <circle cx="150" cy="160" r="7" fill="#334155" />
+
+              {/* Shorts Esportivo */}
+              <path d="M74 125 L134 125 L138 145 L70 145 Z" fill="#090d16" />
 
               {/* Braços estendidos à frente para equilíbrio perfeito */}
-              <path d="M96 66 L52 74 C48 75 46 71 49 68 L94 60 Z" fill="#ea580c" />
-              <circle cx="48" cy="72" r="5" fill="#fdba74" />
+              <g className={`anim-squat-arm ${isPaused ? 'paused' : ''}`}>
+                <path d="M96 70 L46 76 L44 68 L94 62 Z" fill="url(#squatSkin)" />
+                <ellipse cx="42" cy="72" rx="6" ry="5" fill="#f97316" />
+              </g>
 
-              {/* Bermuda de Treino */}
-              <path d="M86 106 L114 106 L118 132 L82 132 Z" fill="#0f172a" />
+              {/* Tronco com Regata Laranja Inclinado com Neutro Lombar */}
+              <path d="M82 60 C82 60 100 56 122 60 L118 128 L86 128 Z" fill="#ea580c" />
+              <path d="M88 66 C98 70 110 70 118 66" stroke="#9a3412" strokeWidth="2" strokeLinecap="round" fill="none" />
 
-              {/* Coxas / Quadríceps sob carga */}
-              <path d="M85 130 L74 165 L88 168 L98 132 Z" fill="#ea580c" />
-              <path d="M115 130 L126 165 L112 168 L102 132 Z" fill="#ea580c" />
+              {/* Cabeça Olhando à Frente */}
+              <circle cx="106" cy="40" r="14" fill="url(#squatSkin)" />
+              <path d="M96 30 C106 24 118 28 116 40 C110 34 102 34 96 30 Z" fill="#0f172a" />
+              <rect x="96" y="38" width="22" height="4" rx="2" fill="#f97316" />
 
-              {/* Panturrilhas e Canelas */}
-              <path d="M74 165 L76 195 L88 195 L86 168 Z" fill="#fdba74" />
-              <path d="M124 165 L122 195 L110 195 L112 168 Z" fill="#fdba74" />
-
-              {/* Tênis esportivos firmes no solo */}
-              <rect x="68" y="194" width="22" height="7" rx="3" fill="#f8fafc" />
-              <rect x="110" y="194" width="22" height="7" rx="3" fill="#f8fafc" />
-
-              {/* Indicador de ativação muscular nas coxas */}
-              <circle cx="82" cy="148" r="4" fill="#ef4444" className="animate-ping" />
-              <circle cx="118" cy="148" r="4" fill="#ef4444" className="animate-ping" />
-            </g>
-          </svg>
-        ) : animationType === 'plank' || animationType === 'hollow-hold' ? (
-          /* ================= 3. PLANK ISOMÉTRICO ================= */
-          <svg viewBox="0 0 240 160" className="w-56 h-44 select-none">
-            {/* Solo */}
-            <rect x="15" y="130" width="210" height="5" rx="2.5" fill="#334155" />
-
-            <g className={`anim-plank-body ${isPaused ? 'is-paused' : ''}`}>
-              {/* Tênis apoiados na ponta dos pés */}
-              <ellipse cx="38" cy="125" rx="8" ry="5" fill="#f8fafc" />
-
-              {/* Pernas retas e contraídas */}
-              <path d="M42 122 L98 108 L102 118 L46 128 Z" fill="#334155" />
-              <path d="M96 110 L130 104 L134 116 L98 120 Z" fill="#0f172a" />
-
-              {/* Tronco rígido como uma tábua (Core em chamas) */}
-              <path d="M128 104 L184 94 C190 94 194 98 192 104 L182 114 L132 115 Z" fill="#f97316" />
-
-              {/* Cabeça neutra olhando para o chão */}
-              <circle cx="204" cy="94" r="12" fill="#fdba74" />
-
-              {/* Braço dobrado em L (apoio total nos antebraços) */}
-              <path d="M178 102 L178 128 L198 128 L198 122 L186 122 L186 102 Z" fill="#ea580c" />
-
-              {/* Efeito de tensão e energia no Core */}
-              <line x1="130" y1="112" x2="175" y2="108" stroke="#ef4444" strokeWidth="3" strokeDasharray="4 2" className="animate-pulse" />
+              {/* Indicador de Tensão nos Quadríceps */}
+              <circle cx="70" cy="148" r="4" fill="#ef4444" className="animate-ping" opacity="0.7" />
+              <circle cx="138" cy="148" r="4" fill="#ef4444" className="animate-ping" opacity="0.7" />
             </g>
           </svg>
         ) : animationType === 'mountain-climber' ? (
-          /* ================= 4. MOUNTAIN CLIMBER DINÂMICO ================= */
-          <svg viewBox="0 0 240 180" className="w-56 h-48 select-none">
-            <line x1="15" y1="150" x2="225" y2="150" stroke="#334155" strokeWidth="4" strokeLinecap="round" />
+          /* =========================================================
+              4. MOUNTAIN CLIMBERS (ESCALADOR DINÂMICO)
+             ========================================================= */
+          <svg viewBox="0 0 250 170" preserveAspectRatio="xMidYMid meet" className="w-full h-full max-h-56">
+            {/* Solo */}
+            <line x1="20" y1="150" x2="230" y2="150" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" />
 
-            {/* Braços firmes sustentando o corpo */}
-            <circle cx="196" cy="80" r="13" fill="#fdba74" />
-            <path d="M140 92 L185 86 L180 106 L142 108 Z" fill="#f97316" />
-            <path d="M174 94 L170 148 L182 148 L184 94 Z" fill="#ea580c" />
+            {/* Braços de Apoio em Prancha Alta */}
+            <path d="M185 85 L180 148" stroke="#fdba74" strokeWidth="9" strokeLinecap="round" />
+            <ellipse cx="180" cy="149" rx="8" ry="3" fill="#ea580c" />
 
-            {/* Perna Esquerda Dinâmica (Avançando em alta velocidade) */}
-            <g className={`anim-climber-left ${isPaused ? 'is-paused' : ''}`}>
-              <path d="M140 102 L120 120 L135 135 Z" fill="#334155" />
-              <rect x="130" y="132" width="14" height="6" rx="2" fill="#38bdf8" />
+            {/* Perna 1 - Bombeando ao Peito */}
+            <g className={`anim-climber-leg1 ${isPaused ? 'paused' : ''}`}>
+              <path d="M48 144 L80 115 L120 115" stroke="#334155" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <rect x="42" y="142" width="14" height="6" rx="2" fill="#f97316" />
             </g>
 
-            {/* Perna Direita Estendida */}
-            <g className={`anim-climber-right ${isPaused ? 'is-paused' : ''}`}>
-              <path d="M140 102 L80 134 L90 142 Z" fill="#0f172a" />
-              <rect x="75" y="138" width="14" height="6" rx="2" fill="#f8fafc" />
+            {/* Perna 2 - Alternada */}
+            <g className={`anim-climber-leg2 ${isPaused ? 'paused' : ''}`}>
+              <path d="M48 144 L110 110 L130 118" stroke="#1e293b" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <rect x="42" y="142" width="14" height="6" rx="2" fill="#f8fafc" />
+            </g>
+
+            {/* Tronco Musculoso em Prancha */}
+            <path d="M125 110 L185 85 L178 105 L120 120 Z" fill="#ea580c" />
+
+            {/* Cabeça */}
+            <circle cx="202" cy="80" r="13" fill="#fed7aa" />
+            <path d="M194 72 C204 66 216 72 214 84 C208 78 198 78 194 72 Z" fill="#0f172a" />
+          </svg>
+        ) : animationType === 'glute-bridge' ? (
+          /* =========================================================
+              5. GLUTE BRIDGE (ELEVAÇÃO PÉLVICA)
+             ========================================================= */
+          <svg viewBox="0 0 250 170" preserveAspectRatio="xMidYMid meet" className="w-full h-full max-h-56">
+            <line x1="20" y1="150" x2="230" y2="150" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" />
+
+            {/* Cabeça e Ombros no Chão */}
+            <circle cx="50" cy="142" r="13" fill="#fed7aa" />
+            <path d="M42 138 C48 132 58 134 58 144 Z" fill="#0f172a" />
+
+            {/* Pés cravados no solo */}
+            <rect x="180" y="144" width="22" height="6" rx="2" fill="#f97316" />
+
+            {/* Tronco e Quadril Elevando */}
+            <g className={`anim-glute-bridge ${isPaused ? 'paused' : ''}`}>
+              {/* Coxas conectadas aos pés */}
+              <path d="M185 144 L145 95 L125 105 L175 148 Z" fill="#1e293b" />
+              {/* Tronco em Linha Reta com Quadril */}
+              <path d="M58 144 L140 100 L146 112 L64 148 Z" fill="#ea580c" />
+              {/* Tensão Glútea */}
+              <circle cx="140" cy="105" r="6" fill="#ef4444" className="animate-ping" opacity="0.8" />
             </g>
           </svg>
         ) : (
-          /* ================= 5. POLICHINELO / BURPEE / DIPS ================= */
-          <svg viewBox="0 0 200 220" className="w-52 h-52 select-none">
-            <line x1="20" y1="200" x2="180" y2="200" stroke="#334155" strokeWidth="4" strokeLinecap="round" />
+          /* =========================================================
+              6. PLANK / HOLLOW / DEFAULT (PRANCHA ISOMÉTRICA)
+             ========================================================= */
+          <svg viewBox="0 0 250 170" preserveAspectRatio="xMidYMid meet" className="w-full h-full max-h-56">
+            <line x1="20" y1="150" x2="230" y2="150" stroke="#1e293b" strokeWidth="3" strokeLinecap="round" />
 
-            <g className={`anim-jack-jump ${isPaused ? 'is-paused' : ''}`}>
-              {/* Cabeça */}
-              <circle cx="100" cy="45" r="14" fill="#fdba74" />
+            <g className={`anim-plank-hold ${isPaused ? 'paused' : ''}`}>
+              {/* Pés apoiados na ponta */}
+              <rect x="28" y="138" width="16" height="8" rx="3" fill="#f8fafc" />
+              <rect x="28" y="142" width="16" height="4" rx="2" fill="#f97316" />
 
-              {/* Braços levantando para o alto em arco */}
-              <path d="M96 66 L60 38 C56 35 52 38 54 42 L90 74 Z" fill="#f97316" />
-              <path d="M104 66 L140 38 C144 35 148 38 146 42 L110 74 Z" fill="#f97316" />
+              {/* Pernas em Linha Reta Perfeita */}
+              <path d="M42 142 L120 120 L122 134 L46 148 Z" fill="#1e293b" />
 
-              {/* Tronco */}
-              <path d="M86 64 C86 64 100 60 114 64 L110 115 L90 115 Z" fill="#ea580c" />
+              {/* Tronco e Abdômen Rígido */}
+              <path d="M120 120 L180 108 L176 126 L122 134 Z" fill="#ea580c" />
 
-              {/* Pernas em abertura atlética */}
-              <path d="M88 114 L62 188 L74 190 L98 120 Z" fill="#334155" />
-              <path d="M112 114 L138 188 L126 190 L102 120 Z" fill="#334155" />
+              {/* Antebraço no Solo (Prancha Baixa) */}
+              <path d="M174 116 L174 148 L196 148" stroke="#fdba74" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
 
-              {/* Tênis */}
-              <rect x="54" y="188" width="22" height="7" rx="3" fill="#f8fafc" />
-              <rect x="124" y="188" width="22" height="7" rx="3" fill="#f8fafc" />
+              {/* Cabeça Alinhada com a Coluna */}
+              <circle cx="204" cy="104" r="13" fill="#fed7aa" />
+              <path d="M196 95 C206 90 216 95 214 106 Z" fill="#0f172a" />
+
+              {/* Linha de Tensão Biomecânica do Core */}
+              <line x1="120" y1="128" x2="175" y2="116" stroke="#ef4444" strokeWidth="2" strokeDasharray="3,3" className="animate-pulse" />
             </g>
           </svg>
         )}
       </div>
 
-      <div className="w-full flex items-center justify-between z-10 pt-1 border-t border-white/5">
-        <span className="text-[10px] text-orange-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          Execução Cinemática
+      {/* Footer com Indicador de Cadência */}
+      <div className="w-full flex items-center justify-between text-[10px] text-slate-500 font-mono mt-1 border-t border-white/5 pt-1.5">
+        <span className="flex items-center gap-1">
+          <span className="w-1 h-1 rounded-full bg-orange-400" />
+          Cadência Controlada
         </span>
-        <span className="text-[10px] text-slate-500 font-mono">
-          {isPaused ? 'Pausado' : 'Biomecânica Ativa'}
-        </span>
+        <span className="text-slate-400 font-bold">Loop Biomecânico</span>
       </div>
     </div>
   );

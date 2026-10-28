@@ -6,7 +6,7 @@ import { ExerciseAnimation } from './ExerciseAnimation';
 import { getNextStep, PlayerState, calculateWorkoutProgress } from './playerEngine';
 import { playCountdownBeep, playTransitionBell } from '../utils/sound';
 import { useWakeLock } from '../hooks/useWakeLock';
-import { Play, Pause, SkipForward, X, CheckCircle, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, SkipForward, X, CheckCircle, Volume2, VolumeX, Activity, Layers, Columns } from 'lucide-react';
 
 interface WorkoutPlayerProps {
   workout: WorkoutDay;
@@ -24,6 +24,7 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
   const [timeLeft, setTimeLeft] = useState(initialPrep);
   const [totalTimeLeft, setTotalTimeLeft] = useState(initialPrep);
   const [isPaused, setIsPaused] = useState(false);
+  const [playerTab, setPlayerTab] = useState<'anim' | 'anatomy' | 'split'>('anim');
 
   // Mantém a tela ligada no iPhone / Android
   useWakeLock(state !== 'completed');
@@ -159,7 +160,7 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
       </div>
 
       {/* Área Central Interativa */}
-      <div className="flex-1 flex flex-col items-center justify-center my-3">
+      <div className="flex-1 flex flex-col items-center justify-center my-2">
         {state === 'prepare' && (
           <div className="text-center flex flex-col items-center">
             <span className="text-xs font-black tracking-widest text-orange-400 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 mb-3">
@@ -178,21 +179,81 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
 
         {state === 'active' && currentExercise && (
           <div className="w-full flex flex-col items-center">
-            {/* Visualizador Anatômico e Animação Cinemática Lado a Lado */}
-            <div className="grid grid-cols-2 gap-3 w-full mb-3">
-              <ExerciseAnimation
-                animationType={currentExercise.animationType}
-                isPaused={isPaused}
-                className="!h-64"
-              />
-              <AnatomyViewer
-                primaryMuscles={currentExercise.primaryMuscles}
-                secondaryMuscles={currentExercise.secondaryMuscles}
-                className="!h-64"
-              />
+            {/* Seletor de Visão no Player */}
+            <div className="flex items-center justify-between w-full max-w-sm mb-2.5 px-1">
+              <div className="flex items-center gap-1 bg-[#101728] p-1 rounded-2xl border border-white/5">
+                <button
+                  onClick={() => setPlayerTab('anim')}
+                  className={`px-3 py-1 rounded-xl text-xs font-extrabold flex items-center gap-1.5 transition-all ${
+                    playerTab === 'anim'
+                      ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Activity size={13} />
+                  Biomecânica
+                </button>
+                <button
+                  onClick={() => setPlayerTab('anatomy')}
+                  className={`px-3 py-1 rounded-xl text-xs font-extrabold flex items-center gap-1.5 transition-all ${
+                    playerTab === 'anatomy'
+                      ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Layers size={13} />
+                  Músculos
+                </button>
+              </div>
+
+              <button
+                onClick={() => setPlayerTab('split')}
+                className={`p-1.5 rounded-xl border border-white/5 transition-all ${
+                  playerTab === 'split'
+                    ? 'bg-orange-500/20 text-orange-400 border-orange-500/40'
+                    : 'text-slate-500 hover:text-slate-300 bg-[#101728]'
+                }`}
+                title="Lado a Lado"
+              >
+                <Columns size={16} />
+              </button>
             </div>
 
-            <div className="text-center mb-4">
+            {/* Palco do Atleta ou Anatomia */}
+            <div className="w-full mb-3">
+              {playerTab === 'anim' && (
+                <ExerciseAnimation
+                  animationType={currentExercise.animationType}
+                  isPaused={isPaused}
+                  className="h-64 sm:h-72 w-full"
+                />
+              )}
+
+              {playerTab === 'anatomy' && (
+                <AnatomyViewer
+                  primaryMuscles={currentExercise.primaryMuscles}
+                  secondaryMuscles={currentExercise.secondaryMuscles}
+                  className="h-64 sm:h-72 w-full"
+                />
+              )}
+
+              {playerTab === 'split' && (
+                <div className="grid grid-cols-2 gap-2">
+                  <ExerciseAnimation
+                    animationType={currentExercise.animationType}
+                    isPaused={isPaused}
+                    className="h-60"
+                  />
+                  <AnatomyViewer
+                    primaryMuscles={currentExercise.primaryMuscles}
+                    secondaryMuscles={currentExercise.secondaryMuscles}
+                    className="h-60"
+                  />
+                </div>
+              )}
+            </div>
+
+            <div className="text-center mb-3">
               <h2 className="text-xl font-black tracking-tight text-white mb-0.5">{currentExercise.name}</h2>
               <p className="text-xs text-slate-400 max-w-sm line-clamp-1">
                 {currentExercise.description}
