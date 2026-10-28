@@ -13,6 +13,8 @@ export default function App() {
   const [activeWorkout, setActiveWorkout] = useState<WorkoutDay | null>(null);
   const [inspectingDay, setInspectingDay] = useState<WorkoutDay | null>(null);
 
+  const [selectedWeek, setSelectedWeek] = useState<number | 'all'>('all');
+
   useEffect(() => {
     setProgress(loadProgress());
   }, []);
@@ -20,6 +22,10 @@ export default function App() {
   const nextDay = getNextAvailableDay(progress.completedDays, CHALLENGE_28_DAYS);
   const weekGroups = groupDaysByWeek(CHALLENGE_28_DAYS);
   const completionPercentage = Math.round((progress.completedDays.length / 28) * 100);
+
+  const displayedWeeks = selectedWeek === 'all'
+    ? weekGroups
+    : weekGroups.filter(w => w.weekNumber === selectedWeek);
 
   const handleStartWorkout = (day: WorkoutDay) => {
     setInspectingDay(null);
@@ -149,9 +155,36 @@ export default function App() {
           </div>
         </section>
 
+        {/* Filtro em Pills de Semanas (Padrão Mobbin / Fitbod) */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-none no-scrollbar">
+          <button
+            onClick={() => setSelectedWeek('all')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              selectedWeek === 'all'
+                ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+                : 'bg-[#111728] text-slate-400 hover:text-white border border-white/5'
+            }`}
+          >
+            Todas as Semanas
+          </button>
+          {[1, 2, 3, 4].map(w => (
+            <button
+              key={w}
+              onClick={() => setSelectedWeek(w)}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                selectedWeek === w
+                  ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+                  : 'bg-[#111728] text-slate-400 hover:text-white border border-white/5'
+              }`}
+            >
+              Semana {w}
+            </button>
+          ))}
+        </div>
+
         {/* Grade de Semanas e Dias */}
         <section className="space-y-6">
-          {weekGroups.map(week => (
+          {displayedWeeks.map(week => (
             <div key={week.weekNumber} className="space-y-2.5">
               <div className="flex items-center justify-between px-1">
                 <h3 className="text-xs font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
