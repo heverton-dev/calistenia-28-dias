@@ -9,7 +9,15 @@ import { WorkoutPlayer } from './components/WorkoutPlayer';
 import { WeightTracker } from './components/WeightTracker';
 import { SettingsModal } from './components/SettingsModal';
 import { ThemeSelectorModal } from './components/ThemeSelectorModal';
-import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck, Sliders, Palette } from 'lucide-react';
+import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck, Sliders, Palette, Check } from 'lucide-react';
+
+const QUICK_THEMES: { id: AppTheme; hex: string; label: string }[] = [
+  { id: 'orange', hex: '#f97316', label: 'Laranja' },
+  { id: 'yellow', hex: '#eab308', label: 'Amarelo' },
+  { id: 'pink', hex: '#ec4899', label: 'Rosa' },
+  { id: 'blue', hex: '#0ea5e9', label: 'Azul' },
+  { id: 'green', hex: '#10b981', label: 'Verde' }
+];
 
 export default function App() {
   const [progress, setProgress] = useState<UserProgress>(loadProgress());
@@ -78,6 +86,8 @@ export default function App() {
     }
   };
 
+  const currentActiveTheme = progress.theme || 'orange';
+
   if (activeWorkout) {
     return (
       <WorkoutPlayer
@@ -97,7 +107,7 @@ export default function App() {
       {/* Main Container */}
       <main className="w-full max-w-md px-4 pt-3 z-10">
         {/* Header Superior Esportivo */}
-        <header className="flex items-center justify-between mb-4 flex-nowrap gap-2">
+        <header className="flex items-center justify-between mb-3 flex-nowrap gap-2">
           <div className="flex items-center gap-2.5 shrink-0">
             <div className="w-10 h-10 rounded-2xl bg-theme-gradient text-white flex items-center justify-center font-black shadow-theme shrink-0">
               <Dumbbell size={20} />
@@ -117,11 +127,11 @@ export default function App() {
               <span className="text-xs font-black font-mono tracking-tight text-white whitespace-nowrap">{progress.currentStreak} dias</span>
             </div>
 
-            {/* Botão de Paleta de Cores */}
+            {/* Botão de Paleta Completa */}
             <button
               onClick={() => setShowThemeModal(true)}
               className="p-2.5 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform relative shrink-0"
-              title="Trocar Cor do Aplicativo (Amarelo, Rosa, Azul, Verde, Laranja)"
+              title="Paleta de Cores"
               aria-label="Cores"
             >
               <Palette size={15} className="text-theme" />
@@ -148,6 +158,38 @@ export default function App() {
             </button>
           </div>
         </header>
+
+        {/* Seletor Rápido de Cores (1 Toque Direto no Dashboard) */}
+        <section className="flex items-center justify-between px-3 py-2 mb-3 bg-[#101728] rounded-2xl border border-white/5 flex-nowrap shadow-sm">
+          <span className="text-[11px] font-bold text-slate-300 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <Palette size={13} className="text-theme" />
+            Cor do App:
+          </span>
+          <div className="flex items-center gap-2 shrink-0">
+            {QUICK_THEMES.map(t => {
+              const isActive = currentActiveTheme === t.id;
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => handleSelectTheme(t.id)}
+                  className={`w-6 h-6 rounded-full transition-all active:scale-90 flex items-center justify-center shrink-0 ${
+                    isActive
+                      ? 'scale-110 ring-2 ring-white shadow-lg'
+                      : 'opacity-65 hover:opacity-100 hover:scale-105'
+                  }`}
+                  style={{
+                    backgroundColor: t.hex,
+                    boxShadow: isActive ? `0 0 10px ${t.hex}` : undefined
+                  }}
+                  title={`Mudar para cor ${t.label}`}
+                  aria-label={`Mudar para cor ${t.label}`}
+                >
+                  {isActive && <Check size={12} className="text-white stroke-[3]" />}
+                </button>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Card Principal: Treino Recomendado de Hoje (Estilo BetterMe Pro) */}
         <section className="relative overflow-hidden p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-[#141d33] via-[#101728] to-[#0c1220] border border-theme-subtle shadow-theme mb-4">
@@ -300,6 +342,8 @@ export default function App() {
       {showSettings && (
         <SettingsModal
           settings={progress.settings}
+          currentTheme={currentActiveTheme}
+          onSelectTheme={handleSelectTheme}
           onUpdateSettings={handleUpdateSettings}
           onClose={() => setShowSettings(false)}
         />
@@ -308,7 +352,7 @@ export default function App() {
       {/* Modal de Seleção de Cores do Aplicativo */}
       {showThemeModal && (
         <ThemeSelectorModal
-          currentTheme={progress.theme || 'orange'}
+          currentTheme={currentActiveTheme}
           onSelectTheme={handleSelectTheme}
           onClose={() => setShowThemeModal(false)}
         />

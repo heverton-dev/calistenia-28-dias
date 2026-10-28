@@ -69,26 +69,26 @@ export function WeightTracker({ history, onSaveWeight }: WeightTrackerProps) {
   return (
     <div className="bg-[#111728] p-4 rounded-3xl border border-white/5 shadow-md">
       {/* Top Header */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center border border-orange-500/25">
+      <div className="flex items-center justify-between mb-3 flex-nowrap gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="w-8 h-8 rounded-xl bg-theme-subtle text-theme flex items-center justify-center border border-theme-subtle shrink-0">
             <Scale size={16} />
           </div>
-          <div>
-            <span className="text-[10px] text-slate-400 uppercase font-extrabold tracking-wider block">
+          <div className="min-w-0">
+            <span className="text-[10px] text-slate-400 uppercase font-extrabold tracking-wider block whitespace-nowrap">
               Peso Corporal
             </span>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg font-black text-white font-mono">
+            <div className="flex items-baseline gap-1.5 flex-nowrap">
+              <span className="text-lg font-black text-white font-mono whitespace-nowrap">
                 {currentWeight ? `${currentWeight.toFixed(1)} kg` : '-- kg'}
               </span>
               {history.length >= 2 && (
                 <span
-                  className={`text-[11px] font-bold flex items-center font-mono ${
+                  className={`text-[11px] font-bold flex items-center font-mono whitespace-nowrap ${
                     delta <= 0 ? 'text-emerald-400' : 'text-amber-400'
                   }`}
                 >
-                  {delta <= 0 ? <TrendingDown size={12} className="mr-0.5" /> : <TrendingUp size={12} className="mr-0.5" />}
+                  {delta <= 0 ? <TrendingDown size={12} className="mr-0.5 shrink-0" /> : <TrendingUp size={12} className="mr-0.5 shrink-0" />}
                   {delta > 0 ? `+${delta}` : delta} kg
                 </span>
               )}
@@ -98,30 +98,30 @@ export function WeightTracker({ history, onSaveWeight }: WeightTrackerProps) {
 
         <button
           onClick={() => setIsAdding(prev => !prev)}
-          className="text-xs font-bold px-2.5 py-1.5 rounded-xl bg-[#1b253d] text-orange-400 hover:text-white border border-white/5 flex items-center gap-1 active:scale-95 transition-all"
+          className="text-xs font-bold px-2.5 py-1.5 rounded-xl bg-[#1b253d] text-theme hover:text-white border border-white/5 flex items-center gap-1 active:scale-95 transition-all whitespace-nowrap shrink-0"
         >
-          <Plus size={14} />
+          <Plus size={14} className="shrink-0" />
           {isAdding ? 'Fechar' : 'Registrar'}
         </button>
       </div>
 
       {/* Formulário de Registro Rápido */}
       {isAdding && (
-        <form onSubmit={handleSubmit} className="flex gap-2 mb-3 animate-in fade-in duration-200">
+        <form onSubmit={handleSubmit} className="flex gap-2 mb-3 animate-in fade-in duration-200 flex-nowrap">
           <input
             type="number"
             step="0.1"
             placeholder="Ex: 78.5"
             value={inputVal}
             onChange={e => setInputVal(e.target.value)}
-            className="flex-1 bg-[#090d16] border border-white/10 rounded-xl px-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-orange-500"
+            className="flex-1 min-w-0 bg-[#090d16] border border-white/10 rounded-xl px-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-theme"
             autoFocus
           />
           <button
             type="submit"
-            className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-xs flex items-center gap-1 shadow-md shadow-orange-500/20 active:scale-95"
+            className="px-4 py-1.5 rounded-xl bg-theme-gradient text-white font-bold text-xs flex items-center gap-1 shadow-theme active:scale-95 whitespace-nowrap shrink-0"
           >
-            <Check size={14} />
+            <Check size={14} className="shrink-0" />
             Salvar
           </button>
         </form>
@@ -131,15 +131,9 @@ export function WeightTracker({ history, onSaveWeight }: WeightTrackerProps) {
       {history.length >= 2 ? (
         <div className="relative w-full h-16 bg-[#090d16] rounded-2xl border border-white/5 p-1 flex items-center justify-center overflow-hidden">
           <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full h-full">
-            <defs>
-              <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#f97316" />
-                <stop offset="100%" stopColor="#22c55e" />
-              </linearGradient>
-            </defs>
             <polyline
               fill="none"
-              stroke="url(#lineGrad)"
+              stroke="var(--theme-color)"
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -152,14 +146,14 @@ export function WeightTracker({ history, onSaveWeight }: WeightTrackerProps) {
                 cy={pt.y}
                 r="4"
                 fill="#f8fafc"
-                stroke="#f97316"
+                stroke="var(--theme-color)"
                 strokeWidth="2"
               />
             ))}
           </svg>
         </div>
       ) : (
-        <p className="text-[11px] text-slate-500 text-center py-2 bg-[#090d16] rounded-xl border border-white/5">
+        <p className="text-[11px] text-slate-500 text-center py-2 bg-[#090d16] rounded-xl border border-white/5 whitespace-nowrap">
           Registre seu peso periodicamente para traçar o gráfico de evolução.
         </p>
       )}
