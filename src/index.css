@@ -13,9 +13,19 @@
   --border-subtle: rgba(255, 255, 255, 0.08);
 }
 
-* {
+/* Regra Universal: Zero barras de rolagem em todo o app */
+*, *::before, *::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
 body {
@@ -26,11 +36,25 @@ body {
   user-select: none;
 }
 
-/* Utilitários para sumir com barra de rolagem */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Suporte para safe areas de iPhones e Android */
+.safe-area-inset {
+  padding-top: max(1rem, env(safe-area-inset-top));
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px 4px rgba(249, 115, 22, 0.6);
+  }
+}
+
+.timer-subtle-pulse {
+  animation: subtlePulse 0.9s ease-in-out infinite;
 }

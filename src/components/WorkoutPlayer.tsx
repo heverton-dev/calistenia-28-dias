@@ -83,35 +83,36 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
 
   const progressPercent = calculateWorkoutProgress(currentIndex, state, workout.items.length);
   const timerPercent = totalTimeLeft > 0 ? ((totalTimeLeft - timeLeft) / totalTimeLeft) * 100 : 100;
+  const isFinalThreeSeconds = state === 'active' && timeLeft <= 3 && timeLeft > 0;
 
   if (state === 'completed') {
     return (
-      <div className="min-h-screen bg-[#080b14] text-white flex flex-col items-center justify-center p-6 text-center">
-        <div className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-emerald-500/20 to-teal-500/10 text-emerald-400 flex items-center justify-center mb-6 border border-emerald-500/30 shadow-2xl shadow-emerald-500/20">
-          <CheckCircle size={56} className="animate-pulse" />
+      <div className="min-h-screen bg-[#080b14] text-white flex flex-col items-center justify-center p-6 text-center select-none">
+        <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-emerald-500/20 to-teal-500/10 text-emerald-400 flex items-center justify-center mb-5 border border-emerald-500/30 shadow-2xl shadow-emerald-500/20">
+          <CheckCircle size={48} className="animate-pulse" />
         </div>
-        <span className="text-xs font-bold tracking-widest text-emerald-400 uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mb-2">
+        <span className="text-xs font-black tracking-widest text-emerald-400 uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 mb-2 whitespace-nowrap">
           Missão Cumprida
         </span>
-        <h1 className="text-3xl font-black tracking-tight mb-2">Treino Finalizado!</h1>
-        <p className="text-slate-400 max-w-sm mb-8 text-sm">
+        <h1 className="text-2xl sm:text-3xl font-black tracking-tight mb-2">Treino Finalizado!</h1>
+        <p className="text-slate-400 max-w-sm mb-6 text-xs sm:text-sm">
           Você concluiu com maestria o <span className="text-white font-semibold">{workout.title}</span> (Dia {workout.dayNumber} do Desafio).
         </p>
 
-        <div className="grid grid-cols-2 gap-4 w-full max-w-xs mb-8">
-          <div className="bg-[#111728] p-4 rounded-2xl border border-white/5 shadow-md">
-            <span className="text-[11px] text-slate-400 block mb-1 uppercase font-semibold">Exercícios</span>
+        <div className="grid grid-cols-2 gap-3 w-full max-w-xs mb-6">
+          <div className="bg-[#111728] p-3.5 rounded-2xl border border-white/5 shadow-md">
+            <span className="text-[10px] text-slate-400 block mb-1 uppercase font-bold whitespace-nowrap">Exercícios</span>
             <span className="text-2xl font-black text-orange-400">{workout.items.length}</span>
           </div>
-          <div className="bg-[#111728] p-4 rounded-2xl border border-white/5 shadow-md">
-            <span className="text-[11px] text-slate-400 block mb-1 uppercase font-semibold">Tempo Total</span>
+          <div className="bg-[#111728] p-3.5 rounded-2xl border border-white/5 shadow-md">
+            <span className="text-[10px] text-slate-400 block mb-1 uppercase font-bold whitespace-nowrap">Tempo Total</span>
             <span className="text-2xl font-black text-emerald-400">{workout.estimatedMinutes} min</span>
           </div>
         </div>
 
         <button
           onClick={onFinish}
-          className="w-full max-w-xs py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-extrabold text-base shadow-xl shadow-orange-500/30 active:scale-95 transition-all"
+          className="w-full max-w-xs py-3.5 px-6 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-extrabold text-sm shadow-xl shadow-orange-500/30 active:scale-95 transition-all"
         >
           Salvar no Progresso dos 28 Dias
         </button>
@@ -120,38 +121,38 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
   }
 
   return (
-    <div className="min-h-screen bg-[#080b14] text-white flex flex-col justify-between p-4 safe-area-inset max-w-lg mx-auto">
-      {/* Top Header */}
-      <div>
-        <div className="flex items-center justify-between mb-3 pt-2">
+    <div className="min-h-screen max-h-screen bg-[#080b14] text-white flex flex-col justify-between p-3.5 safe-area-inset max-w-lg mx-auto overflow-hidden select-none">
+      {/* Top Header - Sem quebra de linha */}
+      <div className="shrink-0">
+        <div className="flex items-center justify-between mb-2 pt-1 flex-nowrap gap-2">
           <button
             onClick={onExit}
-            className="p-2.5 rounded-2xl bg-[#12192b] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform"
+            className="p-2 rounded-2xl bg-[#12192b] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform shrink-0"
             aria-label="Sair do treino"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
 
-          <div className="text-center">
-            <span className="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">
+          <div className="text-center min-w-0 flex-1 px-1">
+            <span className="text-[10px] font-extrabold text-orange-400 uppercase tracking-widest block whitespace-nowrap truncate">
               Dia {workout.dayNumber} • {workout.focus}
             </span>
-            <span className="text-xs text-slate-400 font-medium">
+            <span className="text-[11px] text-slate-400 font-medium block whitespace-nowrap truncate">
               Série {currentIndex + 1} de {workout.items.length}
             </span>
           </div>
 
-          <div className="p-2.5 rounded-2xl bg-[#12192b] border border-white/5">
+          <div className="p-2 rounded-2xl bg-[#12192b] border border-white/5 shrink-0">
             {isSoundOn ? (
-              <Volume2 size={20} className="text-emerald-400" />
+              <Volume2 size={18} className="text-emerald-400" />
             ) : (
-              <VolumeX size={20} className="text-slate-500" />
+              <VolumeX size={18} className="text-slate-500" />
             )}
           </div>
         </div>
 
         {/* Linha de Progresso Global do Treino */}
-        <div className="w-full h-2 bg-slate-800/60 rounded-full overflow-hidden p-0.5 border border-white/5">
+        <div className="w-full h-1.5 bg-slate-800/60 rounded-full overflow-hidden p-0.5 border border-white/5">
           <div
             className="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-emerald-400 transition-all duration-300 rounded-full"
             style={{ width: `${progressPercent}%` }}
@@ -159,17 +160,17 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
         </div>
       </div>
 
-      {/* Área Central Interativa */}
-      <div className="flex-1 flex flex-col items-center justify-center my-2">
+      {/* Área Central Interativa: Flexível, sem estourar e sem cortar o timer */}
+      <div className="flex-1 min-h-0 flex flex-col items-center justify-center py-2 overflow-y-auto no-scrollbar">
         {state === 'prepare' && (
-          <div className="text-center flex flex-col items-center">
-            <span className="text-xs font-black tracking-widest text-orange-400 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 mb-3">
+          <div className="text-center flex flex-col items-center my-auto">
+            <span className="text-[10px] font-black tracking-widest text-orange-400 uppercase px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20 mb-3 whitespace-nowrap">
               Prepare-se
             </span>
-            <h2 className="text-2xl font-black mb-6 text-white">{currentExercise?.name}</h2>
+            <h2 className="text-xl sm:text-2xl font-black mb-4 text-white line-clamp-1">{currentExercise?.name}</h2>
 
-            <div className="relative w-44 h-44 flex items-center justify-center rounded-full bg-[#111728] border-4 border-orange-500/30 shadow-2xl shadow-orange-500/20 my-4">
-              <span className="text-8xl font-black text-white font-mono tracking-tighter animate-pulse">
+            <div className="relative w-36 h-36 sm:w-40 sm:h-40 flex items-center justify-center rounded-full bg-[#111728] border-4 border-orange-500/30 shadow-2xl shadow-orange-500/20 my-2 shrink-0">
+              <span className="text-7xl font-black text-white font-mono tracking-tighter animate-pulse">
                 {timeLeft}
               </span>
             </div>
@@ -178,54 +179,54 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
         )}
 
         {state === 'active' && currentExercise && (
-          <div className="w-full flex flex-col items-center">
-            {/* Seletor de Visão no Player */}
-            <div className="flex items-center justify-between w-full max-w-sm mb-2.5 px-1">
-              <div className="flex items-center gap-1 bg-[#101728] p-1 rounded-2xl border border-white/5">
+          <div className="w-full flex flex-col items-center justify-center my-auto">
+            {/* Seletor de Visão Compacto no Player - 1 Linha Obrigatória */}
+            <div className="flex items-center justify-between w-full max-w-sm mb-2 px-1 flex-nowrap gap-2 shrink-0">
+              <div className="flex items-center gap-1 bg-[#101728] p-1 rounded-2xl border border-white/5 flex-nowrap shrink-0">
                 <button
                   onClick={() => setPlayerTab('anim')}
-                  className={`px-3 py-1 rounded-xl text-xs font-extrabold flex items-center gap-1.5 transition-all ${
+                  className={`px-2.5 py-1 rounded-xl text-[11px] font-extrabold flex items-center gap-1 transition-all whitespace-nowrap shrink-0 ${
                     playerTab === 'anim'
                       ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Activity size={13} />
+                  <Activity size={12} />
                   Biomecânica
                 </button>
                 <button
                   onClick={() => setPlayerTab('anatomy')}
-                  className={`px-3 py-1 rounded-xl text-xs font-extrabold flex items-center gap-1.5 transition-all ${
+                  className={`px-2.5 py-1 rounded-xl text-[11px] font-extrabold flex items-center gap-1 transition-all whitespace-nowrap shrink-0 ${
                     playerTab === 'anatomy'
                       ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Layers size={13} />
+                  <Layers size={12} />
                   Músculos
                 </button>
               </div>
 
               <button
                 onClick={() => setPlayerTab('split')}
-                className={`p-1.5 rounded-xl border border-white/5 transition-all ${
+                className={`p-1.5 rounded-xl border border-white/5 transition-all shrink-0 ${
                   playerTab === 'split'
                     ? 'bg-orange-500/20 text-orange-400 border-orange-500/40'
                     : 'text-slate-500 hover:text-slate-300 bg-[#101728]'
                 }`}
                 title="Lado a Lado"
               >
-                <Columns size={16} />
+                <Columns size={15} />
               </button>
             </div>
 
-            {/* Palco do Atleta ou Anatomia */}
-            <div className="w-full mb-3">
+            {/* Palco do Atleta ou Anatomia Enquadrado com precisão */}
+            <div className="w-full mb-2 shrink min-h-0">
               {playerTab === 'anim' && (
                 <ExerciseAnimation
                   animationType={currentExercise.animationType}
                   isPaused={isPaused}
-                  className="h-64 sm:h-72 w-full"
+                  className="h-44 sm:h-56 w-full"
                 />
               )}
 
@@ -233,7 +234,7 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
                 <AnatomyViewer
                   primaryMuscles={currentExercise.primaryMuscles}
                   secondaryMuscles={currentExercise.secondaryMuscles}
-                  className="h-64 sm:h-72 w-full"
+                  className="h-44 sm:h-56 w-full"
                 />
               )}
 
@@ -242,63 +243,79 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
                   <ExerciseAnimation
                     animationType={currentExercise.animationType}
                     isPaused={isPaused}
-                    className="h-60"
+                    className="h-44"
                   />
                   <AnatomyViewer
                     primaryMuscles={currentExercise.primaryMuscles}
                     secondaryMuscles={currentExercise.secondaryMuscles}
-                    className="h-60"
+                    className="h-44"
                   />
                 </div>
               )}
             </div>
 
-            <div className="text-center mb-3">
-              <h2 className="text-xl font-black tracking-tight text-white mb-0.5">{currentExercise.name}</h2>
-              <p className="text-xs text-slate-400 max-w-sm line-clamp-1">
+            <div className="text-center mb-2 shrink-0">
+              <h2 className="text-base sm:text-lg font-black tracking-tight text-white mb-0.5 line-clamp-1">
+                {currentExercise.name}
+              </h2>
+              <p className="text-[11px] text-slate-400 max-w-sm line-clamp-1">
                 {currentExercise.description}
               </p>
             </div>
 
-            {/* Display do Timer Esportivo */}
-            <div className="relative w-36 h-36 flex flex-col items-center justify-center rounded-full bg-[#111728] border-4 border-orange-500/20 shadow-2xl shadow-orange-500/15">
+            {/* Display do Timer Esportivo com Pulso Leve nos 3s Finais */}
+            <div
+              className={`relative w-28 h-28 sm:w-32 sm:h-32 flex flex-col items-center justify-center rounded-full bg-[#111728] border-4 transition-all duration-300 shrink-0 ${
+                isFinalThreeSeconds
+                  ? 'border-orange-500 timer-subtle-pulse shadow-orange-500/40'
+                  : 'border-orange-500/20 shadow-2xl shadow-orange-500/15'
+              }`}
+            >
               <svg className="absolute inset-0 w-full h-full -rotate-90">
                 <circle
-                  cx="72"
-                  cy="72"
-                  r="65"
-                  stroke="#f97316"
-                  strokeWidth="6"
+                  cx="56"
+                  cy="56"
+                  r="50"
+                  stroke={isFinalThreeSeconds ? '#f97316' : '#ea580c'}
+                  strokeWidth="5"
                   fill="none"
-                  strokeDasharray="408"
-                  strokeDashoffset={408 - (408 * timerPercent) / 100}
+                  strokeDasharray="314"
+                  strokeDashoffset={314 - (314 * timerPercent) / 100}
                   strokeLinecap="round"
                   className="transition-all duration-300"
                 />
               </svg>
-              <span className="text-4xl font-black font-mono tracking-tight text-white">{timeLeft}s</span>
-              <span className="text-[9px] text-orange-400 font-extrabold uppercase tracking-widest">Ativo</span>
+              <span
+                className={`text-3xl sm:text-4xl font-black font-mono tracking-tight transition-transform duration-300 ${
+                  isFinalThreeSeconds ? 'scale-110 text-orange-400 animate-pulse' : 'text-white'
+                }`}
+              >
+                {timeLeft}s
+              </span>
+              <span className="text-[8px] sm:text-[9px] text-orange-400 font-extrabold uppercase tracking-widest whitespace-nowrap">
+                {isFinalThreeSeconds ? 'Finalizando!' : 'Ativo'}
+              </span>
             </div>
           </div>
         )}
 
         {state === 'rest' && (
-          <div className="text-center w-full max-w-sm flex flex-col items-center">
-            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20 mb-3">
+          <div className="text-center w-full max-w-sm flex flex-col items-center my-auto">
+            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20 mb-2 whitespace-nowrap">
               Recuperação Ativa
             </span>
-            <div className="text-7xl font-black font-mono my-2 text-emerald-400 tracking-tight">
+            <div className="text-6xl sm:text-7xl font-black font-mono my-2 text-emerald-400 tracking-tight shrink-0">
               {timeLeft}s
             </div>
-            <p className="text-xs text-slate-400 mb-6">Respire fundo e prepare os músculos</p>
+            <p className="text-xs text-slate-400 mb-4">Respire fundo e prepare os músculos</p>
 
             {nextExercise && (
-              <div className="bg-[#111728] p-4 rounded-3xl border border-white/10 text-left w-full shadow-xl">
-                <span className="text-[10px] text-slate-400 uppercase font-extrabold tracking-wider block mb-1">
+              <div className="bg-[#111728] p-3.5 rounded-3xl border border-white/10 text-left w-full shadow-xl">
+                <span className="text-[10px] text-slate-400 uppercase font-extrabold tracking-wider block mb-0.5 whitespace-nowrap">
                   Próximo Movimento:
                 </span>
-                <span className="text-base font-bold text-white block">{nextExercise.name}</span>
-                <span className="text-xs text-orange-400 font-medium block mt-1">
+                <span className="text-sm sm:text-base font-bold text-white block truncate">{nextExercise.name}</span>
+                <span className="text-[11px] text-orange-400 font-medium block mt-0.5 whitespace-nowrap">
                   Duração: {nextItem?.durationSeconds} segundos
                 </span>
               </div>
@@ -307,22 +324,22 @@ export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPl
         )}
       </div>
 
-      {/* Controles Inferiores */}
-      <div className="flex items-center justify-center gap-6 pb-2">
+      {/* Controles Inferiores - Garantido Shrink-0 (Nunca Corta) */}
+      <div className="flex items-center justify-center gap-6 pt-2 pb-1 shrink-0">
         <button
           onClick={togglePause}
-          className="w-16 h-16 rounded-3xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white flex items-center justify-center shadow-2xl shadow-orange-500/30 active:scale-90 transition-all"
+          className="w-14 h-14 sm:w-16 sm:h-16 rounded-3xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white flex items-center justify-center shadow-2xl shadow-orange-500/30 active:scale-90 transition-all shrink-0"
           aria-label={isPaused ? 'Continuar' : 'Pausar'}
         >
-          {isPaused ? <Play size={28} className="translate-x-0.5" fill="currentColor" /> : <Pause size={28} fill="currentColor" />}
+          {isPaused ? <Play size={26} className="translate-x-0.5" fill="currentColor" /> : <Pause size={26} fill="currentColor" />}
         </button>
 
         <button
           onClick={handleSkip}
-          className="p-4 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform"
+          className="p-3.5 sm:p-4 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform shrink-0"
           title="Pular para próximo"
         >
-          <SkipForward size={22} />
+          <SkipForward size={20} />
         </button>
       </div>
     </div>
