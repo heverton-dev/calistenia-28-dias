@@ -1,8 +1,7 @@
-# Lista de Tarefas: Calistenia Daily Trainer
+# Lista de Tarefas: Calistenia Daily Trainer v2
 
-- [x] Task 1: Setup do Projeto, Dependências e Harness de Testes (Vitest)
-- [x] Task 2: Domínio de Dados, Catálogo de Exercícios e Matriz dos 28 Dias
-- [x] Task 3: Sintetizador Web Audio API e Gerenciador de Progresso Offline
-- [x] Task 4: Componente Anatômico Muscular SVG e Animações Vetoriais
-- [x] Task 5: Player de Treino Automatizado com Timers e Bips
-- [x] Task 6: Grid do Desafio dos 28 Dias, Interface Principal e Configuração PWA Offline
+- [ ] Task 1: Rastreamento de Peso e Gráfico SVG de Evolução
+- [ ] Task 2: Mecanismo de Substituição Anatômica de Exercícios (Padrão Mobbin)
+- [ ] Task 3: Painel de Configurações e Preferências do Treinador
+- [ ] Task 4: Service Worker PWA Offline Nativo para iOS e Android
+- [ ] Task 5: Integração no Dashboard Principal e Homologação Final

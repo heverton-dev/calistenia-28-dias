@@ -1,56 +1,65 @@
-# Plano de Implementação: Calistenia Daily Trainer (28-Day Offline)
+# Plano de Implementação: Calistenia Daily Trainer v2 (Método Osmani)
 
 ## Visão Geral
-Construção verticalizada e testada via TDD do aplicativo de calistenia diária com suporte PWA offline para Android e iOS, cobrindo catálogo anatômico, gerador de áudio sintético, player de treino com timer e persistência de 28 dias.
+Construção verticalizada e testada via TDD da evolução da aplicação de calistenia para padrão comercial Mobbin/BetterMe: rastreamento de peso com gráfico SVG, substituição anatômica de exercícios, painel de configurações de treino e Service Worker PWA offline nativo.
 
 ## Grafo de Dependências
 ```text
-Task 1 (Setup & Test Harness)
+Task 1 (Rastreamento de Peso & Gráfico SVG)
     │
     ▼
-Task 2 (Modelos de Domínio, Catálogo de Exercícios & Matriz de 28 Dias)
+Task 2 (Mecanismo de Substituição Anatômica de Exercícios)
     │
     ▼
-Task 3 (Sintetizador Web Audio API & Armazenamento Local de Progresso)
+Task 3 (Painel de Configurações e Preferências do Treinador)
     │
     ▼
-Task 4 (Visualizador Anatômico Muscular SVG & Animações Vetoriais)
+Task 4 (Service Worker PWA Offline Nativo)
     │
     ▼
-Task 5 (Player de Treino Guiado com Timers Automáticos de Série/Descanso)
-    │
-    ▼
-Task 6 (Grid dos 28 Dias, Histórico de Streaks & Suporte PWA Offline)
+Task 5 (Integração no Dashboard e Homologação Final)
 ```
+
+---
 
 ## Tarefas Verticais
 
-### Task 1: Setup & Test Harness
-- **Descrição:** Inicializar projeto Vite com React, TypeScript, Vitest e utilitários de teste.
-- **Critérios de Aceitação:** `npm test` e `npm run build` executam com sucesso.
-- **Dependências:** Nenhuma.
+### Task 1: Rastreamento de Peso & Gráfico SVG de Evolução
+- **Descrição:** Adicionar modelo de dados de pesagem em `src/utils/storage.ts` e componente `src/components/WeightTracker.tsx` com gráfico vetorial SVG interativo.
+- **Critérios de Aceitação:**
+  - [ ] Função para registrar pesagem (data e kg).
+  - [ ] Gráfico SVG calcula coordenadas proporcionais sem estourar viewbox.
+  - [ ] Testes unitários comprovam cálculo de delta e histórico.
+- **Arquivos:** `src/types/workout.ts`, `src/utils/storage.ts`, `src/components/WeightTracker.tsx`, `src/components/WeightTracker.test.ts`.
 
-### Task 2: Domínio de Dados e Matriz dos 28 Dias
-- **Descrição:** Definir contratos de tipos TypeScript, catálogo detalhado de exercícios de calistenia com classificação de músculos primários/secundários e os 28 dias progressivos do desafio.
-- **Critérios de Aceitação:** Todos os 28 dias mapeados com foco muscular e tempos adequados; testes cobrindo integridade do catálogo e referências.
-- **Dependências:** Task 1.
+### Task 2: Mecanismo de Substituição Anatômica de Exercícios
+- **Descrição:** Permitir substituir um exercício da série diária por uma alternativa compatível pelo mesmo grupo muscular principal (Padrão Mobbin).
+- **Critérios de Aceitação:**
+  - [ ] Função `getAlternativeExercises(exerciseId)` retorna exercícios do mesmo grupo muscular excluindo o atual.
+  - [ ] Função de substituição no storage salva e recupera a rotina modificada.
+  - [ ] Testes unitários validam a troca e integridade da lista.
+- **Arquivos:** `src/data/exercises.ts`, `src/utils/storage.ts`, `src/components/ExerciseReplacementModal.tsx`, `src/components/exerciseReplacement.test.ts`.
 
-### Task 3: Sintetizador de Áudio e Persistência Local
-- **Descrição:** Criar gerador de áudio via Web Audio API (beeps 880Hz/440Hz e sino) sem arquivos externos, mais hook/storage de progresso offline (streaks, dias concluídos, peso).
-- **Critérios de Aceitação:** Testes unitários validando cálculo de streaks, persistência e fallback de áudio.
-- **Dependências:** Task 2.
+### Task 3: Painel de Configurações e Preferências do Treinador
+- **Descrição:** Adicionar modal de configurações com toggles para áudio, tempo de contagem regressiva (3s, 5s, 10s) e vibração.
+- **Critérios de Aceitação:**
+  - [ ] `AppSettings` persistido e carregado com valores default.
+  - [ ] `WorkoutPlayer` respeita o tempo de preparação configurado e toggle de áudio.
+  - [ ] Testes unitários validam persistência e fallback.
+- **Arquivos:** `src/components/SettingsModal.tsx`, `src/components/WorkoutPlayer.tsx`, `src/utils/storage.ts`.
 
-### Task 4: Visualizador Anatômico Muscular e Animações de Exercício
-- **Descrição:** Criar componente SVG que ilumina os grupos musculares (peitoral, tríceps, core, pernas, etc.) de acordo com o exercício ativo, e componente de animação vetorial/loop.
-- **Critérios de Aceitação:** Músculos primários renderizados com classe/estilo de destaque; renderização dinâmica baseada no exercício atual.
-- **Dependências:** Task 2.
+### Task 4: Service Worker PWA Offline Nativo
+- **Descrição:** Implementar `public/sw.js` com estratégia Cache-First para assets estáticos e scripts, garantindo execução em Modo Avião sem conexão.
+- **Critérios de Aceitação:**
+  - [ ] `public/sw.js` intercepta requisições locais e serve do cache offline.
+  - [ ] Registro do Service Worker em `src/main.tsx` com verificação de compatibilidade.
+  - [ ] Build de produção gera manifesto e assets referenciados.
+- **Arquivos:** `public/sw.js`, `src/main.tsx`.
 
-### Task 5: Player de Treino Automatizado
-- **Descrição:** Criar máquina de estados e interface do player de treino: contagem regressiva de preparação (3s), execução cronometrada, descanso cronometrado, toque de bips, botões de pausar/pular e tela de conclusão.
-- **Critérios de Aceitação:** Testes provando transição automática de estados (prepare -> work -> rest -> complete) e gatilhos de áudio.
-- **Dependências:** Task 3, Task 4.
-
-### Task 6: Grid dos 28 Dias, Telas do App e Manifesto PWA Offline
-- **Descrição:** Montar a interface principal com visão geral dos 28 dias (indicadores de concluído/em aberto/dia atual), métricas de streaks e dias de descanso, configuração PWA (manifest, service worker) e empacotamento final.
-- **Critérios de Aceitação:** Build de produção gerando bundle autocontido offline (< 50MB); fluxo de ponta a ponta funcional.
-- **Dependências:** Task 5.
+### Task 5: Integração no Dashboard e Homologação Final
+- **Descrição:** Conectar o card de peso, botão de configurações e substituições no `src/App.tsx`, garantindo layout responsivo de elite e zero regressão.
+- **Critérios de Aceitação:**
+  - [ ] Todos os testes unitários passando (`npm test`).
+  - [ ] Build de produção bem-sucedido (`npm run build`).
+  - [ ] Interface visual harmônica sem quebras no desktop e mobile.
+- **Arquivos:** `src/App.tsx`, `src/components/ExerciseModal.tsx`.
