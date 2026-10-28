@@ -1,25 +1,35 @@
 import { useState, useEffect } from 'react';
 import { CHALLENGE_28_DAYS } from './data/challenge28';
-import { WorkoutDay, UserProgress, WorkoutItem, AppSettings } from './types/workout';
-import { loadProgress, saveCompletedDay, saveWeightEntry, saveSettings, saveCustomizedDay, resetProgress } from './utils/storage';
+import { WorkoutDay, UserProgress, WorkoutItem, AppSettings, AppTheme } from './types/workout';
+import { loadProgress, saveWorkoutCompletion, saveWeight, saveSettings, saveCustomizedDayItems, resetProgress, saveTheme } from './utils/storage';
 import { groupDaysByWeek, getNextAvailableDay } from './utils/challengeUtils';
 import { DayCard } from './components/DayCard';
 import { ExerciseModal } from './components/ExerciseModal';
 import { WorkoutPlayer } from './components/WorkoutPlayer';
 import { WeightTracker } from './components/WeightTracker';
 import { SettingsModal } from './components/SettingsModal';
-import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck, Sliders } from 'lucide-react';
+import { ThemeSelectorModal } from './components/ThemeSelectorModal';
+import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck, Sliders, Palette } from 'lucide-react';
 
 export default function App() {
   const [progress, setProgress] = useState<UserProgress>(loadProgress());
   const [activeWorkout, setActiveWorkout] = useState<WorkoutDay | null>(null);
   const [inspectingDay, setInspectingDay] = useState<WorkoutDay | null>(null);
   const [showSettings, setShowSettings] = useState(false);
+  const [showThemeModal, setShowThemeModal] = useState(false);
   const [selectedWeek, setSelectedWeek] = useState<number | 'all'>('all');
 
   useEffect(() => {
-    setProgress(loadProgress());
+    const loaded = loadProgress();
+    setProgress(loaded);
+    const theme = loaded.theme || 'orange';
+    document.documentElement.setAttribute('data-theme', theme);
   }, []);
+
+  const handleSelectTheme = (newTheme: AppTheme) => {
+    saveTheme(newTheme);
+    setProgress(prev => ({ ...prev, theme: newTheme }));
+  };
 
   const nextDay = getNextAvailableDay(progress.completedDays, CHALLENGE_28_DAYS);
   const weekGroups = groupDaysByWeek(CHALLENGE_28_DAYS);
@@ -38,14 +48,14 @@ export default function App() {
 
   const handleFinishWorkout = () => {
     if (activeWorkout) {
-      const updated = saveCompletedDay(activeWorkout.dayNumber);
+      const updated = saveWorkoutCompletion(activeWorkout.dayNumber);
       setProgress(updated);
       setActiveWorkout(null);
     }
   };
 
   const handleSaveWeight = (weight: number) => {
-    const updated = saveWeightEntry(weight);
+    const updated = saveWeight(weight);
     setProgress(updated);
   };
 
@@ -55,14 +65,16 @@ export default function App() {
   };
 
   const handleUpdateCustomizedItems = (dayNumber: number, items: WorkoutItem[]) => {
-    const updated = saveCustomizedDay(dayNumber, items);
+    const updated = saveCustomizedDayItems(dayNumber, items);
     setProgress(updated);
   };
 
   const handleReset = () => {
     if (window.confirm('Deseja reiniciar todo o seu progresso do Desafio de 28 Dias?')) {
       resetProgress();
-      setProgress(loadProgress());
+      const fresh = loadProgress();
+      setProgress(fresh);
+      document.documentElement.setAttribute('data-theme', fresh.theme || 'orange');
     }
   };
 
@@ -78,37 +90,48 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080b14] text-white flex flex-col items-center pb-14 selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-[#080b14] text-white flex flex-col items-center pb-14 selection:bg-theme selection:text-white select-none">
       {/* Background Glow */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-72 bg-gradient-to-b from-orange-600/15 via-transparent to-transparent pointer-events-none" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-72 bg-gradient-to-b from-theme-subtle via-transparent to-transparent pointer-events-none" />
 
       {/* Main Container */}
-      <main className="w-full max-w-md px-4 pt-4 z-10">
+      <main className="w-full max-w-md px-4 pt-3 z-10">
         {/* Header Superior Esportivo */}
-        <header className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 text-white flex items-center justify-center font-black shadow-lg shadow-orange-500/25">
+        <header className="flex items-center justify-between mb-4 flex-nowrap gap-2">
+          <div className="flex items-center gap-2.5 shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-theme-gradient text-white flex items-center justify-center font-black shadow-theme shrink-0">
               <Dumbbell size={20} />
             </div>
             <div>
-              <h1 className="text-base font-black tracking-tight leading-none">Calistenia 28D</h1>
-              <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-1 mt-0.5">
+              <h1 className="text-base font-black tracking-tight leading-none whitespace-nowrap">Calistenia 28D</h1>
+              <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-1 mt-0.5 whitespace-nowrap">
                 <Smartphone size={11} /> 100% Offline
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             {/* Streak Contador */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-[#111728] border border-white/10 shadow-md">
-              <Flame size={16} className="text-orange-500 fill-orange-500 animate-pulse" />
-              <span className="text-xs font-black font-mono tracking-tight text-white">{progress.currentStreak} dias</span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-2xl bg-[#111728] border border-white/10 shadow-md shrink-0">
+              <Flame size={15} className="text-orange-500 fill-orange-500 animate-pulse" />
+              <span className="text-xs font-black font-mono tracking-tight text-white whitespace-nowrap">{progress.currentStreak} dias</span>
             </div>
+
+            {/* Botão de Paleta de Cores */}
+            <button
+              onClick={() => setShowThemeModal(true)}
+              className="p-2.5 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform relative shrink-0"
+              title="Trocar Cor do Aplicativo (Amarelo, Rosa, Azul, Verde, Laranja)"
+              aria-label="Cores"
+            >
+              <Palette size={15} className="text-theme" />
+              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-theme animate-ping" />
+            </button>
 
             {/* Botão de Configurações */}
             <button
               onClick={() => setShowSettings(true)}
-              className="p-2.5 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform"
+              className="p-2.5 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform shrink-0"
               title="Ajustes do Treinador"
               aria-label="Ajustes"
             >
@@ -117,7 +140,7 @@ export default function App() {
 
             <button
               onClick={handleReset}
-              className="p-2.5 rounded-2xl bg-[#111728] text-slate-400 hover:text-white border border-white/5 active:scale-90 transition-transform"
+              className="p-2.5 rounded-2xl bg-[#111728] text-slate-400 hover:text-white border border-white/5 active:scale-90 transition-transform shrink-0"
               title="Reiniciar Desafio"
               aria-label="Reiniciar Desafio"
             >
@@ -127,37 +150,37 @@ export default function App() {
         </header>
 
         {/* Card Principal: Treino Recomendado de Hoje (Estilo BetterMe Pro) */}
-        <section className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-[#141d33] via-[#101728] to-[#0c1220] border border-orange-500/30 shadow-2xl shadow-orange-500/10 mb-5">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
+        <section className="relative overflow-hidden p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-[#141d33] via-[#101728] to-[#0c1220] border border-theme-subtle shadow-theme mb-4">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-theme-subtle rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-orange-400 bg-orange-500/15 border border-orange-500/30 px-3 py-1 rounded-full">
+            <div className="flex items-center justify-between mb-2.5 flex-nowrap">
+              <span className="text-[10px] font-black uppercase tracking-widest text-theme bg-theme-subtle border border-theme-subtle px-3 py-1 rounded-full whitespace-nowrap">
                 Treino de Hoje
               </span>
-              <span className="text-xs text-slate-400 font-mono font-bold">
+              <span className="text-xs text-slate-400 font-mono font-bold whitespace-nowrap">
                 {nextDay.estimatedMinutes} min
               </span>
             </div>
 
-            <h2 className="text-2xl font-black tracking-tight text-white mb-1">
+            <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white mb-1 line-clamp-1">
               Dia {nextDay.dayNumber}: {nextDay.title}
             </h2>
-            <p className="text-xs text-slate-400 mb-5">
-              Foco: <span className="text-orange-300 font-semibold">{nextDay.focus}</span> • {nextDay.items.length} séries guiadas
+            <p className="text-xs text-slate-400 mb-4 line-clamp-1">
+              Foco: <span className="text-theme font-bold">{nextDay.focus}</span> • {nextDay.items.length} séries guiadas
             </p>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <button
                 onClick={() => handleStartWorkout(nextDay)}
-                className="flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-orange-500/30 active:scale-95 transition-all"
+                className="flex-1 py-3.5 px-5 rounded-2xl bg-theme-gradient text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-theme active:scale-95 transition-all whitespace-nowrap"
               >
-                <Play size={18} fill="currentColor" />
+                <Play size={16} fill="currentColor" />
                 Iniciar Treino
               </button>
               <button
                 onClick={() => setInspectingDay(nextDay)}
-                className="py-4 px-4 rounded-2xl bg-[#1b253d] text-white font-bold text-xs hover:bg-[#222f4d] border border-white/5 transition-colors"
+                className="py-3.5 px-3.5 rounded-2xl bg-[#1b253d] text-white font-bold text-xs hover:bg-[#222f4d] border border-white/5 transition-colors whitespace-nowrap"
               >
                 Anatomia & Detalhes
               </button>
@@ -166,7 +189,7 @@ export default function App() {
         </section>
 
         {/* Card de Peso Corporal e Evolução (Mobbin / BetterMe) */}
-        <section className="mb-5">
+        <section className="mb-4">
           <WeightTracker
             history={progress.weightHistory}
             onSaveWeight={handleSaveWeight}
@@ -174,32 +197,32 @@ export default function App() {
         </section>
 
         {/* Progresso do Desafio de 28 Dias */}
-        <section className="bg-[#111728] p-4 rounded-3xl border border-white/5 mb-5 shadow-md">
-          <div className="flex items-center justify-between text-xs mb-2.5">
-            <span className="text-slate-300 flex items-center gap-1.5 font-bold">
-              <Trophy size={15} className="text-amber-400" />
+        <section className="bg-[#111728] p-4 rounded-3xl border border-white/5 mb-4 shadow-md">
+          <div className="flex items-center justify-between text-xs mb-2.5 flex-nowrap">
+            <span className="text-slate-300 flex items-center gap-1.5 font-bold whitespace-nowrap">
+              <Trophy size={14} className="text-amber-400" />
               Desafio dos 28 Dias
             </span>
-            <span className="font-mono font-extrabold text-orange-400">
+            <span className="font-mono font-extrabold text-theme whitespace-nowrap">
               {progress.completedDays.length} de 28 Dias ({completionPercentage}%)
             </span>
           </div>
 
-          <div className="w-full h-2.5 bg-slate-800/80 rounded-full overflow-hidden p-0.5 border border-white/5">
+          <div className="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden p-0.5 border border-white/5">
             <div
-              className="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-emerald-400 transition-all duration-700 rounded-full"
+              className="h-full bg-theme-gradient transition-all duration-700 rounded-full"
               style={{ width: `${completionPercentage}%` }}
             />
           </div>
         </section>
 
-        {/* Filtro em Pills de Semanas (Padrão Mobbin / Fitbod) */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-none no-scrollbar">
+        {/* Filtro em Pills de Semanas - 1 Linha com rolagem sem scrollbar */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 mb-3.5 no-scrollbar flex-nowrap">
           <button
             onClick={() => setSelectedWeek('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
               selectedWeek === 'all'
-                ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+                ? 'bg-theme text-white shadow-theme'
                 : 'bg-[#111728] text-slate-400 hover:text-white border border-white/5'
             }`}
           >
@@ -209,9 +232,9 @@ export default function App() {
             <button
               key={w}
               onClick={() => setSelectedWeek(w)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
                 selectedWeek === w
-                  ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+                  ? 'bg-theme text-white shadow-theme'
                   : 'bg-[#111728] text-slate-400 hover:text-white border border-white/5'
               }`}
             >
@@ -221,20 +244,20 @@ export default function App() {
         </div>
 
         {/* Grade de Semanas e Dias */}
-        <section className="space-y-6">
+        <section className="space-y-4">
           {displayedWeeks.map(week => (
-            <div key={week.weekNumber} className="space-y-2.5">
-              <div className="flex items-center justify-between px-1">
-                <h3 className="text-xs font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+            <div key={week.weekNumber} className="space-y-2">
+              <div className="flex items-center justify-between px-1 flex-nowrap">
+                <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 rounded-full bg-theme" />
                   {week.title}
                 </h3>
-                <span className="text-[11px] text-slate-500 font-mono font-bold">
+                <span className="text-[10px] text-slate-500 font-mono font-bold whitespace-nowrap">
                   {week.days.filter(d => progress.completedDays.includes(d.dayNumber)).length}/7 concluídos
                 </span>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {week.days.map(day => (
                   <DayCard
                     key={day.dayNumber}
@@ -250,12 +273,12 @@ export default function App() {
         </section>
 
         {/* Rodapé Informativo */}
-        <footer className="mt-12 text-center text-xs text-slate-500 space-y-1.5">
-          <div className="flex items-center justify-center gap-1 text-[11px] text-slate-400 font-medium">
-            <ShieldCheck size={14} className="text-emerald-400" />
+        <footer className="mt-8 text-center text-xs text-slate-500 space-y-1">
+          <div className="flex items-center justify-center gap-1 text-[10px] text-slate-400 font-medium">
+            <ShieldCheck size={13} className="text-emerald-400" />
             100% Código Aberto • Sem Servidor • Dados Seguros no Dispositivo
           </div>
-          <p className="text-[10px] text-slate-600">
+          <p className="text-[9px] text-slate-600">
             Adicione à Tela de Início no Safari (iOS) ou Chrome (Android) para treinar offline
           </p>
         </footer>
@@ -279,6 +302,15 @@ export default function App() {
           settings={progress.settings}
           onUpdateSettings={handleUpdateSettings}
           onClose={() => setShowSettings(false)}
+        />
+      )}
+
+      {/* Modal de Seleção de Cores do Aplicativo */}
+      {showThemeModal && (
+        <ThemeSelectorModal
+          currentTheme={progress.theme || 'orange'}
+          onSelectTheme={handleSelectTheme}
+          onClose={() => setShowThemeModal(false)}
         />
       )}
     </div>

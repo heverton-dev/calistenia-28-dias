@@ -1,16 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  --bg-primary: #080b14;
-  --bg-card: #101728;
-  --bg-card-hover: #151e33;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --accent-orange: #f97316;
-  --accent-red: #ef4444;
-  --accent-green: #22c55e;
-  --accent-blue: #38bdf8;
-  --border-subtle: rgba(255, 255, 255, 0.08);
+:root, [data-theme="orange"] {
+  --theme-color: #f97316;
+  --theme-color-rgb: 249, 115, 22;
+  --theme-hover: #ea580c;
+  --theme-dark: #c2410c;
+  --theme-light: #fed7aa;
+  --theme-gradient: linear-gradient(135deg, #f97316 0%, #f59e0b 50%, #ea580c 100%);
+  --theme-glow: rgba(249, 115, 22, 0.4);
+}
+
+[data-theme="yellow"] {
+  --theme-color: #eab308;
+  --theme-color-rgb: 234, 179, 8;
+  --theme-hover: #ca8a04;
+  --theme-dark: #a16207;
+  --theme-light: #fef08a;
+  --theme-gradient: linear-gradient(135deg, #facc15 0%, #eab308 50%, #ca8a04 100%);
+  --theme-glow: rgba(234, 179, 8, 0.4);
+}
+
+[data-theme="pink"] {
+  --theme-color: #ec4899;
+  --theme-color-rgb: 236, 72, 153;
+  --theme-hover: #db2777;
+  --theme-dark: #be185d;
+  --theme-light: #fbcfe8;
+  --theme-gradient: linear-gradient(135deg, #fb7185 0%, #ec4899 50%, #db2777 100%);
+  --theme-glow: rgba(236, 72, 153, 0.4);
+}
+
+[data-theme="blue"] {
+  --theme-color: #0ea5e9;
+  --theme-color-rgb: 14, 165, 233;
+  --theme-hover: #0284c7;
+  --theme-dark: #0369a1;
+  --theme-light: #bae6fd;
+  --theme-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #0284c7 100%);
+  --theme-glow: rgba(14, 165, 233, 0.4);
+}
+
+[data-theme="green"] {
+  --theme-color: #10b981;
+  --theme-color-rgb: 16, 185, 129;
+  --theme-hover: #059669;
+  --theme-dark: #047857;
+  --theme-light: #a7f3d0;
+  --theme-gradient: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
+  --theme-glow: rgba(16, 185, 129, 0.4);
 }
 
 /* Regra Universal: Zero barras de rolagem em todo o app */
@@ -29,32 +66,55 @@
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-main);
+  background-color: #080b14;
+  color: #f8fafc;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   overflow-x: hidden;
   user-select: none;
 }
 
+/* Classes utilitárias do Tema Dinâmico */
+.bg-theme {
+  background-color: var(--theme-color) !important;
+}
+.bg-theme-gradient {
+  background-image: var(--theme-gradient) !important;
+}
+.bg-theme-subtle {
+  background-color: rgba(var(--theme-color-rgb), 0.15) !important;
+}
+.text-theme {
+  color: var(--theme-color) !important;
+}
+.border-theme {
+  border-color: var(--theme-color) !important;
+}
+.border-theme-subtle {
+  border-color: rgba(var(--theme-color-rgb), 0.3) !important;
+}
+.shadow-theme {
+  box-shadow: 0 10px 25px -5px var(--theme-glow) !important;
+}
+
 /* Suporte para safe areas de iPhones e Android */
 .safe-area-inset {
-  padding-top: max(1rem, env(safe-area-inset-top));
-  padding-bottom: max(1rem, env(safe-area-inset-bottom));
-  padding-left: max(1rem, env(safe-area-inset-left));
-  padding-right: max(1rem, env(safe-area-inset-right));
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  padding-left: max(0.75rem, env(safe-area-inset-left));
+  padding-right: max(0.75rem, env(safe-area-inset-right));
 }
 
 @keyframes subtlePulse {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
+    box-shadow: 0 0 0 0 var(--theme-glow);
   }
   50% {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px 4px rgba(249, 115, 22, 0.6);
+    transform: scale(1.04);
+    box-shadow: 0 0 18px 4px var(--theme-glow);
   }
 }
 
 .timer-subtle-pulse {
-  animation: subtlePulse 0.9s ease-in-out infinite;
+  animation: subtlePulse 0.85s ease-in-out infinite;
 }

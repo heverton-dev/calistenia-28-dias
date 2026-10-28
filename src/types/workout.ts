@@ -21,6 +21,8 @@ export type AnimationType =
   | 'pike-pushup'
   | 'glute-bridge';
 
+export type AppTheme = 'orange' | 'yellow' | 'pink' | 'blue' | 'green';
+
 export interface Exercise {
   id: string;
   name: string;
@@ -50,6 +52,13 @@ export interface WorkoutDay {
   items: WorkoutItem[];
 }
 
+export interface WeekPlan {
+  weekNumber: number;
+  title: string;
+  phase: number;
+  days: WorkoutDay[];
+}
+
 export interface WeightEntry {
   date: string; // YYYY-MM-DD
   weightKg: number;
@@ -60,6 +69,7 @@ export interface AppSettings {
   prepTimeSeconds: number; // 3, 5 ou 10
   restTimeMultiplier: number;
   vibrateEnabled: boolean;
+  theme?: AppTheme;
 }
 
 export interface UserProgress {
@@ -72,4 +82,5 @@ export interface UserProgress {
   weightHistory: WeightEntry[];
   settings: AppSettings;
   customizedItems?: Record<number, WorkoutItem[]>;
+  theme?: AppTheme;
 }
