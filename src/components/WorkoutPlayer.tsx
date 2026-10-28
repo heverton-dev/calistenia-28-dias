@@ -1,24 +1,28 @@
 import { useState, useEffect, useRef } from 'react';
-import { WorkoutDay } from '../types/workout';
+import { WorkoutDay, AppSettings } from '../types/workout';
 import { getExerciseById } from '../data/exercises';
 import { AnatomyViewer } from './AnatomyViewer';
 import { ExerciseAnimation } from './ExerciseAnimation';
 import { getNextStep, PlayerState, calculateWorkoutProgress } from './playerEngine';
 import { playCountdownBeep, playTransitionBell } from '../utils/sound';
 import { useWakeLock } from '../hooks/useWakeLock';
-import { Play, Pause, SkipForward, X, CheckCircle, Volume2 } from 'lucide-react';
+import { Play, Pause, SkipForward, X, CheckCircle, Volume2, VolumeX } from 'lucide-react';
 
 interface WorkoutPlayerProps {
   workout: WorkoutDay;
+  settings?: AppSettings;
   onFinish: () => void;
   onExit: () => void;
 }
 
-export function WorkoutPlayer({ workout, onFinish, onExit }: WorkoutPlayerProps) {
+export function WorkoutPlayer({ workout, settings, onFinish, onExit }: WorkoutPlayerProps) {
+  const initialPrep = settings?.prepTimeSeconds || 5;
+  const isSoundOn = settings ? settings.soundEnabled : true;
+
   const [state, setState] = useState<PlayerState>('prepare');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(5); // 5s de preparação inicial
-  const [totalTimeLeft, setTotalTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(initialPrep);
+  const [totalTimeLeft, setTotalTimeLeft] = useState(initialPrep);
   const [isPaused, setIsPaused] = useState(false);
 
   // Mantém a tela ligada no iPhone / Android
@@ -40,13 +44,13 @@ export function WorkoutPlayer({ workout, onFinish, onExit }: WorkoutPlayerProps)
 
     timerRef.current = window.setInterval(() => {
       setTimeLeft(prev => {
-        // Tocar bip nos 3 segundos finais
-        if (prev <= 4 && prev > 1) {
+        // Tocar bip nos 3 segundos finais se habilitado
+        if (isSoundOn && prev <= 4 && prev > 1) {
           playCountdownBeep(prev - 1);
         }
 
         if (prev <= 1) {
-          playTransitionBell();
+          if (isSoundOn) playTransitionBell();
           const next = getNextStep(state, currentIndex, workout.items);
           setState(next.state);
           setCurrentIndex(next.currentIndex);
@@ -136,8 +140,12 @@ export function WorkoutPlayer({ workout, onFinish, onExit }: WorkoutPlayerProps)
             </span>
           </div>
 
-          <div className="p-2.5 rounded-2xl bg-[#12192b] text-emerald-400 border border-white/5">
-            <Volume2 size={20} />
+          <div className="p-2.5 rounded-2xl bg-[#12192b] border border-white/5">
+            {isSoundOn ? (
+              <Volume2 size={20} className="text-emerald-400" />
+            ) : (
+              <VolumeX size={20} className="text-slate-500" />
+            )}
           </div>
         </div>
 
