@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import { CHALLENGE_28_DAYS } from './data/challenge28';
-import { WorkoutDay, UserProgress } from './types/workout';
-import { loadProgress, saveCompletedDay, resetProgress } from './utils/storage';
+import { WorkoutDay, UserProgress, WorkoutItem, AppSettings } from './types/workout';
+import { loadProgress, saveCompletedDay, saveWeightEntry, saveSettings, saveCustomizedDay, resetProgress } from './utils/storage';
 import { groupDaysByWeek, getNextAvailableDay } from './utils/challengeUtils';
 import { DayCard } from './components/DayCard';
 import { ExerciseModal } from './components/ExerciseModal';
 import { WorkoutPlayer } from './components/WorkoutPlayer';
-import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck } from 'lucide-react';
+import { WeightTracker } from './components/WeightTracker';
+import { SettingsModal } from './components/SettingsModal';
+import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck, Sliders } from 'lucide-react';
 
 export default function App() {
   const [progress, setProgress] = useState<UserProgress>(loadProgress());
   const [activeWorkout, setActiveWorkout] = useState<WorkoutDay | null>(null);
   const [inspectingDay, setInspectingDay] = useState<WorkoutDay | null>(null);
-
+  const [showSettings, setShowSettings] = useState(false);
   const [selectedWeek, setSelectedWeek] = useState<number | 'all'>('all');
 
   useEffect(() => {
@@ -29,7 +31,9 @@ export default function App() {
 
   const handleStartWorkout = (day: WorkoutDay) => {
     setInspectingDay(null);
-    setActiveWorkout(day);
+    const customized = progress.customizedItems?.[day.dayNumber];
+    const finalDay: WorkoutDay = customized ? { ...day, items: customized } : day;
+    setActiveWorkout(finalDay);
   };
 
   const handleFinishWorkout = () => {
@@ -38,6 +42,21 @@ export default function App() {
       setProgress(updated);
       setActiveWorkout(null);
     }
+  };
+
+  const handleSaveWeight = (weight: number) => {
+    const updated = saveWeightEntry(weight);
+    setProgress(updated);
+  };
+
+  const handleUpdateSettings = (newSettings: Partial<AppSettings>) => {
+    const updated = saveSettings(newSettings);
+    setProgress(updated);
+  };
+
+  const handleUpdateCustomizedItems = (dayNumber: number, items: WorkoutItem[]) => {
+    const updated = saveCustomizedDay(dayNumber, items);
+    setProgress(updated);
   };
 
   const handleReset = () => {
@@ -51,6 +70,7 @@ export default function App() {
     return (
       <WorkoutPlayer
         workout={activeWorkout}
+        settings={progress.settings}
         onFinish={handleFinishWorkout}
         onExit={() => setActiveWorkout(null)}
       />
@@ -85,6 +105,16 @@ export default function App() {
               <span className="text-xs font-black font-mono tracking-tight text-white">{progress.currentStreak} dias</span>
             </div>
 
+            {/* Botão de Configurações */}
+            <button
+              onClick={() => setShowSettings(true)}
+              className="p-2.5 rounded-2xl bg-[#111728] text-slate-300 hover:text-white border border-white/5 active:scale-90 transition-transform"
+              title="Ajustes do Treinador"
+              aria-label="Ajustes"
+            >
+              <Sliders size={15} />
+            </button>
+
             <button
               onClick={handleReset}
               className="p-2.5 rounded-2xl bg-[#111728] text-slate-400 hover:text-white border border-white/5 active:scale-90 transition-transform"
@@ -97,7 +127,7 @@ export default function App() {
         </header>
 
         {/* Card Principal: Treino Recomendado de Hoje (Estilo BetterMe Pro) */}
-        <section className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-[#141d33] via-[#101728] to-[#0c1220] border border-orange-500/30 shadow-2xl shadow-orange-500/10 mb-6">
+        <section className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-[#141d33] via-[#101728] to-[#0c1220] border border-orange-500/30 shadow-2xl shadow-orange-500/10 mb-5">
           <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative z-10">
@@ -135,8 +165,16 @@ export default function App() {
           </div>
         </section>
 
+        {/* Card de Peso Corporal e Evolução (Mobbin / BetterMe) */}
+        <section className="mb-5">
+          <WeightTracker
+            history={progress.weightHistory}
+            onSaveWeight={handleSaveWeight}
+          />
+        </section>
+
         {/* Progresso do Desafio de 28 Dias */}
-        <section className="bg-[#111728] p-4 rounded-3xl border border-white/5 mb-6 shadow-md">
+        <section className="bg-[#111728] p-4 rounded-3xl border border-white/5 mb-5 shadow-md">
           <div className="flex items-center justify-between text-xs mb-2.5">
             <span className="text-slate-300 flex items-center gap-1.5 font-bold">
               <Trophy size={15} className="text-amber-400" />
@@ -227,9 +265,20 @@ export default function App() {
       {inspectingDay && (
         <ExerciseModal
           day={inspectingDay}
+          customizedItems={progress.customizedItems?.[inspectingDay.dayNumber]}
+          onUpdateItems={items => handleUpdateCustomizedItems(inspectingDay.dayNumber, items)}
           isCompleted={progress.completedDays.includes(inspectingDay.dayNumber)}
           onClose={() => setInspectingDay(null)}
           onStart={handleStartWorkout}
+        />
+      )}
+
+      {/* Modal de Configurações */}
+      {showSettings && (
+        <SettingsModal
+          settings={progress.settings}
+          onUpdateSettings={handleUpdateSettings}
+          onClose={() => setShowSettings(false)}
         />
       )}
     </div>
