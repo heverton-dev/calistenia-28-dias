@@ -75,7 +75,7 @@ export function ExerciseAnimation({
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--theme-color)]/35 to-transparent" />
 
       {/* Header Compacto - 1 Linha Obrigatória sem Quebras */}
-      <div className="w-full flex items-center justify-between z-10 mb-1 gap-2 flex-nowrap shrink-0">
+      <div className="w-full flex items-center justify-between z-10 mb-1.5 gap-2 flex-nowrap shrink-0">
         <span className="text-[9px] font-black text-white/90 uppercase tracking-widest flex items-center gap-1.5 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/15 shrink-0 whitespace-nowrap shadow-inner">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
           Avatar 3D Ativo
@@ -85,11 +85,8 @@ export function ExerciseAnimation({
         </span>
       </div>
 
-      {/* Palco do Vídeo / Avatar 3D */}
-      <div className="relative w-full flex-1 min-h-0 flex items-center justify-center overflow-hidden rounded-2xl bg-black/40 border border-white/5">
-        {/* Glow de fundo focalizado no atleta */}
-        <div className="absolute w-40 h-40 rounded-full bg-[var(--theme-color)]/15 blur-2xl pointer-events-none" />
-
+      {/* Palco do Vídeo / Avatar 3D - Estúdio Clean Fundo Branco Puro */}
+      <div className="relative w-full flex-1 min-h-0 flex items-center justify-center overflow-hidden rounded-2xl bg-white border border-white/20 shadow-md">
         {!hasVideoError ? (
           <video
             ref={videoRef}
@@ -100,7 +97,7 @@ export function ExerciseAnimation({
             playsInline
             poster={`${basePath}-poster.jpg`}
             onError={() => setHasVideoError(true)}
-            className="w-full h-full max-h-full object-contain filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)] z-10"
+            className="w-full h-full max-h-full object-contain block"
           >
             <source src={`${basePath}.webm`} type="video/webm" />
             <source src={`${basePath}.mp4`} type="video/mp4" />
@@ -108,23 +105,20 @@ export function ExerciseAnimation({
             <img
               src={`${basePath}.gif`}
               alt="Animação do Exercício"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain block"
             />
           </video>
         ) : (
           <img
             src={`${basePath}.gif`}
             alt="Animação do Exercício"
-            className="w-full h-full object-contain filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)] z-10"
+            className="w-full h-full object-contain block"
           />
         )}
-
-        {/* Overlay sutil de piso do estúdio */}
-        <div className="absolute bottom-0 inset-x-0 h-8 bg-gradient-to-t from-black/60 to-transparent pointer-events-none z-10" />
       </div>
 
       {/* Rodapé Informativo de Cadência Biomecânica */}
-      <div className="w-full flex items-center justify-between z-10 mt-1 px-1 text-[9px] text-slate-400 font-mono shrink-0 whitespace-nowrap">
+      <div className="w-full flex items-center justify-between z-10 mt-1.5 px-1 text-[9px] text-slate-400 font-mono shrink-0 whitespace-nowrap">
         <span className="flex items-center gap-1">
           <span className="w-1 h-1 rounded-full bg-[var(--theme-color)]" />
           Consistência Anatômica
