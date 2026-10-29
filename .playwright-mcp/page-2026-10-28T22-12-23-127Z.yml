@@ -1,0 +1,14 @@
+- generic [ref=f19e544]:
+  - generic [ref=f19e546]:
+    - button "Sair do treino" [ref=f19e547]
+    - generic [ref=f19e551]:
+      - generic [ref=f19e552]: Dia 2 • Quadríceps & Glúteos
+      - generic [ref=f19e553]: Série 1 de 5
+  - generic [ref=f19e561]:
+    - generic [ref=f19e562]: Prepare-se
+    - heading "Polichinelo Ativo" [level=2] [ref=f19e563]
+    - generic [ref=f19e564]: "10"
+    - paragraph [ref=f19e566]: Posicione-se no solo...
+  - generic [ref=f19e567]:
+    - button "Pausar" [ref=f19e568]
+    - button "Pular para próximo" [ref=f19e572]

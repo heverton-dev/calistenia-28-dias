@@ -1,0 +1,46 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]: Mission Control
+    - generic [ref=e9]:
+      - generic [ref=e11]: Atenção
+      - generic [ref=e12]: · Memória reservada em 70%
+    - navigation "Outras telas" [ref=e13]:
+      - link "Painel completo" [ref=e14] [cursor=pointer]:
+        - /url: /painel
+      - link "Gráficos" [ref=e15] [cursor=pointer]:
+        - /url: /monitoramento
+      - link "Processos" [ref=e16] [cursor=pointer]:
+        - /url: /processos
+      - link "Disco" [ref=e17] [cursor=pointer]:
+        - /url: /disco
+      - link "Conectividade" [ref=e18] [cursor=pointer]:
+        - /url: /conectividade
+      - link "Modelos IA" [ref=e19] [cursor=pointer]:
+        - /url: /llms
+  - generic [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - text: CPU
+        - generic [ref=e23]: alvo 60%
+      - generic [ref=e24]: 37%
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - text: GPU
+        - generic [ref=e30]: alvo 60%
+      - generic [ref=e31]: 4%
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - text: Memória reservada
+        - generic [ref=e37]: RAM + paginação
+      - generic [ref=e38]: 70%
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - text: Autocorreção
+        - generic [ref=e44]: 0 ativas
+      - generic [ref=e45]: Ligada
+      - generic [ref=e46]:
+        - button "Desligar" [ref=e47] [cursor=pointer]
+        - button "Desfazer tudo" [disabled] [ref=e48]
+      - list
+  - heading "Sessões" [level=2] [ref=e49]
+  - generic [ref=e50]: Carregando…

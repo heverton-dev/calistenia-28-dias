@@ -1,0 +1,51 @@
+- generic [ref=f7e2]:
+  - banner [ref=f7e3]:
+    - generic [ref=f7e4]:
+      - heading "Mission Control" [level=1] [ref=f7e5]
+      - paragraph [ref=f7e6]: Carga · autocorreção · sessões
+    - generic [ref=f7e7]:
+      - link "🏠 INÍCIO" [ref=f7e8] [cursor=pointer]:
+        - /url: /
+      - link "🎛️ PAINEL" [ref=f7e9] [cursor=pointer]:
+        - /url: /painel
+      - link "📊 MONITORAMENTO" [ref=f7e10] [cursor=pointer]:
+        - /url: /monitoramento
+      - link "🗂️ PROCESSOS" [ref=f7e11] [cursor=pointer]:
+        - /url: /processos
+      - link "💾 DISCO" [ref=f7e12] [cursor=pointer]:
+        - /url: /disco
+      - link "🔌 CONECTIVIDADE" [ref=f7e13] [cursor=pointer]:
+        - /url: /conectividade
+      - link "🤖 MODELOS IA" [ref=f7e14] [cursor=pointer]:
+        - /url: /llms
+  - generic [ref=f7e15]: Carregando
+  - generic [ref=f7e18]:
+    - generic [ref=f7e19]:
+      - generic [ref=f7e20]:
+        - generic [ref=f7e21]: CPU
+        - generic [ref=f7e22]: "--"
+      - generic [ref=f7e23]: "--%"
+      - generic [ref=f7e24]: alvo 60%
+    - generic [ref=f7e27]:
+      - generic [ref=f7e28]:
+        - generic [ref=f7e29]: GPU
+        - generic [ref=f7e30]: "--"
+      - generic [ref=f7e31]: "--%"
+      - generic [ref=f7e32]: alvo 60%
+    - generic [ref=f7e35]:
+      - generic [ref=f7e36]:
+        - generic [ref=f7e37]: Memória reservada
+        - generic [ref=f7e38]: "--"
+      - generic [ref=f7e39]: "--%"
+      - generic [ref=f7e40]: RAM + paginação · alerta em 85%
+    - generic [ref=f7e43]:
+      - generic [ref=f7e44]:
+        - generic [ref=f7e45]: Autocorreção
+        - generic [ref=f7e46]: 0 ativas
+      - generic [ref=f7e47]: "--"
+      - generic [ref=f7e48]:
+        - button "Ligar" [ref=f7e49] [cursor=pointer]
+        - button "Desfazer tudo" [disabled] [ref=f7e50]
+      - list
+  - heading "Sessões" [level=2] [ref=f7e51]
+  - generic [ref=f7e52]: Carregando…

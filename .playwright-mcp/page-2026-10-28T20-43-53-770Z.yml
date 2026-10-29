@@ -1,0 +1,14 @@
+- generic [ref=f14e970]:
+  - generic [ref=f14e972]:
+    - button "Sair do treino" [ref=f14e973]
+    - generic [ref=f14e977]:
+      - generic [ref=f14e978]: Dia 1 • Peitoral & Core
+      - generic [ref=f14e979]: Série 1 de 5
+  - generic [ref=f14e987]:
+    - generic [ref=f14e988]: Prepare-se
+    - heading "Polichinelo Ativo" [level=2] [ref=f14e989]
+    - generic [ref=f14e990]: "5"
+    - paragraph [ref=f14e992]: Posicione-se no solo...
+  - generic [ref=f14e993]:
+    - button "Pausar" [ref=f14e994]
+    - button "Pular para próximo" [ref=f14e998]

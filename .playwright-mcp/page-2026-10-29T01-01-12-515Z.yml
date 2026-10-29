@@ -1,0 +1,44 @@
+- generic [ref=f8e2]:
+  - banner [ref=f8e3]:
+    - generic [ref=f8e4]:
+      - heading "Processos & Serviços" [level=1] [ref=f8e5]
+      - paragraph [ref=f8e6]: Quem está consumindo memória e CPU agora, e o que está iniciando com o Windows.
+    - generic [ref=f8e7]:
+      - button "TEMA" [ref=f8e8]
+      - link "🏠 INÍCIO" [ref=f8e9]:
+        - /url: /
+      - link "🎛️ PAINEL" [ref=f8e10]:
+        - /url: /painel
+      - link "📊 MONITORAMENTO" [ref=f8e11]:
+        - /url: /monitoramento
+      - link "🗂️ PROCESSOS" [ref=f8e12]:
+        - /url: /processos
+      - link "💾 DISCO" [ref=f8e13]:
+        - /url: /disco
+      - link "🔌 CONECTIVIDADE" [ref=f8e14]:
+        - /url: /conectividade
+      - link "🤖 MODELOS IA" [ref=f8e15]:
+        - /url: /llms
+  - generic [ref=f8e16]:
+    - generic [ref=f8e17]:
+      - heading "Top 5 devoradores de RAM -- processos" [level=2] [ref=f8e18]:
+        - generic [ref=f8e19]: Top 5 devoradores de RAM
+        - generic [ref=f8e20]: "-- processos"
+      - list [ref=f8e21]:
+        - listitem [ref=f8e22]:
+          - generic [ref=f8e23]: Carregando…
+    - generic [ref=f8e24]:
+      - heading "Top 5 devoradores de CPU uso % (suavizado)" [level=2] [ref=f8e25]:
+        - generic [ref=f8e26]: Top 5 devoradores de CPU
+        - generic [ref=f8e27]: uso % (suavizado)
+      - list [ref=f8e28]:
+        - listitem [ref=f8e29]:
+          - generic [ref=f8e30]: Carregando…
+  - generic [ref=f8e31]:
+    - heading "Serviços do Windows" [level=2] [ref=f8e32]
+    - generic [ref=f8e34]:
+      - button "EM EXECUÇÃO" [ref=f8e35]
+      - button "INICIAM NO BOOT" [ref=f8e37]
+      - button "PARADOS" [ref=f8e39]
+      - button "SISTEMA" [ref=f8e41]
+    - paragraph [ref=f8e43]: Escolha uma categoria acima para ver a lista e agir.

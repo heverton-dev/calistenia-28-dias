@@ -1,0 +1,107 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Mission Control" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Central de Telemetria e Ações
+    - generic [ref=e7]:
+      - generic [ref=e8]: "---"
+      - generic [ref=e9]: "UPTIME: --"
+      - button "SOM" [ref=e10]
+      - navigation "Telas" [ref=e15]:
+        - link "Início" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - link "Painel completo" [ref=e17] [cursor=pointer]:
+          - /url: /painel
+        - link "Gráficos" [ref=e18] [cursor=pointer]:
+          - /url: /monitoramento
+        - link "Processos" [ref=e19] [cursor=pointer]:
+          - /url: /processos
+        - link "Disco" [ref=e20] [cursor=pointer]:
+          - /url: /disco
+        - link "Conectividade" [ref=e21] [cursor=pointer]:
+          - /url: /conectividade
+        - link "Modelos IA" [ref=e22] [cursor=pointer]:
+          - /url: /llms
+      - button "CSV" [ref=e23]
+      - button "PERFORMANCE" [ref=e24]
+      - button "? ATALHOS" [ref=e25]
+      - button "PAUSAR" [ref=e26]
+      - generic [ref=e28]: AO VIVO
+  - generic [ref=e31]:
+    - generic [ref=e32]:
+      - generic [ref=e33]: Processador (CPU)
+      - generic [ref=e34]: Detectando...
+    - generic [ref=e35]:
+      - generic [ref=e36]: Memória RAM
+      - generic [ref=e37]: Detectando...
+    - generic [ref=e38]:
+      - generic [ref=e39]: Placa de Vídeo (GPU)
+      - generic [ref=e40]: Lendo adaptadores...
+    - generic [ref=e41]:
+      - generic [ref=e42]: Placa-Mãe & BIOS
+      - generic [ref=e43]: Detectando...
+    - generic [ref=e44]:
+      - generic [ref=e45]: Tier de Hardware
+      - generic [ref=e46]: Detectando...
+  - generic [ref=e47]:
+    - generic [ref=e51]:
+      - generic [ref=e52]: SISTEMA OPERANDO EM ESTABILIDADE
+      - generic [ref=e53]: Todos os parâmetros essenciais estão saudáveis e otimizados automaticamente.
+    - button "LIMPAR TEMP" [ref=e54]
+    - button "LIMPAR RAM" [ref=e56]
+    - button "DIAGNÓSTICO MEM" [ref=e58]
+  - generic [ref=e60]:
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]: CPU (Uso Atual)
+        - generic [ref=e64]: NORMAL
+      - generic [ref=e65]: "-- %"
+      - generic [ref=e66]: "-- Núcleos • -- Threads"
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e70]: Carga por Núcleo
+        - generic [ref=e71]: NORMAL
+      - generic [ref=e72]: "--"
+      - generic [ref=e73]: Barras por núcleo (0-100%)
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - generic [ref=e76]: Temperatura
+        - generic [ref=e77]: NORMAL
+      - generic [ref=e78]: "-- °C"
+      - generic [ref=e79]: Sensores Térmicos
+    - generic [ref=e82]:
+      - generic [ref=e83]:
+        - generic [ref=e84]: Memória RAM
+        - generic [ref=e85]: OK
+      - generic [ref=e86]: "-- %"
+      - generic [ref=e87]: "-- GB / -- GB"
+    - generic [ref=e89]:
+      - generic [ref=e90]:
+        - generic [ref=e91]: Pressão de Memória (Commit)
+        - generic [ref=e92]: SAUDÁVEL
+      - generic [ref=e93]: "--%"
+      - generic [ref=e94]: "-- GB / -- GB"
+    - generic [ref=e96]:
+      - generic [ref=e97]:
+        - generic [ref=e98]: GPU
+        - generic [ref=e99]: N/A
+      - generic [ref=e100]: "--"
+      - generic [ref=e101]: "VRAM: -- | Driver: --"
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - generic [ref=e105]: "Disco C: / Sistema"
+        - generic [ref=e106]: SAUDÁVEL
+      - generic [ref=e107]: "-- GB"
+      - generic [ref=e108]: Livre de -- GB
+    - generic [ref=e110]:
+      - generic [ref=e111]:
+        - generic [ref=e112]: Disco I/O
+        - generic [ref=e113]: VELOCIDADE
+      - generic [ref=e114]: "R: -- | W: --"
+      - generic [ref=e115]: Taxa em Tempo Real
+    - generic [ref=e116]:
+      - generic [ref=e117]:
+        - generic [ref=e118]: Rede
+        - generic [ref=e119]: ONLINE
+      - generic [ref=e120]: ↓ -- ↑ --
+      - generic [ref=e121]: "Bateria: --%"

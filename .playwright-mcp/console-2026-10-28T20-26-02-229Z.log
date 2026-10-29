@@ -1,0 +1,17 @@
+[     123ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:3000/?token=9-iVa3SKe5bg' failed: Error during WebSocket handshake: Unexpected response code: 200 @ http://127.0.0.1:3000/@vite/client:535
+[     170ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BCXODTBQ.js?v=25a9a899:21548
+[     203ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://127.0.0.1:3000/:0
+[     440ms] [ERROR] WebSocket connection to 'ws://localhost:3000/?token=9-iVa3SKe5bg' failed: Error during WebSocket handshake: Unexpected response code: 200 @ http://127.0.0.1:3000/@vite/client:535
+[     441ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:3000/ <--[HTTP]--> localhost:3000/ (server)
+  (browser) 127.0.0.1:3000/ <--[WebSocket (failing)]--> localhost:3000/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:3000/@vite/client:511
+[  110899ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:3000/?token=9-iVa3SKe5bg' failed: Error during WebSocket handshake: Unexpected response code: 200 @ http://127.0.0.1:3000/@vite/client:535
+[  110933ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:3000/node_modules/.vite/deps/chunk-BCXODTBQ.js?v=25a9a899:21548
+[  110973ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://127.0.0.1:3000/:0
+[  111256ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://127.0.0.1:3000/:0
+[  331063ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:3000/favicon.ico:0
+[  641423ms] [ERROR] Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec. @ http://127.0.0.1:3000/assets/index-Bj5o-okL.js:0
+[  641441ms] [ERROR] Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec. @ http://127.0.0.1:3000/assets/index-Bj5o-okL.js:0
+[  641452ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://127.0.0.1:3000/:0

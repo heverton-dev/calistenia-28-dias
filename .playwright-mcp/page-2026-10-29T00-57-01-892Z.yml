@@ -1,0 +1,79 @@
+- generic [ref=f4e2]:
+  - banner [ref=f4e3]:
+    - generic [ref=f4e4]:
+      - heading "MODELOS DE IA & LLMS LOCAIS" [level=1] [ref=f4e5]
+      - paragraph [ref=f4e6]: Sugestões personalizadas e calibradas para seu hardware (CPU, RAM e VRAM).
+    - generic [ref=f4e7]:
+      - button "TEMA" [ref=f4e8]
+      - link "📊 MONITORAMENTO" [ref=f4e9]:
+        - /url: /monitoramento
+      - link "🗂️ PROCESSOS" [ref=f4e10]:
+        - /url: /processos
+      - link "💾 DISCO" [ref=f4e11]:
+        - /url: /disco
+      - link "🔌 CONECTIVIDADE" [ref=f4e12]:
+        - /url: /conectividade
+      - link "← VOLTAR" [ref=f4e13]:
+        - /url: /
+  - generic [ref=f4e14]:
+    - generic [ref=f4e15]:
+      - generic [ref=f4e16]:
+        - generic [ref=f4e17]: VRAM Dedicada (GPU)
+        - generic [ref=f4e18]: CUDA ATIVO
+      - generic [ref=f4e19]: "-- GB"
+      - generic [ref=f4e20]: Detectando GPU...
+    - generic [ref=f4e21]:
+      - generic [ref=f4e22]:
+        - generic [ref=f4e23]: Memória RAM Total
+        - generic [ref=f4e24]: DDR5
+      - generic [ref=f4e25]: "-- GB"
+      - generic [ref=f4e26]: Detectando processador...
+    - generic [ref=f4e27]:
+      - generic [ref=f4e28]:
+        - generic [ref=f4e29]: Capacidade de IA
+        - generic [ref=f4e30]: NÍVEL 8B/14B
+      - generic [ref=f4e31]: EXCELENTE
+      - generic [ref=f4e32]: 100% VRAM até 4B · Híbrido até 14B
+    - generic [ref=f4e33]:
+      - generic [ref=f4e34]:
+        - generic [ref=f4e35]: Catálogo Curado
+        - generic [ref=f4e36]: PRONTOS
+      - generic [ref=f4e37]: "-- Modelos"
+      - generic [ref=f4e38]: Testados para Ollama & LM Studio
+  - generic [ref=f4e42]:
+    - generic [ref=f4e43]: DIAGNÓSTICO DE CAPACIDADE DO SEU COMPUTADOR
+    - generic [ref=f4e44]: Carregando telemetria e calculando compatibilidade física...
+  - generic [ref=f4e45]:
+    - generic [ref=f4e46]:
+      - generic [ref=f4e47]: "Finalidade:"
+      - generic [ref=f4e48] [cursor=pointer]: Todos
+      - generic [ref=f4e49] [cursor=pointer]: 💻 Programação & Dev
+      - generic [ref=f4e50] [cursor=pointer]: 💬 Chat & Raciocínio
+      - generic [ref=f4e51] [cursor=pointer]: 👁️ Visão & OCR
+      - generic [ref=f4e52] [cursor=pointer]: 📚 Embeddings & RAG
+      - generic [ref=f4e53] [cursor=pointer]: 🎙️ Áudio & Voz
+    - generic [ref=f4e54]:
+      - generic [ref=f4e55]: "Desempenho:"
+      - generic [ref=f4e56] [cursor=pointer]: Todos os Níveis
+      - generic [ref=f4e57] [cursor=pointer]: 🟢 100% VRAM (GPU Ultra-rápido)
+      - generic [ref=f4e58] [cursor=pointer]: 🟡 Híbrido GPU+RAM (Fluido)
+    - textbox "🔍 Filtrar por nome do modelo, finalidade, criador (Meta, Alibaba, Microsoft, Google)..." [ref=f4e59]
+  - generic [ref=f4e60]: Consultando catálogo de modelos...
+  - generic [ref=f4e62]:
+    - heading "Como Rodar Estes Modelos no seu PC em 3 Minutos" [level=2] [ref=f4e63]
+    - generic [ref=f4e64]:
+      - generic [ref=f4e65]:
+        - heading "1. Instalar o Ollama (Recomendado)" [level=4] [ref=f4e66]
+        - paragraph [ref=f4e67]: O Ollama é o gerenciador de LLMs locais mais simples e rápido para Windows com aceleração CUDA nativa.
+        - paragraph [ref=f4e68]:
+          - text: "Abra o PowerShell e execute:"
+          - code [ref=f4e69]: winget install Ollama.Ollama
+      - generic [ref=f4e70]:
+        - heading "2. Baixar e Rodar o Modelo" [level=4] [ref=f4e71]
+        - paragraph [ref=f4e72]: Clique em COPIAR em qualquer um dos modelos acima e cole no terminal PowerShell. O download e inicialização ocorrem automaticamente.
+        - paragraph [ref=f4e73]:
+          - text: "Exemplo:"
+          - code [ref=f4e74]: ollama run qwen2.5-coder:7b
+      - generic [ref=f4e75]:
+        - heading "3. Ou Usar com Interface Gráfica" [level=4] [ref=f4e76]
+        - paragraph [ref=f4e77]: Se preferir uma interface visual tipo ChatGPT offline, instale o LM Studio (lmstudio.ai) ou o Jan (jan.ai). Ambos suportam os mesmos modelos e aceleram via sua GPU RTX.

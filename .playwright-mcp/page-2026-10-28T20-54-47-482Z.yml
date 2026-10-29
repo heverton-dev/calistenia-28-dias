@@ -1,0 +1,17 @@
+- generic [ref=f15e890]:
+  - generic [ref=f15e892]:
+    - button "Sair do treino" [ref=f15e893]
+    - generic [ref=f15e897]:
+      - generic [ref=f15e898]: Dia 1 • Peitoral & Core
+      - generic [ref=f15e899]: Série 3 de 5
+  - generic [ref=f15e922]:
+    - generic [ref=f15e923]: Recuperação Ativa
+    - generic [ref=f15e924]: 20s
+    - paragraph [ref=f15e925]: Respire fundo e prepare os músculos
+    - generic [ref=f15e926]:
+      - generic [ref=f15e927]: "Próximo Movimento:"
+      - generic [ref=f15e928]: Flexão Tradicional
+      - generic [ref=f15e929]: "Duração: 25 segundos"
+  - generic [ref=f15e913]:
+    - button "Pausar" [ref=f15e914]
+    - button "Pular para próximo" [active] [ref=f15e918]

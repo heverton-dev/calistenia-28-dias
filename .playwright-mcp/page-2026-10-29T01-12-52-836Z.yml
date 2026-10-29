@@ -1,0 +1,581 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Modelos de IA locais" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Sugestões personalizadas e calibradas para seu hardware (CPU, RAM e VRAM).
+    - navigation "Telas" [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /
+      - link "Painel completo" [ref=e10] [cursor=pointer]:
+        - /url: /painel
+      - link "Gráficos" [ref=e11] [cursor=pointer]:
+        - /url: /monitoramento
+      - link "Processos" [ref=e12] [cursor=pointer]:
+        - /url: /processos
+      - link "Disco" [ref=e13] [cursor=pointer]:
+        - /url: /disco
+      - link "Conectividade" [ref=e14] [cursor=pointer]:
+        - /url: /conectividade
+      - link "Modelos IA" [ref=e15] [cursor=pointer]:
+        - /url: /llms
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: VRAM Dedicada (GPU)
+        - generic [ref=e20]: CUDA ativo
+      - generic [ref=e21]: 6 GB
+      - generic [ref=e22]: NVIDIA GeForce RTX 3050 6GB Laptop GPU
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]: Memória RAM Total
+        - generic [ref=e26]: DDR5
+      - generic [ref=e27]: 15.7 GB
+      - generic [ref=e28]: Detectando processador...
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e31]: Capacidade de IA
+        - generic [ref=e32]: Nível 8B/14B
+      - generic [ref=e33]: Excelente
+      - generic [ref=e34]: 100% VRAM até 4B · Híbrido até 14B
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]: Catálogo Curado
+        - generic [ref=e38]: Prontos
+      - generic [ref=e39]: 18 Modelos
+      - generic [ref=e40]: Testados para Ollama & LM Studio
+  - generic [ref=e44]:
+    - generic [ref=e45]: Diagnóstico de capacidade do seu computador
+    - generic [ref=e46]: "Excelente setup para IA: GPU NVIDIA com 6.0 GB VRAM GDDR6 e 15.7 GB de RAM DDR5. Modelos 1B a 4B rodam 100% acelerados na VRAM (40 a 75 tokens/s). Modelos 7B a 8B quantizados (Q4) rodam em alto desempenho. Modelos 12B a 14B rodam em modo híbrido (GPU + RAM)."
+  - generic [ref=e47]:
+    - generic [ref=e48]:
+      - generic [ref=e49]: "Finalidade:"
+      - generic [ref=e50] [cursor=pointer]: Todos
+      - generic [ref=e51] [cursor=pointer]: Programação & Dev
+      - generic [ref=e52] [cursor=pointer]: Chat & Raciocínio
+      - generic [ref=e53] [cursor=pointer]: Visão & OCR
+      - generic [ref=e54] [cursor=pointer]: Embeddings & RAG
+      - generic [ref=e55] [cursor=pointer]: Áudio & Voz
+    - generic [ref=e56]:
+      - generic [ref=e57]: "Desempenho:"
+      - generic [ref=e58] [cursor=pointer]: Todos os Níveis
+      - generic [ref=e59] [cursor=pointer]: 100% VRAM (GPU Ultra-rápido)
+      - generic [ref=e60] [cursor=pointer]: Híbrido GPU+RAM (Fluido)
+    - textbox "Filtrar por nome do modelo, finalidade, criador (Meta, Alibaba, Microsoft, Google)..." [ref=e61]:
+      - /placeholder: " Filtrar por nome do modelo, finalidade, criador (Meta, Alibaba, Microsoft, Google)..."
+  - generic [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - heading "Qwen 2.5 Coder 7B" [level=3] [ref=e67]
+            - generic [ref=e68]: Alibaba Cloud · 7.6B
+          - generic [ref=e69]:
+            - generic [ref=e70]: DESTAQUE
+            - generic [ref=e71]: 100% VRAM (GPU)
+        - generic [ref=e73]: O melhor modelo de programação para máquinas com até 6GB VRAM. Supera modelos de 33B em geração, refatoração, testes unitários e depuração (Python, JS/TS, C++, Go, Rust, SQL, HTML/CSS).
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - generic [ref=e76]: Download
+            - generic [ref=e77]: ~4.7 GB
+          - generic [ref=e78]:
+            - generic [ref=e79]: VRAM Mín.
+            - generic [ref=e80]: 5.5 GB
+          - generic [ref=e81]:
+            - generic [ref=e82]: RAM Sist.
+            - generic [ref=e83]: 12 GB
+          - generic [ref=e84]:
+            - generic [ref=e85]: Contexto
+            - generic [ref=e86]: 128k
+          - generic [ref=e87]:
+            - generic [ref=e88]: Velocidade no seu PC
+            - generic [ref=e89]: ~40-75 t/s
+      - generic [ref=e91]:
+        - generic [ref=e92]: ollama run qwen2.5-coder:7b
+        - button "Copiar" [ref=e93] [cursor=pointer]
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - heading "Qwen 2.5 Coder 1.5B" [level=3] [ref=e98]
+            - generic [ref=e99]: Alibaba Cloud · 1.5B
+          - generic [ref=e100]: 100% VRAM (GPU)
+        - generic [ref=e103]: Ultraleve e instantâneo. Ideal para autocompletion tipo GitHub Copilot local no VS Code / Cursor (via Continue.dev) consumindo quase nada de VRAM e sem travamentos.
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - generic [ref=e106]: Download
+            - generic [ref=e107]: ~1 GB
+          - generic [ref=e108]:
+            - generic [ref=e109]: VRAM Mín.
+            - generic [ref=e110]: 1.8 GB
+          - generic [ref=e111]:
+            - generic [ref=e112]: RAM Sist.
+            - generic [ref=e113]: 6 GB
+          - generic [ref=e114]:
+            - generic [ref=e115]: Contexto
+            - generic [ref=e116]: 32k
+          - generic [ref=e117]:
+            - generic [ref=e118]: Velocidade no seu PC
+            - generic [ref=e119]: ~40-75 t/s
+      - generic [ref=e121]:
+        - generic [ref=e122]: ollama run qwen2.5-coder:1.5b
+        - button "Copiar" [ref=e123] [cursor=pointer]
+    - generic [ref=e124]:
+      - generic [ref=e125]:
+        - generic [ref=e126]:
+          - generic [ref=e127]:
+            - heading "DeepSeek Coder 6.7B" [level=3] [ref=e128]
+            - generic [ref=e129]: DeepSeek AI · 6.7B
+          - generic [ref=e130]: 100% VRAM (GPU)
+        - generic [ref=e133]: Treinado em mais de 2 trilhões de tokens de código e dados técnicos. Excelente raciocínio algorítmico, lógica matemática e arquitetura de backend.
+        - generic [ref=e134]:
+          - generic [ref=e135]:
+            - generic [ref=e136]: Download
+            - generic [ref=e137]: ~3.8 GB
+          - generic [ref=e138]:
+            - generic [ref=e139]: VRAM Mín.
+            - generic [ref=e140]: 4.8 GB
+          - generic [ref=e141]:
+            - generic [ref=e142]: RAM Sist.
+            - generic [ref=e143]: 10 GB
+          - generic [ref=e144]:
+            - generic [ref=e145]: Contexto
+            - generic [ref=e146]: 16k
+          - generic [ref=e147]:
+            - generic [ref=e148]: Velocidade no seu PC
+            - generic [ref=e149]: ~40-75 t/s
+      - generic [ref=e151]:
+        - generic [ref=e152]: ollama run deepseek-coder:6.7b
+        - button "Copiar" [ref=e153] [cursor=pointer]
+    - generic [ref=e154]:
+      - generic [ref=e155]:
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - heading "Qwen 2.5 Coder 14B" [level=3] [ref=e158]
+            - generic [ref=e159]: Alibaba Cloud · 14.7B
+          - generic [ref=e160]: Híbrido GPU+RAM
+        - generic [ref=e163]: Engenharia de software de nível sênior. Raciocínio profundo em sistemas legados e grandes bases de código. Roda com offload híbrido (GPU + RAM).
+        - generic [ref=e164]:
+          - generic [ref=e165]:
+            - generic [ref=e166]: Download
+            - generic [ref=e167]: ~9 GB
+          - generic [ref=e168]:
+            - generic [ref=e169]: VRAM Mín.
+            - generic [ref=e170]: 10.5 GB
+          - generic [ref=e171]:
+            - generic [ref=e172]: RAM Sist.
+            - generic [ref=e173]: 16 GB
+          - generic [ref=e174]:
+            - generic [ref=e175]: Contexto
+            - generic [ref=e176]: 128k
+          - generic [ref=e177]:
+            - generic [ref=e178]: Velocidade no seu PC
+            - generic [ref=e179]: ~15-30 t/s
+      - generic [ref=e181]:
+        - generic [ref=e182]: ollama run qwen2.5-coder:14b
+        - button "Copiar" [ref=e183] [cursor=pointer]
+    - generic [ref=e184]:
+      - generic [ref=e185]:
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - heading "Llama 3.2 3B" [level=3] [ref=e188]
+            - generic [ref=e189]: Meta · 3.2B
+          - generic [ref=e190]:
+            - generic [ref=e191]: DESTAQUE
+            - generic [ref=e192]: 100% VRAM (GPU)
+        - generic [ref=e194]: Extremamente ágil e moderno. Perfeito para bate-papo diário, resumos rápidos de e-mails/textos, geração de redação e respostas em tempo real com zero lag.
+        - generic [ref=e195]:
+          - generic [ref=e196]:
+            - generic [ref=e197]: Download
+            - generic [ref=e198]: ~2 GB
+          - generic [ref=e199]:
+            - generic [ref=e200]: VRAM Mín.
+            - generic [ref=e201]: 2.8 GB
+          - generic [ref=e202]:
+            - generic [ref=e203]: RAM Sist.
+            - generic [ref=e204]: 8 GB
+          - generic [ref=e205]:
+            - generic [ref=e206]: Contexto
+            - generic [ref=e207]: 128k
+          - generic [ref=e208]:
+            - generic [ref=e209]: Velocidade no seu PC
+            - generic [ref=e210]: ~40-75 t/s
+      - generic [ref=e212]:
+        - generic [ref=e213]: ollama run llama3.2:3b
+        - button "Copiar" [ref=e214] [cursor=pointer]
+    - generic [ref=e215]:
+      - generic [ref=e216]:
+        - generic [ref=e217]:
+          - generic [ref=e218]:
+            - heading "Llama 3.1 8B" [level=3] [ref=e219]
+            - generic [ref=e220]: Meta · 8.0B
+          - generic [ref=e221]:
+            - generic [ref=e222]: DESTAQUE
+            - generic [ref=e223]: 100% VRAM (GPU)
+        - generic [ref=e225]: O modelo aberto mais respeitado do mercado. Excelente compreensão em português, escrita técnica, resolução de dilemas e seguimento estrito de instruções complexas.
+        - generic [ref=e226]:
+          - generic [ref=e227]:
+            - generic [ref=e228]: Download
+            - generic [ref=e229]: ~4.7 GB
+          - generic [ref=e230]:
+            - generic [ref=e231]: VRAM Mín.
+            - generic [ref=e232]: 5.6 GB
+          - generic [ref=e233]:
+            - generic [ref=e234]: RAM Sist.
+            - generic [ref=e235]: 12 GB
+          - generic [ref=e236]:
+            - generic [ref=e237]: Contexto
+            - generic [ref=e238]: 128k
+          - generic [ref=e239]:
+            - generic [ref=e240]: Velocidade no seu PC
+            - generic [ref=e241]: ~40-75 t/s
+      - generic [ref=e243]:
+        - generic [ref=e244]: ollama run llama3.1:8b
+        - button "Copiar" [ref=e245] [cursor=pointer]
+    - generic [ref=e246]:
+      - generic [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - heading "Qwen 2.5 7B" [level=3] [ref=e250]
+            - generic [ref=e251]: Alibaba Cloud · 7.6B
+          - generic [ref=e252]: 100% VRAM (GPU)
+        - generic [ref=e255]: "Campeão geral em benchmarks: raciocínio lógico aguçado, matemática, geração estruturada de saídas em JSON/YAML e alta proficiência multilíngue."
+        - generic [ref=e256]:
+          - generic [ref=e257]:
+            - generic [ref=e258]: Download
+            - generic [ref=e259]: ~4.7 GB
+          - generic [ref=e260]:
+            - generic [ref=e261]: VRAM Mín.
+            - generic [ref=e262]: 5.5 GB
+          - generic [ref=e263]:
+            - generic [ref=e264]: RAM Sist.
+            - generic [ref=e265]: 12 GB
+          - generic [ref=e266]:
+            - generic [ref=e267]: Contexto
+            - generic [ref=e268]: 128k
+          - generic [ref=e269]:
+            - generic [ref=e270]: Velocidade no seu PC
+            - generic [ref=e271]: ~40-75 t/s
+      - generic [ref=e273]:
+        - generic [ref=e274]: ollama run qwen2.5:7b
+        - button "Copiar" [ref=e275] [cursor=pointer]
+    - generic [ref=e276]:
+      - generic [ref=e277]:
+        - generic [ref=e278]:
+          - generic [ref=e279]:
+            - heading "Phi-3.5 Mini 3.8B" [level=3] [ref=e280]
+            - generic [ref=e281]: Microsoft · 3.8B
+          - generic [ref=e282]: 100% VRAM (GPU)
+        - generic [ref=e285]: Compacto com capacidade de modelo grande. Treinado com foco pedagógico em dados sintéticos densos de alta fidelidade e raciocínio lógico.
+        - generic [ref=e286]:
+          - generic [ref=e287]:
+            - generic [ref=e288]: Download
+            - generic [ref=e289]: ~2.2 GB
+          - generic [ref=e290]:
+            - generic [ref=e291]: VRAM Mín.
+            - generic [ref=e292]: 3.2 GB
+          - generic [ref=e293]:
+            - generic [ref=e294]: RAM Sist.
+            - generic [ref=e295]: 8 GB
+          - generic [ref=e296]:
+            - generic [ref=e297]: Contexto
+            - generic [ref=e298]: 128k
+          - generic [ref=e299]:
+            - generic [ref=e300]: Velocidade no seu PC
+            - generic [ref=e301]: ~40-75 t/s
+      - generic [ref=e303]:
+        - generic [ref=e304]: ollama run phi3.5:3.8b
+        - button "Copiar" [ref=e305] [cursor=pointer]
+    - generic [ref=e306]:
+      - generic [ref=e307]:
+        - generic [ref=e308]:
+          - generic [ref=e309]:
+            - heading "Mistral 7B Instruct v0.3" [level=3] [ref=e310]
+            - generic [ref=e311]: Mistral AI · 7.2B
+          - generic [ref=e312]: 100% VRAM (GPU)
+        - generic [ref=e315]: Respostas objetivas e diretas ao ponto. Suporte oficial a chamadas de função (function calling / tool use) para agentes autônomos locais.
+        - generic [ref=e316]:
+          - generic [ref=e317]:
+            - generic [ref=e318]: Download
+            - generic [ref=e319]: ~4.1 GB
+          - generic [ref=e320]:
+            - generic [ref=e321]: VRAM Mín.
+            - generic [ref=e322]: 5 GB
+          - generic [ref=e323]:
+            - generic [ref=e324]: RAM Sist.
+            - generic [ref=e325]: 10 GB
+          - generic [ref=e326]:
+            - generic [ref=e327]: Contexto
+            - generic [ref=e328]: 32k
+          - generic [ref=e329]:
+            - generic [ref=e330]: Velocidade no seu PC
+            - generic [ref=e331]: ~40-75 t/s
+      - generic [ref=e333]:
+        - generic [ref=e334]: ollama run mistral:7b
+        - button "Copiar" [ref=e335] [cursor=pointer]
+    - generic [ref=e336]:
+      - generic [ref=e337]:
+        - generic [ref=e338]:
+          - generic [ref=e339]:
+            - heading "Gemma 2 2B" [level=3] [ref=e340]
+            - generic [ref=e341]: Google · 2.6B
+          - generic [ref=e342]: 100% VRAM (GPU)
+        - generic [ref=e345]: Arquitetura ultraleve do Google. Pode ficar carregado na memória o tempo todo sem impactar a fluidez do sistema operacional ou tarefas pesadas.
+        - generic [ref=e346]:
+          - generic [ref=e347]:
+            - generic [ref=e348]: Download
+            - generic [ref=e349]: ~1.6 GB
+          - generic [ref=e350]:
+            - generic [ref=e351]: VRAM Mín.
+            - generic [ref=e352]: 2.2 GB
+          - generic [ref=e353]:
+            - generic [ref=e354]: RAM Sist.
+            - generic [ref=e355]: 6 GB
+          - generic [ref=e356]:
+            - generic [ref=e357]: Contexto
+            - generic [ref=e358]: 8k
+          - generic [ref=e359]:
+            - generic [ref=e360]: Velocidade no seu PC
+            - generic [ref=e361]: ~40-75 t/s
+      - generic [ref=e363]:
+        - generic [ref=e364]: ollama run gemma2:2b
+        - button "Copiar" [ref=e365] [cursor=pointer]
+    - generic [ref=e366]:
+      - generic [ref=e367]:
+        - generic [ref=e368]:
+          - generic [ref=e369]:
+            - heading "Mistral NeMo 12B" [level=3] [ref=e370]
+            - generic [ref=e371]: Mistral AI / NVIDIA · 12.2B
+          - generic [ref=e372]: Híbrido GPU+RAM
+        - generic [ref=e375]: Desenvolvido em parceria com a NVIDIA. Compreensão refinada de português com tokenizador Tekken e capacidade analítica profunda em modo híbrido.
+        - generic [ref=e376]:
+          - generic [ref=e377]:
+            - generic [ref=e378]: Download
+            - generic [ref=e379]: ~7.1 GB
+          - generic [ref=e380]:
+            - generic [ref=e381]: VRAM Mín.
+            - generic [ref=e382]: 8.2 GB
+          - generic [ref=e383]:
+            - generic [ref=e384]: RAM Sist.
+            - generic [ref=e385]: 16 GB
+          - generic [ref=e386]:
+            - generic [ref=e387]: Contexto
+            - generic [ref=e388]: 128k
+          - generic [ref=e389]:
+            - generic [ref=e390]: Velocidade no seu PC
+            - generic [ref=e391]: ~15-30 t/s
+      - generic [ref=e393]:
+        - generic [ref=e394]: ollama run mistral-nemo:12b
+        - button "Copiar" [ref=e395] [cursor=pointer]
+    - generic [ref=e396]:
+      - generic [ref=e397]:
+        - generic [ref=e398]:
+          - generic [ref=e399]:
+            - heading "Qwen 2.5 14B" [level=3] [ref=e400]
+            - generic [ref=e401]: Alibaba Cloud · 14.7B
+          - generic [ref=e402]: Híbrido GPU+RAM
+        - generic [ref=e405]: Para análises minuciosas, redação técnica aprofundada e resolução de problemas complexos. Roda com offload equilibrado entre VRAM e RAM.
+        - generic [ref=e406]:
+          - generic [ref=e407]:
+            - generic [ref=e408]: Download
+            - generic [ref=e409]: ~9 GB
+          - generic [ref=e410]:
+            - generic [ref=e411]: VRAM Mín.
+            - generic [ref=e412]: 10.5 GB
+          - generic [ref=e413]:
+            - generic [ref=e414]: RAM Sist.
+            - generic [ref=e415]: 16 GB
+          - generic [ref=e416]:
+            - generic [ref=e417]: Contexto
+            - generic [ref=e418]: 128k
+          - generic [ref=e419]:
+            - generic [ref=e420]: Velocidade no seu PC
+            - generic [ref=e421]: ~15-30 t/s
+      - generic [ref=e423]:
+        - generic [ref=e424]: ollama run qwen2.5:14b
+        - button "Copiar" [ref=e425] [cursor=pointer]
+    - generic [ref=e426]:
+      - generic [ref=e427]:
+        - generic [ref=e428]:
+          - generic [ref=e429]:
+            - heading "Moondream 2 1.8B" [level=3] [ref=e430]
+            - generic [ref=e431]: Vikhyat · 1.8B
+          - generic [ref=e432]:
+            - generic [ref=e433]: DESTAQUE
+            - generic [ref=e434]: 100% VRAM (GPU)
+        - generic [ref=e436]: Visão computacional ultracompacta. Lê textos em imagens/prints, descreve fotos, diagramas e interfaces rodando 100% na GPU a velocidades altíssimas.
+        - generic [ref=e437]:
+          - generic [ref=e438]:
+            - generic [ref=e439]: Download
+            - generic [ref=e440]: ~1.7 GB
+          - generic [ref=e441]:
+            - generic [ref=e442]: VRAM Mín.
+            - generic [ref=e443]: 2.5 GB
+          - generic [ref=e444]:
+            - generic [ref=e445]: RAM Sist.
+            - generic [ref=e446]: 8 GB
+          - generic [ref=e447]:
+            - generic [ref=e448]: Contexto
+            - generic [ref=e449]: 4k
+          - generic [ref=e450]:
+            - generic [ref=e451]: Velocidade no seu PC
+            - generic [ref=e452]: ~40-75 t/s
+      - generic [ref=e454]:
+        - generic [ref=e455]: ollama run moondream:1.8b
+        - button "Copiar" [ref=e456] [cursor=pointer]
+    - generic [ref=e457]:
+      - generic [ref=e458]:
+        - generic [ref=e459]:
+          - generic [ref=e460]:
+            - heading "Llama 3.2 Vision 11B" [level=3] [ref=e461]
+            - generic [ref=e462]: Meta · 11.0B
+          - generic [ref=e463]: Híbrido GPU+RAM
+        - generic [ref=e466]: Modelo multimodal oficial da Meta. Entende imagens e texto conjuntamente, lê tabelas em prints e analisa gráficos complexos com acurácia de ponta.
+        - generic [ref=e467]:
+          - generic [ref=e468]:
+            - generic [ref=e469]: Download
+            - generic [ref=e470]: ~7.9 GB
+          - generic [ref=e471]:
+            - generic [ref=e472]: VRAM Mín.
+            - generic [ref=e473]: 8.8 GB
+          - generic [ref=e474]:
+            - generic [ref=e475]: RAM Sist.
+            - generic [ref=e476]: 16 GB
+          - generic [ref=e477]:
+            - generic [ref=e478]: Contexto
+            - generic [ref=e479]: 128k
+          - generic [ref=e480]:
+            - generic [ref=e481]: Velocidade no seu PC
+            - generic [ref=e482]: ~15-30 t/s
+      - generic [ref=e484]:
+        - generic [ref=e485]: ollama run llama3.2-vision:11b
+        - button "Copiar" [ref=e486] [cursor=pointer]
+    - generic [ref=e487]:
+      - generic [ref=e488]:
+        - generic [ref=e489]:
+          - generic [ref=e490]:
+            - heading "MiniCPM-V 8B" [level=3] [ref=e491]
+            - generic [ref=e492]: OpenBMB · 8.0B
+          - generic [ref=e493]: Híbrido GPU+RAM
+        - generic [ref=e496]: Focado em OCR de alta definição. Excelente para decifrar recibos, contratos escaneados e textos pequenos em fotos tiradas pelo celular.
+        - generic [ref=e497]:
+          - generic [ref=e498]:
+            - generic [ref=e499]: Download
+            - generic [ref=e500]: ~5.5 GB
+          - generic [ref=e501]:
+            - generic [ref=e502]: VRAM Mín.
+            - generic [ref=e503]: 6.5 GB
+          - generic [ref=e504]:
+            - generic [ref=e505]: RAM Sist.
+            - generic [ref=e506]: 14 GB
+          - generic [ref=e507]:
+            - generic [ref=e508]: Contexto
+            - generic [ref=e509]: 32k
+          - generic [ref=e510]:
+            - generic [ref=e511]: Velocidade no seu PC
+            - generic [ref=e512]: ~15-30 t/s
+      - generic [ref=e514]:
+        - generic [ref=e515]: ollama run minicpm-v:8b
+        - button "Copiar" [ref=e516] [cursor=pointer]
+    - generic [ref=e517]:
+      - generic [ref=e518]:
+        - generic [ref=e519]:
+          - generic [ref=e520]:
+            - heading "BGE-M3" [level=3] [ref=e521]
+            - generic [ref=e522]: BAAI · 567M
+          - generic [ref=e523]:
+            - generic [ref=e524]: DESTAQUE
+            - generic [ref=e525]: 100% VRAM (GPU)
+        - generic [ref=e527]: O padrão de mercado multilíngue para busca semântica em acervos de documentos (PDFs, planilhas, manuais técnicos) acoplado a ChromaDB, LangChain ou Dify.
+        - generic [ref=e528]:
+          - generic [ref=e529]:
+            - generic [ref=e530]: Download
+            - generic [ref=e531]: ~1.2 GB
+          - generic [ref=e532]:
+            - generic [ref=e533]: VRAM Mín.
+            - generic [ref=e534]: 1.5 GB
+          - generic [ref=e535]:
+            - generic [ref=e536]: RAM Sist.
+            - generic [ref=e537]: 4 GB
+          - generic [ref=e538]:
+            - generic [ref=e539]: Contexto
+            - generic [ref=e540]: 8k
+          - generic [ref=e541]:
+            - generic [ref=e542]: Velocidade no seu PC
+            - generic [ref=e543]: ~40-75 t/s
+      - generic [ref=e545]:
+        - generic [ref=e546]: ollama run bge-m3:latest
+        - button "Copiar" [ref=e547] [cursor=pointer]
+    - generic [ref=e548]:
+      - generic [ref=e549]:
+        - generic [ref=e550]:
+          - generic [ref=e551]:
+            - heading "Nomic Embed Text" [level=3] [ref=e552]
+            - generic [ref=e553]: Nomic AI · 137M
+          - generic [ref=e554]: 100% VRAM (GPU)
+        - generic [ref=e557]: Geração rápida de vetores para indexar milhares de páginas por minuto. Recomendado pelo AnythingLLM para chat offline com pastas locais.
+        - generic [ref=e558]:
+          - generic [ref=e559]:
+            - generic [ref=e560]: Download
+            - generic [ref=e561]: ~0.3 GB
+          - generic [ref=e562]:
+            - generic [ref=e563]: VRAM Mín.
+            - generic [ref=e564]: 0.6 GB
+          - generic [ref=e565]:
+            - generic [ref=e566]: RAM Sist.
+            - generic [ref=e567]: 2 GB
+          - generic [ref=e568]:
+            - generic [ref=e569]: Contexto
+            - generic [ref=e570]: 8k
+          - generic [ref=e571]:
+            - generic [ref=e572]: Velocidade no seu PC
+            - generic [ref=e573]: ~40-75 t/s
+      - generic [ref=e575]:
+        - generic [ref=e576]: ollama run nomic-embed-text:latest
+        - button "Copiar" [ref=e577] [cursor=pointer]
+    - generic [ref=e578]:
+      - generic [ref=e579]:
+        - generic [ref=e580]:
+          - generic [ref=e581]:
+            - heading "Whisper Large-v3-Turbo" [level=3] [ref=e582]
+            - generic [ref=e583]: OpenAI · 809M
+          - generic [ref=e584]:
+            - generic [ref=e585]: DESTAQUE
+            - generic [ref=e586]: 100% VRAM (GPU)
+        - generic [ref=e588]: A versão mais rápida e precisa do modelo Whisper da OpenAI. Transcreve podcasts, reuniões e notas de voz com pontuação impecável no português brasileiro.
+        - generic [ref=e589]:
+          - generic [ref=e590]:
+            - generic [ref=e591]: Download
+            - generic [ref=e592]: ~1.6 GB
+          - generic [ref=e593]:
+            - generic [ref=e594]: VRAM Mín.
+            - generic [ref=e595]: 2.5 GB
+          - generic [ref=e596]:
+            - generic [ref=e597]: RAM Sist.
+            - generic [ref=e598]: 6 GB
+          - generic [ref=e599]:
+            - generic [ref=e600]: Contexto
+            - generic [ref=e601]: 30s chunks
+          - generic [ref=e602]:
+            - generic [ref=e603]: Velocidade no seu PC
+            - generic [ref=e604]: ~40-75 t/s
+      - generic [ref=e606]:
+        - generic [ref=e607]: ollama run whisper:large-v3-turbo
+        - button "Copiar" [ref=e608] [cursor=pointer]
+  - generic [ref=e609]:
+    - heading "Como Rodar Estes Modelos no seu PC em 3 Minutos" [level=2] [ref=e610]
+    - generic [ref=e611]:
+      - generic [ref=e612]:
+        - heading "1. Instalar o Ollama (Recomendado)" [level=4] [ref=e613]
+        - paragraph [ref=e614]: O Ollama é o gerenciador de LLMs locais mais simples e rápido para Windows com aceleração CUDA nativa.
+        - paragraph [ref=e615]:
+          - text: "Abra o PowerShell e execute:"
+          - code [ref=e616]: winget install Ollama.Ollama
+      - generic [ref=e617]:
+        - heading "2. Baixar e Rodar o Modelo" [level=4] [ref=e618]
+        - paragraph [ref=e619]: Clique em Copiar em qualquer um dos modelos acima e cole no terminal PowerShell. O download e inicialização ocorrem automaticamente.
+        - paragraph [ref=e620]:
+          - text: "Exemplo:"
+          - code [ref=e621]: ollama run qwen2.5-coder:7b
+      - generic [ref=e622]:
+        - heading "3. Ou Usar com Interface Gráfica" [level=4] [ref=e623]
+        - paragraph [ref=e624]: Se preferir uma interface visual tipo ChatGPT offline, instale o LM Studio (lmstudio.ai) ou o Jan (jan.ai). Ambos suportam os mesmos modelos e aceleram via sua GPU RTX.

@@ -1,0 +1,254 @@
+- main [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e14]:
+      - heading "Calistenia 28D" [level=1] [ref=e15]
+      - generic [ref=e16]: 100% Offline
+    - generic [ref=e19]:
+      - generic [ref=e20]: 0 dias
+      - button "Ajustes" [ref=e24]
+      - button "Reiniciar Desafio" [ref=e26]
+  - generic [ref=e31]:
+    - generic [ref=e32]:
+      - text: Treino de Hoje
+      - generic [ref=e33]: 8 min
+    - 'heading "Dia 1: Ativação e Peitoral Básico" [level=2] [ref=e34]'
+    - paragraph [ref=e35]: "Foco: Peitoral & Core • 5 séries guiadas"
+    - generic [ref=e36]:
+      - button "Iniciar Treino" [ref=e37]
+      - button "Anatomia & Detalhes" [ref=e40]
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e50]:
+        - text: Peso Corporal
+        - generic [ref=e51]: "-- kg"
+      - button "Registrar" [ref=e52]
+    - paragraph [ref=e54]: Registre seu peso periodicamente para traçar o gráfico de evolução.
+  - generic [ref=e56]:
+    - generic [ref=e57]: Desafio dos 28 Dias
+    - generic [ref=e64]: 0 de 28 Dias (0%)
+  - generic [ref=e65]:
+    - button "Todas as Semanas" [ref=e66]
+    - button "Semana 1" [ref=e67]
+    - button "Semana 2" [ref=e68]
+    - button "Semana 3" [ref=e69]
+    - button "Semana 4" [ref=e70]
+  - generic [ref=e71]:
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - 'heading "Semana 1: Adaptação & Core" [level=3] [ref=e74]'
+        - generic [ref=e75]: 0/7 concluídos
+      - generic [ref=e76]:
+        - button "1 Ativação e Peitoral BásicoHoje Peitoral & Core•8 min" [ref=e77]:
+          - generic [ref=e78]:
+            - generic [ref=e79]: "1"
+            - generic [ref=e80]:
+              - generic [ref=e81]: Ativação e Peitoral BásicoHoje
+              - generic [ref=e82]:
+                - text: Peitoral & Core•
+                - generic [ref=e85]: 8 min
+        - button "2 Força Inferior & Base Quadríceps & Glúteos•9 min" [ref=e89]:
+          - generic [ref=e90]:
+            - generic [ref=e91]: "2"
+            - generic [ref=e92]:
+              - generic [ref=e93]: Força Inferior & Base
+              - generic [ref=e94]:
+                - text: Quadríceps & Glúteos•
+                - generic [ref=e97]: 9 min
+        - button "3 Tríceps & Empurrar Tríceps & Ombros•8 min" [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: "3"
+            - generic [ref=e104]:
+              - generic [ref=e105]: Tríceps & Empurrar
+              - generic [ref=e106]:
+                - text: Tríceps & Ombros•
+                - generic [ref=e109]: 8 min
+        - button "Descanso e Recuperação Ativa Recuperação Muscular" [ref=e113]:
+          - generic [ref=e118]:
+            - generic [ref=e119]: Descanso e Recuperação Ativa
+            - generic [ref=e120]: Recuperação Muscular
+        - button "5 Escultura Abdominal Abdômen & Core Profundo•9 min" [ref=e124]:
+          - generic [ref=e125]:
+            - generic [ref=e126]: "5"
+            - generic [ref=e127]:
+              - generic [ref=e128]: Escultura Abdominal
+              - generic [ref=e129]:
+                - text: Abdômen & Core Profundo•
+                - generic [ref=e132]: 9 min
+        - button "6 Full Body Metabólico Corpo Inteiro & Queima•10 min" [ref=e136]:
+          - generic [ref=e137]:
+            - generic [ref=e138]: "6"
+            - generic [ref=e139]:
+              - generic [ref=e140]: Full Body Metabólico
+              - generic [ref=e141]:
+                - text: Corpo Inteiro & Queima•
+                - generic [ref=e144]: 10 min
+        - button "Descanso e Regeneração Recuperação Muscular" [ref=e148]:
+          - generic [ref=e153]:
+            - generic [ref=e154]: Descanso e Regeneração
+            - generic [ref=e155]: Recuperação Muscular
+    - generic [ref=e159]:
+      - generic [ref=e160]:
+        - 'heading "Semana 2: Força Progressiva" [level=3] [ref=e161]'
+        - generic [ref=e162]: 0/7 concluídos
+      - generic [ref=e163]:
+        - button "8 Densidade Peitoral Peitoral & Tríceps•10 min" [ref=e164]:
+          - generic [ref=e165]:
+            - generic [ref=e166]: "8"
+            - generic [ref=e167]:
+              - generic [ref=e168]: Densidade Peitoral
+              - generic [ref=e169]:
+                - text: Peitoral & Tríceps•
+                - generic [ref=e172]: 10 min
+        - button "9 Potência de Pernas Pernas & Posterior•10 min" [ref=e176]:
+          - generic [ref=e177]:
+            - generic [ref=e178]: "9"
+            - generic [ref=e179]:
+              - generic [ref=e180]: Potência de Pernas
+              - generic [ref=e181]:
+                - text: Pernas & Posterior•
+                - generic [ref=e184]: 10 min
+        - button "10 Ombros e Tríceps Estritos Deltóides & Tríceps•10 min" [ref=e188]:
+          - generic [ref=e189]:
+            - generic [ref=e190]: "10"
+            - generic [ref=e191]:
+              - generic [ref=e192]: Ombros e Tríceps Estritos
+              - generic [ref=e193]:
+                - text: Deltóides & Tríceps•
+                - generic [ref=e196]: 10 min
+        - button "Descanso e Hidratação Recuperação Muscular" [ref=e200]:
+          - generic [ref=e205]:
+            - generic [ref=e206]: Descanso e Hidratação
+            - generic [ref=e207]: Recuperação Muscular
+        - button "12 Abdômen de Aço Core & Estabilidade•11 min" [ref=e211]:
+          - generic [ref=e212]:
+            - generic [ref=e213]: "12"
+            - generic [ref=e214]:
+              - generic [ref=e215]: Abdômen de Aço
+              - generic [ref=e216]:
+                - text: Core & Estabilidade•
+                - generic [ref=e219]: 11 min
+        - button "13 Circuito Condicionamento Total Corpo Inteiro•12 min" [ref=e223]:
+          - generic [ref=e224]:
+            - generic [ref=e225]: "13"
+            - generic [ref=e226]:
+              - generic [ref=e227]: Circuito Condicionamento Total
+              - generic [ref=e228]:
+                - text: Corpo Inteiro•
+                - generic [ref=e231]: 12 min
+        - button "Descanso da Segunda Semana Recuperação Muscular" [ref=e235]:
+          - generic [ref=e240]:
+            - generic [ref=e241]: Descanso da Segunda Semana
+            - generic [ref=e242]: Recuperação Muscular
+    - generic [ref=e246]:
+      - generic [ref=e247]:
+        - 'heading "Semana 3: Resistência & Volume" [level=3] [ref=e248]'
+        - generic [ref=e249]: 0/7 concluídos
+      - generic [ref=e250]:
+        - button "15 Volume Superior Extremo Peitoral & Tríceps•12 min" [ref=e251]:
+          - generic [ref=e252]:
+            - generic [ref=e253]: "15"
+            - generic [ref=e254]:
+              - generic [ref=e255]: Volume Superior Extremo
+              - generic [ref=e256]:
+                - text: Peitoral & Tríceps•
+                - generic [ref=e259]: 12 min
+        - button "16 Resistência Muscular de Pernas Quadríceps & Glúteos•12 min" [ref=e263]:
+          - generic [ref=e264]:
+            - generic [ref=e265]: "16"
+            - generic [ref=e266]:
+              - generic [ref=e267]: Resistência Muscular de Pernas
+              - generic [ref=e268]:
+                - text: Quadríceps & Glúteos•
+                - generic [ref=e271]: 12 min
+        - button "17 Força de Ombros e Estabilização Ombros & Core•11 min" [ref=e275]:
+          - generic [ref=e276]:
+            - generic [ref=e277]: "17"
+            - generic [ref=e278]:
+              - generic [ref=e279]: Força de Ombros e Estabilização
+              - generic [ref=e280]:
+                - text: Ombros & Core•
+                - generic [ref=e283]: 11 min
+        - button "Recuperação e Sono Reparador Recuperação Muscular" [ref=e287]:
+          - generic [ref=e292]:
+            - generic [ref=e293]: Recuperação e Sono Reparador
+            - generic [ref=e294]: Recuperação Muscular
+        - button "19 Core Isométrico e Dinâmico Abdômen & Lombar•12 min" [ref=e298]:
+          - generic [ref=e299]:
+            - generic [ref=e300]: "19"
+            - generic [ref=e301]:
+              - generic [ref=e302]: Core Isométrico e Dinâmico
+              - generic [ref=e303]:
+                - text: Abdômen & Lombar•
+                - generic [ref=e306]: 12 min
+        - button "20 Queima Total de Gordura Cardio & Força•13 min" [ref=e310]:
+          - generic [ref=e311]:
+            - generic [ref=e312]: "20"
+            - generic [ref=e313]:
+              - generic [ref=e314]: Queima Total de Gordura
+              - generic [ref=e315]:
+                - text: Cardio & Força•
+                - generic [ref=e318]: 13 min
+        - button "Descanso da Terceira Semana Recuperação Muscular" [ref=e322]:
+          - generic [ref=e327]:
+            - generic [ref=e328]: Descanso da Terceira Semana
+            - generic [ref=e329]: Recuperação Muscular
+    - generic [ref=e333]:
+      - generic [ref=e334]:
+        - 'heading "Semana 4: Maestria Final" [level=3] [ref=e335]'
+        - generic [ref=e336]: 0/7 concluídos
+      - generic [ref=e337]:
+        - button "22 Maestria de Empurrar Peitoral, Tríceps & Ombros•13 min" [ref=e338]:
+          - generic [ref=e339]:
+            - generic [ref=e340]: "22"
+            - generic [ref=e341]:
+              - generic [ref=e342]: Maestria de Empurrar
+              - generic [ref=e343]:
+                - text: Peitoral, Tríceps & Ombros•
+                - generic [ref=e346]: 13 min
+        - button "23 Pernas de Aço Quadríceps & Glúteos•13 min" [ref=e350]:
+          - generic [ref=e351]:
+            - generic [ref=e352]: "23"
+            - generic [ref=e353]:
+              - generic [ref=e354]: Pernas de Aço
+              - generic [ref=e355]:
+                - text: Quadríceps & Glúteos•
+                - generic [ref=e358]: 13 min
+        - button "24 Desafio Calistênico Supremo Deltóides & Core•13 min" [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: "24"
+            - generic [ref=e365]:
+              - generic [ref=e366]: Desafio Calistênico Supremo
+              - generic [ref=e367]:
+                - text: Deltóides & Core•
+                - generic [ref=e370]: 13 min
+        - button "Recuperação Pré-Reta Final Recuperação Muscular" [ref=e374]:
+          - generic [ref=e379]:
+            - generic [ref=e380]: Recuperação Pré-Reta Final
+            - generic [ref=e381]: Recuperação Muscular
+        - button "26 Tensão Corporal Absoluta Core & Isometria•12 min" [ref=e385]:
+          - generic [ref=e386]:
+            - generic [ref=e387]: "26"
+            - generic [ref=e388]:
+              - generic [ref=e389]: Tensão Corporal Absoluta
+              - generic [ref=e390]:
+                - text: Core & Isometria•
+                - generic [ref=e393]: 12 min
+        - button "27 Teste de Capacidade Máxima Corpo Inteiro & Explosão•14 min" [ref=e397]:
+          - generic [ref=e398]:
+            - generic [ref=e399]: "27"
+            - generic [ref=e400]:
+              - generic [ref=e401]: Teste de Capacidade Máxima
+              - generic [ref=e402]:
+                - text: Corpo Inteiro & Explosão•
+                - generic [ref=e405]: 14 min
+        - button "28 Graduação do Desafio 28 Dias! Celebração & Resistência Final•15 min" [ref=e409]:
+          - generic [ref=e410]:
+            - generic [ref=e411]: "28"
+            - generic [ref=e412]:
+              - generic [ref=e413]: Graduação do Desafio 28 Dias!
+              - generic [ref=e414]:
+                - text: Celebração & Resistência Final•
+                - generic [ref=e417]: 15 min
+  - generic [ref=e421]:
+    - generic [ref=e422]: 100% Código Aberto • Sem Servidor • Dados Seguros no Dispositivo
+    - paragraph [ref=e426]: Adicione à Tela de Início no Safari (iOS) ou Chrome (Android) para treinar offline

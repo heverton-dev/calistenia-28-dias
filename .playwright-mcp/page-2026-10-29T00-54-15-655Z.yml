@@ -1,0 +1,34 @@
+- generic [ref=f2e2]:
+  - banner [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - heading "Processos & Serviços" [level=1] [ref=f2e5]
+      - paragraph [ref=f2e6]: Quem está consumindo memória e CPU agora, e o que está iniciando com o Windows.
+    - generic [ref=f2e7]:
+      - button "TEMA" [ref=f2e8]
+      - link "🤖 MODELOS IA" [ref=f2e9]:
+        - /url: /llms
+      - link "← VOLTAR" [ref=f2e10] [cursor=pointer]:
+        - /url: /
+  - generic [ref=f2e11]:
+    - generic [ref=f2e12]:
+      - heading "Top 5 devoradores de RAM -- processos" [level=2] [ref=f2e13]:
+        - generic [ref=f2e14]: Top 5 devoradores de RAM
+        - generic [ref=f2e15]: "-- processos"
+      - list [ref=f2e16]:
+        - listitem [ref=f2e17]:
+          - generic [ref=f2e18]: Carregando…
+    - generic [ref=f2e19]:
+      - heading "Top 5 devoradores de CPU uso % (suavizado)" [level=2] [ref=f2e20]:
+        - generic [ref=f2e21]: Top 5 devoradores de CPU
+        - generic [ref=f2e22]: uso % (suavizado)
+      - list [ref=f2e23]:
+        - listitem [ref=f2e24]:
+          - generic [ref=f2e25]: Carregando…
+  - generic [ref=f2e26]:
+    - heading "Serviços do Windows" [level=2] [ref=f2e27]
+    - generic [ref=f2e29]:
+      - button "EM EXECUÇÃO" [ref=f2e30]
+      - button "INICIAM NO BOOT" [ref=f2e32]
+      - button "PARADOS" [ref=f2e34]
+      - button "SISTEMA" [ref=f2e36]
+    - paragraph [ref=f2e38]: Escolha uma categoria acima para ver a lista e agir.
