@@ -1,0 +1,4 @@
+[     800ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://calistenia-sigma.vercel.app/:0
+[     882ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://calistenia-sigma.vercel.app/favicon.ico:0
+[    1437ms] [LOG] SW registrado: https://calistenia-sigma.vercel.app/ @ https://calistenia-sigma.vercel.app/assets/index-C8rYghZb.js:224
+[    2331ms] [LOG] App pronto para uso offline! @ https://calistenia-sigma.vercel.app/assets/index-C8rYghZb.js:224
