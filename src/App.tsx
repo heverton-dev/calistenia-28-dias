@@ -9,6 +9,7 @@ import { WorkoutPlayer } from './components/WorkoutPlayer';
 import { WeightTracker } from './components/WeightTracker';
 import { SettingsModal } from './components/SettingsModal';
 import { ThemeSelectorModal } from './components/ThemeSelectorModal';
+import { ResetConfirmationModal } from './components/ResetConfirmationModal';
 import { Flame, Trophy, Play, RotateCcw, Smartphone, Dumbbell, ShieldCheck, Sliders, Palette, Check } from 'lucide-react';
 
 const QUICK_THEMES: { id: AppTheme; hex: string; label: string }[] = [
@@ -25,6 +26,7 @@ export default function App() {
   const [inspectingDay, setInspectingDay] = useState<WorkoutDay | null>(null);
   const [showSettings, setShowSettings] = useState(false);
   const [showThemeModal, setShowThemeModal] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false);
   const [selectedWeek, setSelectedWeek] = useState<number | 'all'>('all');
 
   useEffect(() => {
@@ -78,12 +80,10 @@ export default function App() {
   };
 
   const handleReset = () => {
-    if (window.confirm('Deseja reiniciar todo o seu progresso do Desafio de 28 Dias?')) {
-      resetProgress();
-      const fresh = loadProgress();
-      setProgress(fresh);
-      document.documentElement.setAttribute('data-theme', fresh.theme || 'orange');
-    }
+    resetProgress();
+    const fresh = loadProgress();
+    setProgress(fresh);
+    document.documentElement.setAttribute('data-theme', fresh.theme || 'orange');
   };
 
   const currentActiveTheme = progress.theme || 'orange';
@@ -149,7 +149,7 @@ export default function App() {
             </button>
 
             <button
-              onClick={handleReset}
+              onClick={() => setShowResetModal(true)}
               className="p-2.5 rounded-2xl bg-[#111728] text-slate-400 hover:text-white border border-white/5 active:scale-90 transition-transform shrink-0"
               title="Reiniciar Desafio"
               aria-label="Reiniciar Desafio"
@@ -357,6 +357,13 @@ export default function App() {
           onClose={() => setShowThemeModal(false)}
         />
       )}
+
+      {/* Modal de Confirmação de Reinício Customizado */}
+      <ResetConfirmationModal
+        isOpen={showResetModal}
+        onClose={() => setShowResetModal(false)}
+        onConfirm={handleReset}
+      />
     </div>
   );
 }

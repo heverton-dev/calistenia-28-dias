@@ -1,0 +1,31 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141d33"/>
+      <stop offset="50%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#05080e"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#f97316" stroke-width="12" stroke-dasharray="30 15" opacity="0.35"/>
+  <circle cx="256" cy="256" r="215" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.1"/>
+
+  <g transform="translate(256, 220) scale(1.1)">
+    <rect x="-110" y="-18" width="220" height="36" rx="8" fill="url(#orangeGrad)"/>
+    <rect x="-40" y="-28" width="80" height="56" rx="12" fill="#0f172a"/>
+    <rect x="-160" y="-60" width="36" height="120" rx="12" fill="url(#orangeGrad)"/>
+    <rect x="-195" y="-45" width="22" height="90" rx="8" fill="#ffffff" opacity="0.9"/>
+    <rect x="124" y="-60" width="36" height="120" rx="12" fill="url(#orangeGrad)"/>
+    <rect x="173" y="-45" width="22" height="90" rx="8" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <text x="256" y="415" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="52" fill="#ffffff" text-anchor="middle" letter-spacing="4">28 DIAS</text>
+  <text x="256" y="355" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="24" fill="#f97316" text-anchor="middle" letter-spacing="6">CALISTENIA</text>
+</svg>

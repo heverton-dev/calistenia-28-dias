@@ -107,19 +107,19 @@ export function WeightTracker({ history, onSaveWeight }: WeightTrackerProps) {
 
       {/* Formulário de Registro Rápido */}
       {isAdding && (
-        <form onSubmit={handleSubmit} className="flex gap-2 mb-3 animate-in fade-in duration-200 flex-nowrap">
+        <form onSubmit={handleSubmit} className="flex gap-2 mb-3 animate-in fade-in duration-200">
           <input
             type="number"
             step="0.1"
             placeholder="Ex: 78.5"
             value={inputVal}
             onChange={e => setInputVal(e.target.value)}
-            className="flex-1 min-w-0 bg-[#090d16] border border-white/10 rounded-xl px-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-theme"
+            className="w-full min-w-0 bg-[#090d16] border border-white/10 rounded-xl px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-theme placeholder:text-slate-600"
             autoFocus
           />
           <button
             type="submit"
-            className="px-4 py-1.5 rounded-xl bg-theme-gradient text-white font-bold text-xs flex items-center gap-1 shadow-theme active:scale-95 whitespace-nowrap shrink-0"
+            className="px-4 py-2 rounded-xl bg-theme-gradient text-white font-bold text-xs flex items-center gap-1 shadow-theme active:scale-95 shrink-0"
           >
             <Check size={14} className="shrink-0" />
             Salvar
