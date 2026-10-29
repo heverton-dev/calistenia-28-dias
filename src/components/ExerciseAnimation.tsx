@@ -81,7 +81,7 @@ export function ExerciseAnimation({
           Avatar 3D Ativo
         </span>
         <span className="text-[9px] text-slate-300 font-mono font-bold bg-white/5 px-2 py-0.5 rounded-lg border border-white/5 shrink-0 whitespace-nowrap">
-          {isPaused ? '⏸ Pausado' : '⚡ 30 FPS Loop'}
+          {isPaused ? '⏸ Pausado' : '⚡ 60 FPS Suave'}
         </span>
       </div>
 
